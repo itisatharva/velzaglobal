@@ -1,0 +1,77 @@
+# ======================================================================
+# VELZA GLOBAL - .gitignore
+# ======================================================================
+#
+# This repository is deployed verbatim to the Namecheap web root, so
+# anything ignored here will NOT exist on the live site. Only exclude
+# things that are genuinely server-side state, secrets, or local noise.
+# ======================================================================
+
+
+# ----------------------------------------------------------------------
+# SECRETS  (never commit - see README "Credentials")
+# ----------------------------------------------------------------------
+# Live DB/SMTP credentials live OUTSIDE the web root on the server, at
+# /home/velzhsrg/private_config/{rsvp_db,rsvp_smtp}.php, and are required
+# at runtime by Ph/Events/PR/*.php. They must stay off GitHub.
+.env
+.env.*
+!.env.example
+private_config/
+*.pem
+*.key
+.htpasswd
+
+
+# ----------------------------------------------------------------------
+# SERVER-GENERATED LOGS AND RUNTIME STATE
+# ----------------------------------------------------------------------
+# These are written by PHP on the live server. reminder_mail.log in
+# particular contains REAL ATTENDEE EMAIL ADDRESSES - committing it would
+# publish personal data into git history permanently, where deleting the
+# file later does not remove it.
+error_log
+access_log
+*.log
+*.lock
+Ph/Events/PR/error_log
+Ph/Events/PR/reminder_cron.log
+Ph/Events/PR/reminder_mail.log
+Ph/Events/PR/send_reminders.lock
+
+
+# ----------------------------------------------------------------------
+# OS / EDITOR NOISE
+# ----------------------------------------------------------------------
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+
+# ----------------------------------------------------------------------
+# LOCAL BUILD / TOOLING ARTEFACTS
+# ----------------------------------------------------------------------
+# There is no build step for this site; these are here so a stray local
+# install never lands in the deploy.
+node_modules/
+vendor/composer/
+*.tar
+*.tgz
+*.zip
+*.bak
+*.orig
+
+
+# ----------------------------------------------------------------------
+# DEPLOY BOOKKEEPING
+# ----------------------------------------------------------------------
+.deploy-cache/
+.ftp-deploy-sync-state.json

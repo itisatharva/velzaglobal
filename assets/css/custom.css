@@ -1,0 +1,2310 @@
+/* ======================================================================
+   GLOBAL — SITE FOOTER
+   ====================================================================== */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 0 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+footer svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--muted);
+}
+
+/* Align India office under Contact Us in footer */
+.india-office {
+    margin-left: 16.6667% !important;
+}
+
+@media (max-width: 991px) {
+    .india-office {
+        margin-left: 0 !important;
+        margin-top: 40px;
+        padding-left: 0;
+    }
+}
+
+/* Corporate offices footer grid — tablet */
+@media (max-width: 991px) {
+    .corporate-offices .col-lg-4 {
+        margin-bottom: 30px;
+    }
+    .corporate-offices .col-lg-4:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Corporate offices text sizing + footer logo spacing — mobile */
+@media (max-width: 575px) {
+    /* Corporate offices text sizing */
+    .corporate-offices h5 {
+        font-size: 15px;
+    }
+    .corporate-offices .p-v2 {
+        font-size: 12px;
+        line-height: 22px;
+    }
+
+    .top-footer-logo {
+        padding-top: 0 !important;
+    }
+}
+
+/* ================================
+   Corporate Offices — Center on Mobile
+   ================================ */
+@media (max-width: 767px) {
+    .corporate-offices {
+        text-align: center;
+    }
+    .corporate-offices .col-lg-4 {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-bottom: 30px;
+    }
+    .corporate-offices .col-lg-4:last-child {
+        margin-bottom: 0;
+    }
+    .corporate-offices h5 {
+        text-align: center;
+    }
+    .corporate-offices .p-v2 {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 767px) {
+    footer .container {
+        text-align: center;
+    }
+
+    /* Center the subscribe form as a block, not just its text */
+    .custom_subscribe_widget,
+    .sk__widget-inner {
+        display: flex;
+        justify-content: center;
+    }
+
+    .sk__subscribe-form {
+        margin: 0 auto;
+    }
+
+    /* Corporate office blocks: full width, centered text and content */
+    .corporate-offices .col-lg-4 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .corporate-offices .p-v2 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Footer socials heading + row */
+    .footer-socials-section {
+        text-align: center;
+    }
+
+    .footer-socials-inner {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Footer bottom row (logo/tagline/links) */
+    .footer-bottom,
+    .footer-bottom > div {
+        text-align: center;
+    }
+
+    /* Footer main links list */
+    .footer-main-small-col ul {
+        padding-left: 0;
+        text-align: center;
+    }
+}
+
+/* ======================================================================
+   GLOBAL — HEADER / COUNTRY SWITCHER
+   ====================================================================== */
+
+/**
+ * Country Switcher
+ */
+.sk__country-switcher-wrap {
+    position: relative;
+    top: 36px;
+    right: 120px;
+    z-index: 9999;
+    transition: right 0.4s ease 0s;
+}
+
+.sk__country-switcher-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 180px;
+    justify-content: space-between;
+    height: 44px;
+    padding: 0 16px;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.64);
+    border: 1px solid rgba(242, 242, 242, 0.26);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.sk__country-switcher-trigger:hover,
+.sk__country-switcher-trigger[aria-expanded="true"] {
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.64);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.sk__country-switcher-flag {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.sk__country-switcher-caret {
+    flex-shrink: 0;
+    margin-left: 4px;
+    transition: transform 0.3s ease 0s;
+}
+
+.sk__country-switcher-trigger[aria-expanded="true"]
+    .sk__country-switcher-caret {
+    transform: rotate(180deg);
+}
+
+.sk__country-switcher-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    /* min-width: 220px; */
+    margin: 0;
+    width: 180px;
+    padding: 5px;
+    list-style: none;
+    background: rgba(15, 15, 18, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    transform-origin: top right;
+    transform: scaleY(0);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 0.3s ease 0s,
+        opacity 0.3s ease 0s;
+}
+
+.sk__country-switcher-menu.sk__open {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sk__country-switcher-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+    border-radius: 10px;
+    transition:
+        background-color 0.3s ease 0s,
+        color 0.3s ease 0s;
+}
+
+.sk__country-switcher-menu li a:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* keep it aligned with the hamburger at smaller breakpoints */
+@media all and (max-width: 767px) {
+    .sk__country-switcher-wrap {
+        top: 17px;
+        right: 55px;
+    }
+    .sk__country-switcher-trigger {
+        height: 36px;
+        padding: 0 12px;
+        font-size: 12px;
+    }
+    .sk__country-switcher-flag {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 9998px) {
+    .sk__country-switcher-wrap {
+        top: 33px;
+        right: 78px;
+    }
+}
+
+/* Hide the globe button once scrolled — only the hamburger stays visible */
+body.sk__scrolling-started .sk__country-switcher-wrap {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease 0s,
+        visibility 0s ease 0.3s;
+}
+
+/* Slide the globe button to the left edge of the open off-canvas panel */
+body.sk__nav-open .sk__country-switcher-wrap {
+    right: 306px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.sk__header-actions {
+    position: fixed;
+    top: -4px;
+    right: 60px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: right 0.4s ease 0s;
+}
+
+/* Desktop nav breakpoint — give the switcher its own lane, clear of nav links */
+/* Disabled site-wide along with the desktop menu crossover (see theme.css) */
+@media all and (min-width: 9999px) {
+    .sk__header-actions {
+        top: 36px;
+        right: 260px; /* pushes it left of the nav links / logo area — adjust to taste */
+    }
+}
+
+/* ======================================================================
+   GLOBAL — SHARED PORTFOLIO CARD COMPONENT
+   (reused on Home, Portfolio, and other pages)
+   ====================================================================== */
+
+.sk__portfolio-thumblink-image {
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Remove slider dots below portfolio cards */
+.sk__portfolio-wrapper .slick-dots,
+.sk__portfolio-thumbs .slick-dots,
+.slick-dots {
+    display: none !important;
+}
+
+h2.text1 {
+    text-transform: uppercase;
+}
+
+.custom-portfolio {
+    display: flex !important;
+    flex-wrap: wrap;
+    margin: 0 -12px;
+}
+
+.custom-portfolio > .sk__portfolio-item {
+    width: 25% !important;
+    flex: 0 0 25% !important;
+    max-width: 25%;
+    padding: 12px;
+}
+
+.custom-portfolio > .sk__portfolio-item.full-card {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100%;
+}
+
+/* Full-width card height */
+.custom-portfolio > .full-card .sk__portfolio-thumblink {
+    padding-top: 20% !important; /* Adjust between 35% - 50% if needed */
+}
+
+.custom-portfolio > .full-card .sk__portfolio-thumblink-image {
+    background-size: cover;
+    background-position: center;
+}
+
+a.sk__portfolio-thumblink {
+    padding-top: 211.7%;
+}
+
+/* Reduce height of first 4 cards */
+.custom-portfolio
+    > .sk__portfolio-item:not(.full-card)
+    .sk__portfolio-thumblink {
+    padding-top: 170% !important;
+}
+
+/* Shorter cards just for Latest News section */
+.latest-news-portfolio
+    > .sk__portfolio-item:not(.full-card)
+    .sk__portfolio-thumblink {
+    padding-top: 0 !important;
+    height: 300px !important;
+}
+
+.custom-portfolio .portfolio-thumb-info h6 {
+    font-size: 13px !important;
+    line-height: 1.5;
+    letter-spacing: 1.2px;
+}
+
+@media (max-width: 991px) {
+    .custom-portfolio > .sk__portfolio-item {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50%;
+    }
+
+    .custom-portfolio > .sk__portfolio-item.full-card {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .custom-portfolio > .sk__portfolio-item {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100%;
+    }
+}
+
+/* ===== Portfolio Hover Fix ===== */
+
+.portfolio-thumb-info {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Bottom before hover */
+    align-items: center;
+    padding-bottom: 20px;
+    text-align: center;
+    transition: all 0.35s ease;
+}
+
+.portfolio-thumb-info h6 {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.35s ease;
+    line-height: 1.5 !important;
+    margin-bottom: 0;
+    max-width: 250px;
+    min-height: 96px; /* Reserve equal height (4 lines) */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+}
+
+.portfolio-thumb-info h2 {
+    line-height: 1.15;
+    min-height: 10px; /* Same title height for all cards */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 0 0 18px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.portfolio-thumb-info p {
+    width: 140px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.35s ease;
+    background: #000;
+    color: #fff;
+    border-radius: 40px;
+    margin: 0;
+}
+
+.sk__portfolio-item:hover .portfolio-thumb-info h6,
+.sk__portfolio-item:hover .portfolio-thumb-info p {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+.sk__portfolio-thumblink-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.sk__portfolio-section .sk__portfolio-thumblink-image {
+    opacity: 0.8; /* lower = more faded, higher = more visible */
+}
+
+#expressions-section .sk__portfolio-thumblink-image {
+    opacity: 0.6;
+}
+
+#portfolio-section .sk__portfolio-thumblink-image {
+    opacity: 0.6;
+}
+
+/* ======================================================================
+   GLOBAL — SHARED HERO / PRODUCT HEADER COMPONENT
+   (reused on Contact Us + product/collection pages)
+   ====================================================================== */
+
+/* ===========================
+   PRODUCT HERO
+===========================*/
+
+.product-hero-slide .sk__hero-item-theme-style {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.product-hero-content {
+    width: 100%;
+    /* max-width: 1500px; */
+    margin: 60px;
+    /* padding: 0 10px; */
+    display: grid;
+    /* grid-template-columns: 1.1fr 0.9fr 0.7fr; */
+    /* align-items: left; */
+    gap: 20px;
+    position: relative;
+}
+
+.product-left {
+    color: #fff;
+    margin-top: 60px;
+}
+
+.product-left h1 {
+    font-size: 60px;
+    line-height: 1.05;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.product-description {
+    max-width: 520px;
+    margin: 16px 0;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #d8d8d8;
+}
+
+.product-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.product-buttons .btn {
+    min-width: 250px;
+    margin: 0;
+}
+
+@media (max-width: 1200px) {
+    .product-hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 120px 30px 60px;
+    }
+
+    .product-description {
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .product-buttons {
+        justify-content: center;
+    }
+}
+
+.product-hero-slide .sk__hero-item-theme-style {
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+
+.product-hero-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 100px !important;
+
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.product-left {
+    flex: 0 0 55%;
+}
+
+/* Align hero heading with paragraph below it in product hero slides */
+.product-hero-slide .hero-h1-box {
+    left: 0 !important;
+}
+
+/* ======================================================================
+   GLOBAL — SHARED SECTIONS & UTILITIES
+   ====================================================================== */
+
+/* Brand Ecosystem / Looking Ahead CTA section (shared across pages) */
+.vg-shared-skills {
+    padding-top: 40px !important;
+    padding-bottom: 10px !important;
+}
+
+.vg-shared-skills {
+    position: relative;
+    overflow: hidden;
+}
+
+.sk__section-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.vg-shared-skills::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.vg-shared-skills .container,
+.vg-shared-skills .row {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== Feature cards with background image (Available Across section) ===== */
+.sk__feature {
+    position: relative !important;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.sk__feature-bg {
+    position: absolute !important;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2 !important;
+    opacity: 0.2 !important;
+}
+
+.sk__feature::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
+    z-index: -1 !important;
+}
+
+.sk__feature h5,
+.sk__feature p,
+.sk__feature .colorline-deco {
+    position: relative !important;
+    z-index: 2 !important;
+    color: #fff !important;
+}
+
+/* Force portfolio cards visible on pages missing the theme's
+   sk__portfolio-page / sk__home-portfolio body class trigger */
+.sk__force-visible .sk__portfolio-item {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Media Gallery only */
+.media-gallery-section {
+    padding-top: 40px !important;
+    padding-bottom: 30px !important;
+}
+
+.media-gallery-heading {
+    padding-bottom: 30px !important;
+    margin-bottom: 0 !important;
+}
+
+.media-gallery-heading h1 {
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.latest-news-section {
+    padding-bottom: 40px !important;
+}
+
+@media (max-width: 575px) {
+    /* Tighten the dark overlay card padding so image shows more on small screens */
+    .sk__rectangles-left,
+    .sk__rectangles-full-left {
+        padding: 16px !important;
+    }
+
+    .sk__rectangles-full-left-main-tint,
+    .sk__rectangles-fluid-left-main-tint {
+        padding: 20px;
+    }
+}
+
+/* ======================================================================
+   GLOBAL — KEYFRAMES
+   ====================================================================== */
+
+@keyframes floatCan {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-18px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ======================================================================
+   HOME PAGE
+   ====================================================================== */
+
+/* Only this Latest News section */
+.latest-news-portfolio > .sk__portfolio-item:not(.full-card) {
+    width: 33.3333% !important;
+    flex: 0 0 33.3333% !important;
+    max-width: 33.3333% !important;
+    padding: 12px;
+    min-height: 20% !important;
+}
+
+/* Homepage — Tablet (≤991px): hero rings + hero box */
+@media (max-width: 991px) {
+    .sk__rings-section h1.super-heading,
+    .sk__rings-section span.super-heading.sk__gradient-fancy-text-back {
+        font-size: 52px;
+        letter-spacing: -2px;
+    }
+
+    .hero-box-bottom-left {
+        max-width: 100%;
+    }
+}
+
+/* Homepage — Mobile (≤575px): hero rings + hero box */
+@media (max-width: 575px) {
+    /* Rings section heading/subhead */
+    .sk__rings-section h1.super-heading,
+    .sk__rings-section span.super-heading.sk__gradient-fancy-text-back {
+        font-size: 32px;
+        letter-spacing: -1px;
+        line-height: 1.3;
+    }
+    .sk__rings-section h2.h2-small {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    /* Hero bottom-right box needs more clearance on small screens */
+    .hero-box-bottom-right {
+        margin-bottom: 100px;
+    }
+}
+
+@media (max-width: 575px) {
+    /* Hero background — keep full coverage without cropping key content */
+    .sk__hero-slider-item .sk__parallax-background-element {
+        background-position: center 30%;
+        background-size: cover;
+    }
+}
+
+@media (max-width: 767px) {
+    .sk__hero-slider-item img.sk__parallax-background-element,
+    #about-us img.sk__featured-project-background,
+    .sk__featured-project-section img.sk__featured-project-background {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Shrink the hero slide to fit its content instead of 100vh */
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        min-height: 0 !important;
+        height: 700px !important;
+    }
+
+    /* Switch from space-between (which assumes full height) to stacked content */
+    .sk__hero-item-theme-style {
+        justify-content: flex-start !important;
+        padding: 50px 24px 40px !important;
+        gap: 30px;
+    }
+
+    /* Neutralize the spacer div that was pushing content to fill the screen */
+    .sk__hero-item-theme-style .flex-helper-div {
+        display: none;
+    }
+}
+
+/* ======================================================================
+   ABOUT US PAGE
+   ====================================================================== */
+
+/* About us page */
+
+#about-us {
+    padding-top: 100px !important;
+    padding-bottom: 80px !important;
+}
+
+/* Move the About Us divider line up slightly */
+#about-us .custom-about-divider-col .divider {
+    margin-top: 0;
+    transform: translateY(-40px);
+}
+
+/* Fix background visibility for Our Values + Why Velza sections */
+.sk__section-bg {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.sk__section-bg-image {
+    position: absolute !important;
+    inset: 0;
+    width: 100%;
+    height: 100% !important;
+    min-height: 0 !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.sk__section-bg .container {
+    position: relative;
+    z-index: 2;
+}
+
+.sk__section-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+/* Space between heading and mission */
+#about-us1 .super-heading {
+    margin-bottom: 50px !important;
+}
+
+#about-us1 h1.super-heading {
+    line-height: 1.1;
+}
+
+/* Remove unnecessary bottom gap */
+#about-us1 {
+    padding-bottom: 90px !important;
+    opacity: 0.6;
+}
+
+.about-right-image-wrap {
+    margin-bottom: 0 !important;
+}
+
+/* Vision + Mission row — gap below image/heading, both headings align on same line */
+#about-us1 .vision-row {
+    margin-top: 60px !important;
+}
+
+.vision-row {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.vision-row .col-12 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* About Us background like Featured Project */
+#about-us {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: #000;
+}
+
+#about-us .sk__featured-project-background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+#about-us .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Optional dark overlay for readability */
+#about-us::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+/* Remove the card look */
+.sk__feature1 {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 50px 40px;
+    height: 100%;
+    position: relative;
+}
+
+/* Vertical separator */
+.sk__feature-col1 {
+    position: relative;
+}
+
+.sk__feature-col1::after {
+    content: "";
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 1px;
+    height: calc(100% - 60px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Remove separator after 3rd column (end of row 1) and last column (end of row 2) */
+.sk__feature-col1:nth-child(3)::after,
+.sk__feature-col1:last-child::after {
+    display: none;
+}
+
+.sk1 {
+    padding-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .sk__feature-col1::after {
+        display: none;
+    }
+
+    .sk__feature1 {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .sk__feature-col1:last-child .sk__feature {
+        border-bottom: none;
+    }
+}
+
+#about-us .sk__featured-project-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.sk__section-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.sk__about-us-section {
+    overflow-x: hidden;
+}
+
+.about-right-image-wrap {
+    position: relative;
+    overflow: hidden;
+    padding-top: 49.42%;
+}
+@media all and (max-width: 991px) {
+    /* xs to (and including) md */
+    .about-right-image-wrap {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 575px) {
+    /* About Us "Who We Are" background image */
+    #about-us .sk__featured-project-background {
+        background-position: center 20%;
+        background-size: cover;
+    }
+}
+
+/* ================================
+   About Us Page — Tablet (≤991px)
+   ================================ */
+@media (max-width: 991px) {
+    /* Stack "Who We Are" / "What Drives Us" / "Our Story" image+text rows cleanly */
+    .about-right-image-wrap {
+        min-height: 320px;
+    }
+
+    /* Vision row spacing fix (negative margin from desktop shouldn't carry over) */
+    #about-us1 .vision-row {
+        margin-top: 0;
+    }
+
+    /* Feature columns (Why Velza / Our Philosophy) - remove vertical divider on tablet */
+    .sk__feature-col1::after {
+        display: none;
+    }
+    .sk__feature1 {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 40px 30px;
+    }
+    .sk__feature-col1:last-child .sk__feature1 {
+        border-bottom: none;
+    }
+}
+
+/* ================================
+   About Us Page — Mobile (≤575px)
+   ================================ */
+@media (max-width: 575px) {
+    /* About sections heading + spacing */
+    #about-us,
+    #about-us1 {
+        padding-top: 60px !important;
+        padding-bottom: 40px !important;
+    }
+
+    .about-heading-custom {
+        font-size: 30px;
+        letter-spacing: -1px;
+    }
+
+    /* Body copy width + line-height on small screens */
+    .mw-460,
+    .mw-660 {
+        max-width: 100%;
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    /* Image block height on mobile so it doesn't collapse */
+    .about-right-image-wrap {
+        min-height: 220px;
+    }
+
+    /* Our Philosophy / Our Values / Why Velza feature boxes */
+    .sk__feature,
+    .sk__feature1 {
+        padding: 30px 20px;
+    }
+    .sk__feature h5,
+    .sk__feature1 h2 {
+        font-size: 18px;
+    }
+
+    /* Looking Ahead CTA spacing */
+    .vg-shared-skills .skills-subhead {
+        font-size: 13px;
+        line-height: 22px;
+    }
+}
+
+@media (max-width: 991px) {
+    #about-us1 .vision-row {
+        margin-top: 30px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    #about-us1 .vision-row {
+        margin-top: 20px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    #about-us .sk__featured-project-background {
+        min-height: 0 !important;
+        height: 100% !important;
+    }
+
+    #about-us {
+        min-height: 0 !important;
+        height: auto !important;
+    }
+}
+
+/* Aboutus Page */
+
+@media (max-width: 767px) {
+    /* "What Drives Us" background image — stop it stretching */
+    #about-us1 > img.sk__absolute.sk__image-back-cover {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* "Our Values" section — remove the 100vh floor so it fits its content */
+    .sk__section-bg.sk__parallax-background-section {
+        min-height: 0 !important;
+        height: auto !important;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Hero background image — remove the 100vh floor so it matches the shrunk section */
+    .sk__hero-item-theme-style img.sk__parallax-background-element {
+        min-height: 0 !important;
+        height: 100% !important;
+    }
+}
+
+/* ======================================================================
+   PORTFOLIO PAGE
+   ====================================================================== */
+
+/* First 4 cards only (refined: also excludes half-card) */
+.custom-portfolio
+    > .sk__portfolio-item:not(.full-card):not(.half-card)
+    .sk__portfolio-thumblink {
+    padding-top: 170% !important;
+}
+
+/* ===== Portfolio Hover Fix ===== */
+
+.portfolio-thumb-info {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Bottom before hover */
+    align-items: center;
+    padding-bottom: 20px;
+    text-align: center;
+    transition: all 0.35s ease;
+}
+
+.portfolio-thumb-info h6 {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.35s ease;
+    max-width: 250px;
+    height: 100px; /* Fixed height for all */
+    line-height: 1.7;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    margin: 0;
+}
+
+.portfolio-thumb-info h2 {
+    line-height: 1.15;
+    min-height: 48px; /* Same title height for all cards */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 0 0 18px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.portfolio-thumb-info p {
+    width: 160px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.35s ease;
+    background: #000;
+    color: #fff;
+    border-radius: 40px;
+    margin: 0;
+}
+
+.sk__portfolio-item:hover .portfolio-thumb-info h6,
+.sk__portfolio-item:hover .portfolio-thumb-info p {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+/* Reserve consistent height for the subheading (h5) so 1-line and
+   2-line taglines don't throw off vertical alignment across cards */
+.portfolio-thumb-info h5.skills-subhead {
+    height: 60px; /* fixed, not min-height — caps it like h6 does */
+    overflow: hidden;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    margin: 0 0 12px;
+}
+
+/* Hide slick dots navigation on the experiences portfolio grid */
+.custom-portfolio-grid .slick-dots {
+    display: none !important;
+}
+
+/* newww */
+
+.custom-portfolio > .sk__portfolio-item.half-card {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+}
+
+.custom-portfolio > .sk__portfolio-item.half-card > a.sk__portfolio-thumblink {
+    display: block;
+    height: 260px !important;
+    padding-top: 0 !important;
+    aspect-ratio: auto !important;
+}
+
+.custom-portfolio
+    > .sk__portfolio-item.half-card
+    .sk__portfolio-thumblink-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 767px) {
+    .custom-portfolio > .sk__portfolio-item.half-card {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    /* Rosso Caffè featured project background image */
+    .sk__featured-project-section .sk__featured-project-background {
+        background-position: center 25%;
+        background-size: cover;
+    }
+}
+
+/* ================================
+   Portfolio Page — Tablet (≤991px)
+   ================================ */
+@media (max-width: 991px) {
+    /* Portfolio cards: 2 per row already set by theme, adjust card text */
+    .custom-portfolio .portfolio-thumb-info h2.text1 {
+        font-size: 20px;
+        white-space: normal;
+    }
+    .custom-portfolio .portfolio-thumb-info h6.h6-small {
+        font-size: 12px;
+        line-height: 1.6;
+        max-width: 220px;
+    }
+
+    /* About/Portfolio intro section image height */
+    .about-right-image-wrap {
+        min-height: 320px;
+    }
+}
+
+/* ================================
+   Portfolio Page — Mobile (≤575px)
+   ================================ */
+@media (max-width: 575px) {
+    /* Hero copy under heading */
+    .hero-box-bottom-left p {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    /* Intro section heading + copy */
+    #about-us .h2-regular {
+        font-size: 17px;
+    }
+
+    .about-right-image-wrap {
+        min-height: 220px;
+    }
+
+    /* Portfolio grid: stack full width (theme already does 100% at 575px) */
+    .custom-portfolio .portfolio-thumb-info h2.text1 {
+        font-size: 17px;
+        margin-bottom: 10px;
+        white-space: normal;
+    }
+    .custom-portfolio .portfolio-thumb-info h6.h6-small {
+        font-size: 11px;
+        line-height: 1.5;
+        max-width: 200px;
+        min-height: auto;
+    }
+    .custom-portfolio .portfolio-thumb-info p {
+        width: 110px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    /* Full-width Rosso Caffè card image height on mobile */
+    .custom-portfolio > .full-card .sk__portfolio-thumblink {
+        padding-top: 45% !important;
+    }
+
+    /* Brand Ecosystem iconboxes spacing */
+    .sk__iconbox {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .sk__iconbox h4 {
+        font-size: 18px;
+    }
+
+    /* Looking ahead / CTA heading wraps cleanly */
+    .vg-shared-skills .h1-small {
+        font-size: 22px;
+        line-height: 1.4;
+    }
+    .vg-shared-skills .skills-subhead {
+        font-size: 13px;
+        line-height: 22px;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Rosso Caffè featured project section */
+    .sk__featured-project-section .sk__featured-project-background {
+        min-height: 0 !important;
+        height: 100% !important;
+    }
+
+    .sk__featured-project-section {
+        min-height: 0 !important;
+        height: auto !important;
+    }
+}
+
+/* Our portfolio */
+
+@media (max-width: 767px) {
+    /* "Our Brand Ecosystem" section — remove the 100vh floor */
+    .vg-shared-skills.sk__parallax-background-section {
+        min-height: 0 !important;
+        height: auto !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .custom-portfolio
+        > .sk__portfolio-item:not(.full-card)
+        .sk__portfolio-thumblink {
+        padding-top: 90% !important;
+    }
+
+    /* The Rosso Caffè full-width card too, if it looks oversized */
+    .custom-portfolio > .full-card .sk__portfolio-thumblink {
+        padding-top: 45% !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .custom-portfolio-grid .sk__portfolio-thumblink {
+        padding-top: 90% !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .sk__blog-article-wrapper {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ===== Full-width breakout grid for Rosso Caffè Experience (new, standalone) ===== */
+.sk__fullwidth-portfolio-grid {
+    display: flex !important;
+    flex-wrap: wrap;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.sk__fullwidth-portfolio-grid > .sk__portfolio-item {
+    width: 25% !important;
+    flex: 0 0 25% !important;
+    max-width: 25%;
+    padding: 0 !important; /* edge-to-edge, no gutter between cards */
+}
+
+.sk__fullwidth-portfolio-grid > .sk__portfolio-item .sk__portfolio-thumblink {
+    padding-top: 130% !important; /* controls card height — tune to taste */
+}
+
+/* Tablet: 2 per row */
+@media (max-width: 991px) {
+    .sk__fullwidth-portfolio-grid > .sk__portfolio-item {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50%;
+    }
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 575px) {
+    .sk__fullwidth-portfolio-grid > .sk__portfolio-item {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100%;
+    }
+}
+
+.sk__fullwidth-portfolio-grid .sk__portfolio-item {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+/* Safe fix: only widen the text and add bottom breathing room,
+   don't touch parallax layer height/position */
+.vg-portfolio-hero-fix {
+    padding-bottom: 60px;
+}
+
+.vg-portfolio-hero-fix .vg-portfolio-copy {
+    max-width: 900px !important;
+}
+
+@media (max-width: 767px) {
+    .vg-portfolio-hero-fix .vg-portfolio-copy {
+        max-width: 100% !important;
+    }
+}
+
+/* Let the whole hero SECTION grow if content is taller than 100vh,
+   without ever shrinking below its normal full-screen height */
+.sk__about-us-section.sk__featured-project-section {
+    height: auto !important;
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+/* Fix: Rosso Caffè background image not covering full section height (scroll glitch) */
+.sk__featured-project-section img.sk__featured-project-background {
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+/* ======================================================================
+   NEWS / ARTICLE PAGES
+   ====================================================================== */
+
+/* =====================================
+   Previous / Next Article Navigation
+====================================== */
+
+.article-navigation {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 30px 0;
+}
+
+.article-nav-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.article-nav {
+    text-decoration: none;
+    color: #fff;
+    max-width: 320px;
+    transition: 0.35s ease;
+}
+
+.article-prev {
+    text-align: left;
+}
+
+.article-next {
+    text-align: right;
+    margin-left: auto;
+}
+
+.article-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 16px;
+}
+
+.article-label i {
+    font-size: 11px;
+    margin: 0 6px;
+}
+
+.article-nav h5 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    /* set a max-height as a fallback for non-webkit browsers */
+    max-height: calc(1.4em * 2);
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: #fff;
+    transition: 0.35s;
+}
+
+/* Make navigation span wider than article */
+
+.article-nav-container {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.article-nav-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.article-prev {
+    text-align: left;
+}
+
+.article-next {
+    text-align: right;
+    margin-left: auto;
+}
+
+.article-nav {
+    max-width: 270px;
+}
+.article-nav .article-label i {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .article-nav-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .article-nav-wrap {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .article-next {
+        text-align: left;
+        margin-left: 0;
+    }
+}
+
+/* ======================================================================
+   CONTACT US PAGE
+   ====================================================================== */
+
+/* ---------------------------------------------------------
+   CONTACT PAGE — Global Offices + Send Us a Message
+   Replaces the previous "CONTACT PAGE" block.
+   All tokens below (fonts, radii, spacing, colors) are pulled
+   from the existing DarkTheme theme — nothing new is introduced
+   except the --vg-gold accent, which matches the tone already
+   used in the prior draft of this section.
+--------------------------------------------------------------- */
+
+.vg-offices-contact-section {
+    --vg-gold: #ffffff;
+    --vg-gold-soft: rgba(255, 255, 255, 0.12);
+
+    --vg-card-bg: rgba(255, 255, 255, 0.02);
+    --vg-card-border: rgba(255, 255, 255, 0.14);
+    --vg-card-border-hover: rgba(255, 255, 255, 0.4);
+
+    --vg-ink-muted: rgba(255, 255, 255, 0.65);
+}
+
+/* ---------- Eyebrow label (reused for offices + placeholder card) ---------- */
+
+.vg-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--vg-gold);
+    margin-bottom: 14px;
+}
+.vg-eyebrow::before {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background: var(--vg-gold);
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* ---------- Offices grid ---------- */
+
+.vg-offices-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
+    align-items: stretch;
+}
+@media all and (max-width: 1199px) {
+    .vg-offices-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media all and (max-width: 575px) {
+    .vg-offices-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.vg-office-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--vg-card-bg);
+    border: 1px solid rgba(95, 95, 95, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+    transition:
+        transform 0.45s cubic-bezier(0.16, 0.84, 0.44, 1),
+        box-shadow 0.45s ease,
+        border-color 0.45s ease,
+        background-color 0.45s ease;
+}
+.vg-office-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--vg-card-border-hover);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65);
+}
+
+.vg-office-media {
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+}
+.vg-office-media-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.04);
+    transition: transform 1s ease 0s;
+}
+.vg-office-card:hover .vg-office-media-img {
+    transform: scale(1.12);
+}
+.vg-office-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 42%,
+        rgba(6, 6, 6, 0.94) 100%
+    );
+    pointer-events: none;
+}
+
+.vg-office-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 26px 26px 28px;
+}
+.vg-office-body h5 {
+    margin-bottom: 16px;
+}
+
+.vg-office-list {
+    flex: 1 1 auto;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+}
+.vg-office-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--vg-ink-muted);
+    margin-bottom: 10px;
+}
+.vg-office-list li:last-child {
+    margin-bottom: 0;
+}
+.vg-office-list li svg {
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    stroke: var(--vg-gold);
+}
+
+.vg-office-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--vg-gold);
+    margin-top: auto;
+}
+.vg-office-cta svg {
+    width: 13px;
+    height: 13px;
+    transition: transform 0.3s ease 0s;
+}
+.vg-office-cta:hover {
+    color: #ffffff;
+}
+.vg-office-cta:hover svg {
+    transform: translateX(4px);
+}
+
+.morelocations {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.morelocations .vg-office-cta {
+    margin-top: auto;
+}
+
+/* ---------- "More locations" placeholder card ---------- */
+
+.vg-office-card-placeholder {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: 34px 28px;
+    background: radial-gradient(
+        130% 150% at 12% 0%,
+        var(--vg-gold-soft),
+        rgba(255, 255, 255, 0.015) 55%
+    );
+}
+.vg-office-card-placeholder::after {
+    content: "V";
+    position: absolute;
+    right: 6px;
+    bottom: -26px;
+    font-family: "Syncopate", sans-serif;
+    font-weight: 900;
+    font-size: 140px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.035);
+    pointer-events: none;
+}
+.vg-office-card-placeholder p {
+    color: var(--vg-ink-muted);
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+/* ---------- Send Us a Message ---------- */
+
+.spacing {
+    padding-bottom: 50px !important;
+}
+
+.vg-message-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: stretch;
+    padding-left: 40px;
+}
+@media all and (max-width: 1199px) {
+    .vg-message-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+}
+
+.vg-message-form-col {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vg-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+@media all and (max-width: 575px) {
+    .vg-form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.vg-field {
+    margin-bottom: 22px;
+}
+.vg-field label {
+    display: block;
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+}
+.vg-field input,
+.vg-field select,
+.vg-field textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0;
+    outline: none;
+    transition:
+        border-color 0.3s ease 0s,
+        box-shadow 0.3s ease 0s,
+        background-color 0.3s ease 0s;
+}
+.vg-field input::placeholder,
+.vg-field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.34);
+}
+.vg-field input:hover,
+.vg-field select:hover,
+.vg-field textarea:hover {
+    border-color: rgba(255, 255, 255, 0.26);
+}
+.vg-field input:focus,
+.vg-field select:focus,
+.vg-field textarea:focus {
+    border-color: var(--vg-gold);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 3px var(--vg-gold-soft);
+}
+.vg-field textarea {
+    min-height: 132px;
+    resize: vertical;
+}
+.vg-field select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a97a37' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 13px;
+}
+.vg-field select option {
+    background: #0c0c0c;
+    color: #ffffff;
+}
+
+.vg-submit-row {
+    margin-top: 6px;
+}
+
+/* ---------- Photo side, with luxury corner framing ---------- */
+
+.vg-message-photo-wrap {
+    position: relative;
+    min-height: 460px;
+}
+@media all and (max-width: 1199px) {
+    .vg-message-photo-wrap {
+        min-height: 320px;
+        order: -1;
+    }
+}
+
+.vg-message-photo {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+.vg-message-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        200deg,
+        rgba(0, 0, 0, 0.05) 25%,
+        rgba(0, 0, 0, 0.78) 100%
+    );
+}
+
+.vg-photo-frame {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    width: 64px;
+    height: 64px;
+    border-top: 1px solid var(--vg-gold);
+    border-left: 1px solid var(--vg-gold);
+    opacity: 0.75;
+    pointer-events: none;
+}
+.vg-photo-frame.vg-frame-br {
+    top: auto;
+    left: auto;
+    bottom: -14px;
+    right: -14px;
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid var(--vg-gold);
+    border-right: 1px solid var(--vg-gold);
+}
+@media all and (max-width: 575px) {
+    .vg-photo-frame {
+        display: none;
+    }
+}
+
+/* Compact "Send Us a Message" section to fit in viewport */
+
+#vg-message .sk__heading-spacer-l.spacing {
+    padding-bottom: 20px !important;
+}
+
+#vg-message .h1-small {
+    padding-top: 0 !important;
+    margin-bottom: 8px !important;
+}
+
+#vg-message .skills-subhead {
+    margin-bottom: 0 !important;
+}
+
+.vg-message-grid {
+    padding-left: 0;
+    gap: 24px;
+}
+
+.vg-message-form-col {
+    padding: 12px;
+}
+
+.vg-form-row {
+    gap: 12px;
+}
+
+.vg-field {
+    margin-bottom: 10px;
+}
+
+.vg-field label {
+    font-size: 10px;
+    margin-bottom: 4px;
+}
+
+.vg-field input,
+.vg-field select,
+.vg-field textarea {
+    padding: 9px 14px;
+    font-size: 13px;
+}
+
+.vg-field textarea {
+    min-height: 60px;
+}
+
+.vg-message-form-col .btn {
+    padding: 14px 24px;
+    font-size: 12px;
+}
+
+.vg-message-photo-wrap {
+    min-height: 100%;
+}
+
+#sk__project-1-gallery-basic .carousel-item {
+    padding: 50px;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sk__articles-wrapper {
+    margin-bottom: 0 !important;
+}
+
+/* ===== Contact "Send Us a Message" Section Background ===== */
+
+#vg-message .sk__parallax-background-element {
+    background-image: url("assets/images/contact-back.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* remove this line if you don't want a parallax scroll effect */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Dark overlay so the white heading/subhead/form stay readable over the photo */
+#vg-message .sk__parallax-background-element::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+}
+
+/* Make sure the actual content sits above the background layer */
+#vg-message > .row,
+#vg-message .vg-message-grid {
+    position: relative;
+    z-index: 1;
+}
+
+/* Text color adjustments for legibility on the photo */
+#vg-message h1.h1-small,
+#vg-message .skills-subhead {
+    color: #ffffff;
+}
+
+/* Mobile: disable fixed attachment (buggy on iOS Safari) */
+@media (max-width: 768px) {
+    #vg-message .sk__parallax-background-element {
+        background-attachment: scroll;
+    }
+}
+
+.sk__articles-wrapper {
+    flex-wrap: wrap;
+}
+
+.sk__blog-article-wrapper {
+    width: 50%;
+}
+
+.sk__blog-article-wrapper.sk__hidden-article {
+    display: none !important;
+}
+
+/* ================================
+   Contact Page — Tablet (≤991px)
+   ================================ */
+@media (max-width: 991px) {
+    /* Product hero content stacks and centers */
+    .product-hero-content {
+        padding: 100px 40px 60px !important;
+    }
+    .product-left h1 {
+        font-size: 42px;
+    }
+    .product-description {
+        max-width: 100%;
+    }
+
+    /* Offices grid cards - tighten padding */
+    .vg-office-body {
+        padding: 22px 20px 24px;
+    }
+    .vg-office-media {
+        height: 160px;
+    }
+
+    /* Message form/photo grid already stacks at 1199px via existing rule */
+    .vg-message-form-col {
+        padding: 20px;
+    }
+}
+
+/* ================================
+   Contact Page — Mobile (≤575px)
+   ================================ */
+@media (max-width: 575px) {
+    /* Hero */
+    .product-hero-content {
+        padding: 80px 20px 40px !important;
+        text-align: center;
+    }
+    .product-left h1 {
+        font-size: 28px;
+        line-height: 1.3;
+    }
+    .product-description {
+        font-size: 14px;
+        line-height: 24px;
+        margin: 14px auto;
+    }
+    .product-buttons {
+        justify-content: center;
+    }
+
+    /* Offices grid: 1 column already set by theme at 575px */
+    .vg-office-media {
+        height: 180px;
+    }
+    .vg-office-body {
+        padding: 20px 18px 22px;
+    }
+    .vg-office-body h5 {
+        font-size: 18px;
+    }
+    .vg-office-list li {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    /* More Locations placeholder card text */
+    .vg-office-card-placeholder h5 {
+        font-size: 18px;
+    }
+    .vg-office-card-placeholder p {
+        font-size: 12px;
+        margin-bottom: 10px !important;
+    }
+
+    /* Message form fields */
+    .vg-form-row {
+        grid-template-columns: 1fr;
+    }
+    .vg-field label {
+        font-size: 10px;
+    }
+    .vg-field input,
+    .vg-field select,
+    .vg-field textarea {
+        font-size: 13px;
+        padding: 10px 14px;
+    }
+    .vg-message-form-col .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Send Us a Message section spacing */
+
+    #vg-message .h1-small {
+        font-size: 22px;
+    }
+    #vg-message .skills-subhead {
+        font-size: 13px;
+        line-height: 22px;
+    }
+    /* ================================
+   Contact Page Hero — Center on Mobile
+   ================================ */
+    @media (max-width: 575px) {
+        .product-hero-slide .sk__hero-item-theme-style {
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center;
+        }
+
+        .product-hero-content {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 24px 40px !important;
+        }
+
+        .product-left {
+            flex: 0 0 100% !important;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .hero-h1-box {
+            left: 0 !important;
+            width: 100%;
+        }
+
+        .product-left h1.hero-h1 {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .product-description {
+            margin: 16px auto !important;
+            text-align: center;
+        }
+
+        .product-buttons {
+            justify-content: center !important;
+            width: 100%;
+        }
+
+        .product-buttons .btn {
+            min-width: 0;
+            width: 100%;
+            max-width: 260px;
+        }
+    }
+}
+
+/* Fix: let the portfolio intro text push section height instead of
+   being clipped by the absolute container + overflow:hidden */
+.sk__about-us-section.sk__featured-project-section {
+    overflow: visible !important;
+}
+
+.sk__about-us-section .sk__featured-project-infos-container {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+.sk__legal ol {
+    color: inherit;
+    font-size: inherit;
+    line-height: 1.8;
+    padding-left: 24px;
+}
+.sk__legal ol li {
+    font-size: 16px; /* match this to whatever size your p.mb-5 renders at */
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+
+/* VELZA SEO SEMANTIC HEADING COMPATIBILITY */
+/* Preserve the existing visual design after section headings are semantically
+   demoted from H1 to H2 and article titles are promoted from H2 to H1. */
+h2.h1-small {
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+h1.h2-large {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.24px;
+    text-transform: none;
+    margin-bottom: 0.9em;
+    color: #ffffff;
+}
+
+@media all and (max-width: 575px) {
+    h1.h2-large {
+        margin-bottom: 0.5em;
+    }
+}
