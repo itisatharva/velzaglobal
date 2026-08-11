@@ -122,7 +122,29 @@ jobs:
             echo "env=staging" >> "$GITHUB_OUTPUT"
           fi
 
+      # Until the FTP secrets exist there is no route from GitHub to the
+      # server, so a deploy cannot run. Skip it cleanly rather than letting
+      # the action fail: a workflow that is permanently red teaches everyone
+      # to ignore the Actions tab, and then a genuine failure goes unnoticed.
+      #
+      # The check lives INSIDE this job, not as a job-level `if`, because the
+      # secrets context is not available in job-level conditions - and because
+      # environment-scoped secrets only resolve once the job's environment has
+      # been applied, which has not happened in the checks job.
+      - name: Are the deploy secrets configured?
+        id: gate
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          if [ -z "$FTP_SERVER" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::FTP secrets are not set for this environment yet - skipping the upload. The site was not touched."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Deploy over FTPS
+        if: steps.gate.outputs.configured == 'true'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -169,6 +191,23 @@ jobs:
       - name: Summary
         run: |
           {
+            if [ "${{ steps.gate.outputs.configured }}" != "true" ]; then
+              echo "### Skipped — deploy not configured yet"
+              echo ""
+              echo "No FTP secrets are set for the \`${{ steps.target.outputs.env }}\`"
+              echo "environment, so nothing was uploaded and the live site was not touched."
+              echo ""
+              echo "Checks passed on commit \`${{ github.sha }}\`."
+              echo ""
+              echo "To enable deploys, add these to Settings → Environments →"
+              echo "\`${{ steps.target.outputs.env }}\`:"
+              echo "\`FTP_SERVER\`, \`FTP_USERNAME\`, \`FTP_PASSWORD\`, \`FTP_SERVER_DIR\`."
+              echo ""
+              echo "See \`deployment/README.md\` §3 before enabling production —"
+              echo "the web root must be backed up and cleared first."
+              exit 0
+            fi
+
             echo "### Deployed to ${{ steps.target.outputs.env }}"
             echo ""
             echo "- commit: \`${{ github.sha }}\`"
