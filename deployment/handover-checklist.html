@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style>
+<title>Velza Global — Hosting Handover Checklist</title>
+<style>
+  :root {
+    --ground:      #f4f6f8;
+    --surface:     #ffffff;
+    --surface-alt: #eef1f4;
+    --ink:         #171a1f;
+    --ink-mid:     #4d5561;
+    --ink-soft:    #737d8c;
+    --rule:        #dde2e8;
+    --rule-strong: #c3cbd4;
+    --accent:      #0e6e6e;
+    --accent-soft: #e0efee;
+    --block:       #a32a1f;
+    --block-soft:  #f7e6e3;
+    --field:       #b9c2cc;
+    --shadow:      0 1px 2px rgba(23, 26, 31, .05);
+
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #101317;
+      --surface:     #171b21;
+      --surface-alt: #1e232b;
+      --ink:         #e7eaee;
+      --ink-mid:     #a8b2bf;
+      --ink-soft:    #7d8794;
+      --rule:        #2a3038;
+      --rule-strong: #3a424d;
+      --accent:      #4fb3ab;
+      --accent-soft: #14312f;
+      --block:       #e8897c;
+      --block-soft:  #35201d;
+      --field:       #454e59;
+      --shadow:      0 1px 2px rgba(0, 0, 0, .3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #101317;
+    --surface:     #171b21;
+    --surface-alt: #1e232b;
+    --ink:         #e7eaee;
+    --ink-mid:     #a8b2bf;
+    --ink-soft:    #7d8794;
+    --rule:        #2a3038;
+    --rule-strong: #3a424d;
+    --accent:      #4fb3ab;
+    --accent-soft: #14312f;
+    --block:       #e8897c;
+    --block-soft:  #35201d;
+    --field:       #454e59;
+    --shadow:      0 1px 2px rgba(0, 0, 0, .3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 1.75rem; margin-bottom: 2.5rem; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 .9rem;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    line-height: 1.12;
+    letter-spacing: -.015em;
+    text-wrap: balance;
+    margin: 0 0 .9rem;
+  }
+
+  .standfirst {
+    font-size: 1.05rem;
+    color: var(--ink-mid);
+    max-width: 46rem;
+    margin: 0;
+  }
+
+  .standfirst strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- summary strip ---------- */
+
+  .tally {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin: 2rem 0 2.75rem;
+  }
+
+  .tally-item {
+    flex: 1 1 11rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: .85rem 1rem;
+    box-shadow: var(--shadow);
+  }
+
+  .tally-num {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    display: block;
+  }
+
+  .tally-num.is-block { color: var(--block); }
+
+  .tally-label {
+    font-size: .78rem;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: .15rem;
+  }
+
+  /* ---------- how to use ---------- */
+
+  .note {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 0 0 3rem;
+    border-radius: 0 3px 3px 0;
+    font-size: .93rem;
+    color: var(--ink-mid);
+  }
+
+  .note p { margin: 0 0 .55rem; }
+  .note p:last-child { margin-bottom: 0; }
+  .note strong { color: var(--ink); }
+
+  /* ---------- sections ---------- */
+
+  section { margin-bottom: 3.25rem; scroll-margin-top: 2rem; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: .8rem;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: .6rem;
+    margin-bottom: .5rem;
+  }
+
+  .sec-letter {
+    font-family: var(--mono);
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--surface);
+    background: var(--accent);
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 2px;
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.5rem;
+    letter-spacing: -.01em;
+    margin: 0;
+    flex: 1;
+  }
+
+  .sec-intro {
+    color: var(--ink-mid);
+    font-size: .93rem;
+    margin: .85rem 0 1.5rem;
+    max-width: 44rem;
+  }
+
+  /* ---------- items ---------- */
+
+  .item {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rule-strong);
+    border-radius: 0 3px 3px 0;
+    padding: 1.05rem 1.25rem;
+    margin-bottom: .7rem;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    gap: 0 1rem;
+    align-items: start;
+  }
+
+  .item.is-blocker { border-left-color: var(--block); }
+
+  .item-id {
+    font-family: var(--mono);
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    padding-top: .1rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .item.is-blocker .item-id { color: var(--block); }
+
+  .item-body > :first-child { margin-top: 0; }
+  .item-body > :last-child { margin-bottom: 0; }
+
+  .ask { font-weight: 600; margin: 0 0 .3rem; }
+
+  .flag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--block);
+    background: var(--block-soft);
+    border-radius: 2px;
+    padding: .12rem .4rem;
+    margin-left: .45rem;
+    vertical-align: .1em;
+    white-space: nowrap;
+  }
+
+  .why {
+    font-size: .9rem;
+    color: var(--ink-mid);
+    margin: 0;
+  }
+
+  .why em { color: var(--ink); font-style: normal; font-weight: 600; }
+
+  code {
+    font-family: var(--mono);
+    font-size: .87em;
+    background: var(--surface-alt);
+    border-radius: 2px;
+    padding: .08em .32em;
+    word-break: break-word;
+  }
+
+  .answer {
+    grid-column: 2;
+    margin-top: .8rem;
+    display: flex;
+    align-items: baseline;
+    gap: .55rem;
+  }
+
+  .answer-label {
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    flex: none;
+  }
+
+  .answer-line {
+    flex: 1;
+    border-bottom: 1px dashed var(--field);
+    min-height: 1.35rem;
+  }
+
+  /* ---------- red flags ---------- */
+
+  .flags {
+    background: var(--block-soft);
+    border: 1px solid var(--block);
+    border-radius: 3px;
+    padding: 1.5rem 1.75rem;
+  }
+
+  .flags h2 { color: var(--block); margin-bottom: .5rem; }
+  .flags .sec-head { border-bottom-color: var(--block); }
+  .flags .sec-letter { background: var(--block); }
+
+  .flags ul { margin: 1rem 0 0; padding-left: 1.1rem; }
+  .flags li { margin-bottom: .7rem; color: var(--ink-mid); }
+  .flags li:last-child { margin-bottom: 0; }
+  .flags li strong { color: var(--ink); }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-size: .85rem;
+    color: var(--ink-soft);
+  }
+
+  footer code { background: none; padding: 0; }
+
+  /* ---------- responsive ---------- */
+
+  @media (max-width: 34rem) {
+    .page { padding: 2.5rem 1rem 4rem; }
+    .item { grid-template-columns: 1fr; gap: .35rem; }
+    .answer { grid-column: 1; }
+  }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    .item, .tally-item { box-shadow: none; break-inside: avoid; }
+    section { break-inside: avoid; }
+    .note { background: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">Velza Global · Pre-migration</p>
+    <h1>Hosting handover — details to verify</h1>
+    <p class="standfirst">
+      Questions to put to whoever currently manages the hosting, domain and server,
+      before the GitHub migration and Cloudflare cutover. Every item says <strong>why it
+      matters</strong>, so you can explain what breaks if the answer doesn't come.
+    </p>
+  </header>
+
+  <div class="tally">
+    <div class="tally-item">
+      <span class="tally-num">57</span>
+      <span class="tally-label">details to confirm</span>
+    </div>
+    <div class="tally-item">
+      <span class="tally-num is-block">25</span>
+      <span class="tally-label">blockers, needed before cutover</span>
+    </div>
+    <div class="tally-item">
+      <span class="tally-num">9</span>
+      <span class="tally-label">sections</span>
+    </div>
+    <div class="tally-item">
+      <span class="tally-num">6</span>
+      <span class="tally-label">red flags that stop the work</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <p><strong>Blockers</strong> must be answered before the nameserver change or the
+      first deploy. The rest can follow behind.</p>
+    <p>Anything in <code>monospace</code> is a literal value — ask the handler to read
+      it back exactly rather than paraphrasing. Screenshots are better than
+      transcription for DNS records.</p>
+  </div>
+
+  <!-- A -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">A</span><h2>Account and access</h2></div>
+
+    <div class="item is-blocker">
+      <span class="item-id">A1</span>
+      <div class="item-body">
+        <p class="ask">cPanel login URL, username and password<span class="flag">Blocker</span></p>
+        <p class="why">The site's PHP hard-codes <code>/home/velzhsrg/private_config/…</code>, so the
+          account is almost certainly <code>velzhsrg</code> — get it confirmed. Everything
+          else depends on this access.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">A2</span>
+      <div class="item-body">
+        <p class="ask">Namecheap account login<span class="flag">Blocker</span></p>
+        <p class="why">Often separate from cPanel. The nameserver change to Cloudflare happens
+          in the domain panel, not in cPanel.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">A3</span>
+      <div class="item-body">
+        <p class="ask">Is the domain registered at Namecheap, or somewhere else?</p>
+        <p class="why">If the registrar is a third party, the nameserver change has to be made
+          there instead.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">A4</span>
+      <div class="item-body">
+        <p class="ask">Who holds 2FA and the recovery email on both accounts?</p>
+        <p class="why">A locked account halfway through a cutover stops everything, including
+          the rollback.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">A5</span>
+      <div class="item-body">
+        <p class="ask">Exact Namecheap plan name</p>
+        <p class="why">Stellar, Stellar Plus or Stellar Business — this decides whether SSH is
+          available, which in turn decides FTPS versus the faster rsync deployment.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">A6</span>
+      <div class="item-body">
+        <p class="ask">Domain expiry date, and is the transfer lock on?</p>
+        <p class="why">An expiry during migration is a silent catastrophe that looks exactly like
+          a broken DNS change.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">B</span><h2>Server capability</h2></div>
+    <p class="sec-intro">These confirm the assumptions the new routing rules and the RSVP app
+      are built on. The handler can read them from cPanel → Server Information, and
+      Select PHP Version.</p>
+
+    <div class="item is-blocker">
+      <span class="item-id">B1</span>
+      <div class="item-body">
+        <p class="ask">Apache version<span class="flag">Blocker</span></p>
+        <p class="why">The routing uses the <code>[END]</code> flag, which needs <em>Apache 2.4 or
+          newer</em>. On 2.2 the rules loop or return 500.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">B2</span>
+      <div class="item-body">
+        <p class="ask">Is <code>AllowOverride All</code> set for the document root?<span class="flag">Blocker</span></p>
+        <p class="why">If <code>.htaccess</code> is ignored there is no geo-routing, no extensionless
+          URLs and no security rules. <em>The entire mechanism lives in that one file.</em></p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">B3</span>
+      <div class="item-body">
+        <p class="ask">Confirm these Apache modules are enabled<span class="flag">Blocker</span></p>
+        <p class="why"><code>mod_rewrite</code>, <code>mod_headers</code>, <code>mod_expires</code>,
+          <code>mod_deflate</code>, <code>mod_filter</code>. Rewrite does the routing; headers sets the
+          cache rules that stop one country's page being served to another; a missing
+          <code>mod_filter</code> returns a 500 on every request.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">B4</span>
+      <div class="item-body">
+        <p class="ask">PHP version<span class="flag">Blocker</span></p>
+        <p class="why">The RSVP portal uses a <code>never</code> return type, so it needs
+          <em>PHP 8.1 or newer</em>. On 8.0 those files are a parse error, not a warning.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">B5</span>
+      <div class="item-body">
+        <p class="ask">Is the <code>mysqli</code> extension enabled?</p>
+        <p class="why">The whole RSVP subsystem uses <code>mysqli</code> rather than PDO.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">B6</span>
+      <div class="item-body">
+        <p class="ask">Is SSH or terminal access available on this plan?</p>
+        <p class="why">If yes, deployment should switch from FTPS to rsync — faster, and it
+          handles deleted files properly.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">B7</span>
+      <div class="item-body">
+        <p class="ask">Is FTPS (explicit TLS, port 21) enabled and reachable externally?<span class="flag">Blocker</span></p>
+        <p class="why">This is the deployment transport. Plain FTP would put the credentials on
+          the wire in clear text on every deploy.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">B8</span>
+      <div class="item-body">
+        <p class="ask">Is there IP allowlisting or a firewall on FTP or cPanel?</p>
+        <p class="why">GitHub Actions runners use rotating IP addresses and will be blocked
+          outright by an allowlist.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">B9</span>
+      <div class="item-body">
+        <p class="ask">Current disk usage and inode count against the plan limit</p>
+        <p class="why">The site is about 63&nbsp;MB across roughly 630 files. Shared plans cap
+          inodes, and a deploy that hits the ceiling fails part-way through.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">C</span><h2>Current live site — cutover risk</h2></div>
+    <p class="sec-intro">The section most likely to produce a surprise. The restructure changes
+      the entire on-server layout, so anything already there that nobody knows about is a
+      hazard.</p>
+
+    <div class="item is-blocker">
+      <span class="item-id">C1</span>
+      <div class="item-body">
+        <p class="ask">Exact document root path for velzaglobal.com<span class="flag">Blocker</span></p>
+        <p class="why">Likely <code>/home/velzhsrg/public_html</code>. This becomes the deploy target
+          — point it at the wrong directory and you deploy into a subfolder, or over
+          another site.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">C2</span>
+      <div class="item-body">
+        <p class="ask">A full recursive file listing of the current document root<span class="flag">Blocker</span></p>
+        <p class="why">To find anything on the server that is <em>not</em> in the repository.
+          Whatever is there and untracked gets left behind as a stale file after cutover.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">C3</span>
+      <div class="item-body">
+        <p class="ask">Are any files uploaded or generated at runtime in the web root?<span class="flag">Blocker</span></p>
+        <p class="why">An uploads folder, generated PDFs or a cache directory would be destroyed
+          or go stale under a repo-driven deploy. They need excluding from the sync
+          before the first run, not after.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">C4</span>
+      <div class="item-body">
+        <p class="ask">Are there <code>.htaccess</code> files in any subdirectory?</p>
+        <p class="why">A leftover subdirectory file silently overrides the new master rules for
+          that path, and it is genuinely hard to debug after the fact.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">C5</span>
+      <div class="item-body">
+        <p class="ask">Confirm the private config files exist outside the web root<span class="flag">Blocker</span></p>
+        <p class="why"><code>/home/velzhsrg/private_config/rsvp_db.php</code> and <code>rsvp_smtp.php</code>.
+          The RSVP app requires them at runtime and fatals without them. <em>If they have
+          drifted into the web root, live database and SMTP credentials are readable
+          over the web right now.</em></p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">C6</span>
+      <div class="item-body">
+        <p class="ask">A list of all cron jobs<span class="flag">Blocker</span></p>
+        <p class="why"><code>send_reminders.php</code> is command-line only and cron-driven. Its path
+          changes in the restructure, so any cron entry pointing at the old
+          <code>Ph/Ph/Events/PR/</code> location breaks silently.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">C7</span>
+      <div class="item-body">
+        <p class="ask">Backup schedule, retention, and the restore procedure</p>
+        <p class="why">Needed before touching anything. Do not rely on the host's automatic
+          backup without confirming a restore has actually been tested at least once.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">C8</span>
+      <div class="item-body">
+        <p class="ask">Has anyone been editing files directly on the server?<span class="flag">Blocker</span></p>
+        <p class="why">After cutover every deploy overwrites the web root from git.
+          <em>Direct edits will be silently destroyed.</em> That practice has to stop, and
+          whoever does it needs to be told before the first deploy, not after.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">C9</span>
+      <div class="item-body">
+        <p class="ask">Is there an existing staging or dev subdomain?</p>
+        <p class="why">It may be reusable, or it may collide with the planned
+          <code>staging.velzaglobal.com</code>.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">D</span><h2>DNS and domain</h2></div>
+
+    <div class="item is-blocker">
+      <span class="item-id">D1</span>
+      <div class="item-body">
+        <p class="ask">A full export of the current DNS zone<span class="flag">Blocker</span></p>
+        <p class="why">Every A, AAAA, CNAME, MX, TXT, SRV and CAA record. Cloudflare imports
+          records automatically but <em>misses some</em> — and without a before-picture you
+          cannot tell what vanished. Screenshot everything.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">D2</span>
+      <div class="item-body">
+        <p class="ask">The current nameservers<span class="flag">Blocker</span></p>
+        <p class="why">To confirm what you are replacing — and, more importantly, to roll back to.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">D3</span>
+      <div class="item-body">
+        <p class="ask">Every subdomain in use<span class="flag">Blocker</span></p>
+        <p class="why"><code>mail</code>, <code>webmail</code>, <code>cpanel</code>, <code>ftp</code>, shop, regional
+          sites. Any subdomain not carried into Cloudflare stops resolving the moment
+          the nameservers change.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">D4</span>
+      <div class="item-body">
+        <p class="ask">The origin server's IP address</p>
+        <p class="why">To verify the Cloudflare A record points at the right machine.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">D5</span>
+      <div class="item-body">
+        <p class="ask">Do velzaglobal.in and velzaglobal.ph exist, and where do they point?</p>
+        <p class="why">The regional routing deliberately does <em>not</em> redirect to them.
+          Confirm whether they should now redirect to the main domain, or be left alone.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">D6</span>
+      <div class="item-body">
+        <p class="ask">Any third-party service verified by a DNS record?</p>
+        <p class="why">Google Workspace, Microsoft 365, SendGrid, Search Console. Losing these
+          TXT or CNAME records breaks verification — sometimes weeks later, long after
+          anyone connects it to the migration.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">D7</span>
+      <div class="item-body">
+        <p class="ask">Can TTLs be lowered to 300 seconds a day beforehand?</p>
+        <p class="why">Shortens the rollback window from hours to minutes if anything goes wrong.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- E -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">E</span><h2>Email — highest-risk section</h2></div>
+    <p class="sec-intro">A nameserver change is the most common way to take down a company's
+      email. Treat every item here as non-negotiable.</p>
+
+    <div class="item is-blocker">
+      <span class="item-id">E1</span>
+      <div class="item-body">
+        <p class="ask">Is email on this same cPanel, or external?<span class="flag">Blocker</span></p>
+        <p class="why">Google Workspace, Microsoft 365, Namecheap Private Email, or local. This
+          determines whether MX points at the origin server or elsewhere.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">E2</span>
+      <div class="item-body">
+        <p class="ask">Exact MX records, with priorities<span class="flag">Blocker</span></p>
+        <p class="why">If these are not recreated in Cloudflare exactly, <em>all inbound mail
+          stops.</em> Ask for a screenshot, not a description.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">E3</span>
+      <div class="item-body">
+        <p class="ask">SPF, DKIM and DMARC records, verbatim<span class="flag">Blocker</span></p>
+        <p class="why">Lose these and outbound mail starts landing in spam folders — which
+          typically goes unnoticed for days.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">E4</span>
+      <div class="item-body">
+        <p class="ask">Which mail accounts exist, and who depends on them?</p>
+        <p class="why">So you know who to warn beforehand and who to ask to test afterwards.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">E5</span>
+      <div class="item-body">
+        <p class="ask">Confirm the handler knows MX must stay DNS-only in Cloudflare</p>
+        <p class="why">Proxying a mail record — the orange cloud — breaks delivery. It is an
+          easy click to make by accident while setting the web records.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">E6</span>
+      <div class="item-body">
+        <p class="ask">Which address does the site itself send from?</p>
+        <p class="why"><code>events@velzaglobal.ph</code> is hard-coded into <code>submit.php</code>.
+          Confirm that mailbox still exists and the domain is authorised to send as it.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- F -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">F</span><h2>SSL and certificates</h2></div>
+
+    <div class="item is-blocker">
+      <span class="item-id">F1</span>
+      <div class="item-body">
+        <p class="ask">What issues the current certificate?<span class="flag">Blocker</span></p>
+        <p class="why">cPanel AutoSSL, Let's Encrypt, or purchased. Cloudflare must run in
+          <em>Full (strict)</em> mode, which requires a valid, non-expired, non-self-signed
+          certificate on the origin.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">F2</span>
+      <div class="item-body">
+        <p class="ask">Is the origin certificate valid, and when does it renew?<span class="flag">Blocker</span></p>
+        <p class="why">Under Full (strict), an invalid origin certificate takes the entire site
+          down with a 526 error.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">F3</span>
+      <div class="item-body">
+        <p class="ask">Will AutoSSL still renew once Cloudflare is proxying?</p>
+        <p class="why">Renewal needs <code>/.well-known/acme-challenge/</code> reachable. The new rules
+          explicitly exempt that path — confirm nothing else on the server blocks it.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">F4</span>
+      <div class="item-body">
+        <p class="ask">Is HSTS already set anywhere at server level?</p>
+        <p class="why">The site sends a one-year policy. A conflicting longer policy with
+          <code>preload</code> would make rolling back to HTTP impossible for browsers that
+          have already seen it.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- G -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">G</span><h2>RSVP and event subsystem</h2></div>
+
+    <div class="item is-blocker">
+      <span class="item-id">G1</span>
+      <div class="item-body">
+        <p class="ask">Database name, user, and row count in <code>registrations</code><span class="flag">Blocker</span></p>
+        <p class="why">Confirms whether this is live personal data or a leftover, before anything
+          touches it.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">G2</span>
+      <div class="item-body">
+        <p class="ask">Who used the check-in page, and is it still needed?<span class="flag">Blocker</span></p>
+        <p class="why"><code>host_view.php</code> is now blocked by default. If event staff still rely
+          on it, it needs re-opening behind a password rather than staying closed.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item is-blocker">
+      <span class="item-id">G3</span>
+      <div class="item-body">
+        <p class="ask">How long was that page publicly reachable, and are there access logs?<span class="flag">Blocker</span></p>
+        <p class="why">It exposed every registrant's name, email, phone number and emergency
+          contact with <em>no authentication at all</em>. Whether this is a notifiable data
+          breach depends on this answer. Ask for the raw access logs for that path.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">G4</span>
+      <div class="item-body">
+        <p class="ask">Is the August 2026 press conference definitely concluded?</p>
+        <p class="why">Determines how urgent it is to re-open the check-in tooling.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">G5</span>
+      <div class="item-body">
+        <p class="ask">Is the SMTP account used by the reminder script still active?</p>
+        <p class="why">The reminder cron fails silently otherwise — no bounce, no alert.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">G6</span>
+      <div class="item-body">
+        <p class="ask">Is there a retention policy for registrant records?</p>
+        <p class="why">The table holds personal and emergency-contact details with no stated
+          deletion date.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- H -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">H</span><h2>Third-party accounts</h2></div>
+
+    <div class="item">
+      <span class="item-id">H1</span>
+      <div class="item-body">
+        <p class="ask">Admin access to Google Tag Manager container <code>GTM-W333F6RK</code></p>
+        <p class="why">Hard-coded into all 23 pages in all three regions. Without admin you
+          cannot change anything about analytics.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">H2</span>
+      <div class="item-body">
+        <p class="ask">The linked GA4 property, and who owns it</p>
+        <p class="why">The consent system deliberately leaves its own analytics ID empty because
+          GA4 is assumed to fire inside GTM. If it doesn't, analytics is silently dead.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">H3</span>
+      <div class="item-body">
+        <p class="ask">reCAPTCHA v3 site key <em>and</em> secret key</p>
+        <p class="why">The contact and subscribe forms don't work today — the code still contains
+          the literal placeholder <code>CHANGEME</code>.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">H4</span>
+      <div class="item-body">
+        <p class="ask">Where should contact and subscribe submissions be delivered?</p>
+        <p class="why">The mail config still contains the vendor's placeholder address, so form
+          submissions currently go nowhere.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">H5</span>
+      <div class="item-body">
+        <p class="ask">Is there an existing company Cloudflare account?</p>
+        <p class="why">Far better to add the domain to a company-owned account than a personal
+          one that becomes a single point of failure when someone leaves.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">H6</span>
+      <div class="item-body">
+        <p class="ask">Google Search Console access</p>
+        <p class="why">To watch for crawl errors in the week after the routing change.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- I -->
+  <section>
+    <div class="sec-head"><span class="sec-letter">I</span><h2>Process and people</h2></div>
+
+    <div class="item is-blocker">
+      <span class="item-id">I1</span>
+      <div class="item-body">
+        <p class="ask">Who deploys today, and how?<span class="flag">Blocker</span></p>
+        <p class="why">Whatever that workflow is, it stops at cutover — otherwise manual uploads
+          and the automated deploy overwrite each other.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">I2</span>
+      <div class="item-body">
+        <p class="ask">An agreed maintenance window</p>
+        <p class="why">The first deploy uploads about 63&nbsp;MB, and DNS propagation can take up
+          to 24 hours.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">I3</span>
+      <div class="item-body">
+        <p class="ask">Who is on call to roll back, and by what route?</p>
+        <p class="why">Rollback is two moves: revert the nameservers at the registrar, and
+          restore the web root backup. Both need an owner named in advance.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+
+    <div class="item">
+      <span class="item-id">I4</span>
+      <div class="item-body">
+        <p class="ask">Any support or contractual obligation tied to the current setup?</p>
+        <p class="why">Some hosts limit support if deployment is automated externally. Better to
+          know now than during an incident.</p>
+      </div>
+      <div class="answer"><span class="answer-label">Answer</span><span class="answer-line"></span></div>
+    </div>
+  </section>
+
+  <!-- Red flags -->
+  <section class="flags">
+    <div class="sec-head"><span class="sec-letter">!</span><h2>Red flags — stop and reassess</h2></div>
+    <p class="sec-intro">If any of these turn out to be true, do not touch DNS until it is
+      resolved.</p>
+    <ul>
+      <li><strong>Apache 2.2, or PHP older than 8.1.</strong> The routing rules and the RSVP
+        portal will not run as written.</li>
+      <li><strong>AllowOverride is not <code>All</code>.</strong> <code>.htaccess</code> is being ignored,
+        and nothing in this migration works.</li>
+      <li><strong>The private config sits inside the web root.</strong> Live database and SMTP
+        credentials are publicly readable right now — treat as an active incident, not a
+        migration task.</li>
+      <li><strong>Email is on this cPanel and nobody has the MX records.</strong> Do not change
+        nameservers until they are captured.</li>
+      <li><strong>Nobody can say what is in the current web root.</strong> Cutover will either
+        destroy something or leave stale files shadowing the new site.</li>
+      <li><strong>The check-in page's access logs show unfamiliar traffic.</strong> The personal
+        data exposure may have been used, not merely possible.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Canonical copy lives in the repository at
+    <code>deployment/handover-checklist.md</code>. The steps you carry out yourself, once
+    these answers are in, are in <code>README.md</code> §6.
+  </footer>
+
+</div>
+</body>
+</html>
