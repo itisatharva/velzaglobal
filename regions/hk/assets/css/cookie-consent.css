@@ -60,15 +60,11 @@
    -------------------------------------------------------------------------- */
 
 .vg-cookie-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 14px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--vgc-accent);
+    /* Duplicates the banner title directly below it ("Your Privacy Matters"
+       twice) with no functional purpose — it was only ever real content in
+       the office cards this pattern was copied from. Removed rather than
+       just hidden with display:none so it takes no layout space at all. */
+    display: none;
 }
 
 .vg-cookie-eyebrow::before {
@@ -89,8 +85,8 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-height: 44px;
-    padding: 12px 26px;
+    min-height: 38px;
+    padding: 10px 20px;
     font-family: inherit;
     font-size: 12px;
     font-weight: 600;
@@ -192,8 +188,8 @@
     left: 24px;
     z-index: var(--vgc-z);
     width: calc(100% - 48px);
-    max-width: 640px;
-    padding: 28px 30px 26px;
+    max-width: 560px;
+    padding: 20px 22px 18px;
     color: var(--vgc-ink);
     background: var(--vgc-panel-bg);
     border: 1px solid var(--vgc-border);
@@ -214,19 +210,19 @@
 }
 
 .vg-cookie-banner-title {
-    margin: 0 0 12px;
+    margin: 0 0 8px;
     font-family: "Poppins", sans-serif;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 600;
-    line-height: 1.35;
+    line-height: 1.3;
     letter-spacing: -0.01em;
     color: var(--vgc-ink);
 }
 
 .vg-cookie-banner-text {
-    margin: 0 0 22px;
-    font-size: 13px;
-    line-height: 1.75;
+    margin: 0 0 16px;
+    font-size: 12.5px;
+    line-height: 1.6;
     color: var(--vgc-ink-muted);
 }
 
@@ -234,7 +230,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .vg-cookie-banner-actions .vg-cookie-btn {
@@ -247,8 +243,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px 20px;
-    margin-top: 18px;
-    padding-top: 16px;
+    margin-top: 14px;
+    padding-top: 12px;
     border-top: 1px solid var(--vgc-border);
 }
 
@@ -603,11 +599,11 @@
         bottom: 12px;
         width: calc(100% - 24px);
         max-width: none;
-        padding: 24px 20px 22px;
+        padding: 18px 18px 16px;
     }
 
     .vg-cookie-banner-title {
-        font-size: 17px;
+        font-size: 15px;
     }
 
     .vg-cookie-banner-actions {
