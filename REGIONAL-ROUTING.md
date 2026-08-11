@@ -1,8 +1,8 @@
 # Velza Global Regional Routing
 
 **Status: implemented.** The routing described here is live in the root `.htaccess`
-(sections 3L and 3M). This file is the specification; `README.md` §2 explains the
-mechanism and `CLAUDE.md` covers the rule-ordering constraints.
+(sections 3L and 3M). This file is the specification; `README.md` shows how a URL
+becomes a file and `CLAUDE.md` covers the rule-ordering constraints.
 
 ## Structure
 
@@ -10,7 +10,7 @@ mechanism and `CLAUDE.md` covers the rule-ordering constraints.
 - `regions/ph/` — Philippines website
 - `regions/in/` — India website
 - `region/` — shared region preference configuration/switcher
-- `assets/` — shared assets for all regions, at the web root (see README §1)
+- `assets/` — shared assets for all regions, at the web root (see README)
 
 ## Required production behavior
 

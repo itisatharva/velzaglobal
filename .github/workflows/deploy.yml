@@ -7,7 +7,7 @@ name: Deploy to Namecheap
 #   push to staging   -> deploys to staging     (staging.velzaglobal.com)
 #   manual dispatch   -> either, chosen at run time
 #
-# Transport is FTPS. See README.md "Deployment" for why FTPS rather than
+# Transport is FTPS. See deployment/README.md §1 for why FTPS rather than
 # cPanel Git Version Control or rsync, and for the required secrets.
 # ======================================================================
 

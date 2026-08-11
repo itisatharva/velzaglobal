@@ -7,8 +7,8 @@ Each item says **why it matters**, so if the handler pushes back you can explain
 what breaks without it. Items marked **BLOCKER** must be answered before the
 nameserver change or the first deploy; the rest can follow.
 
-Canonical copy of this checklist. See `README.md` §6 for the steps you perform
-yourself once these answers are in.
+Canonical copy of this checklist. See `deployment/README.md` §3 for the steps
+you perform yourself once these answers are in.
 
 ---
 

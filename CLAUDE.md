@@ -12,7 +12,8 @@ There is **no build system**: no `package.json`, bundler, test suite, or linter.
 editing the shipped file directly. The repository root **is** the web root — what is committed
 is what lands in `public_html/`.
 
-Read `README.md` first for deployment and the operational checklist. This file covers the
+`README.md` describes the site itself — pages, editions, URL structure.
+`deployment/README.md` covers deployment and the cutover steps. This file covers the
 things that require reading several files to work out.
 
 ## Layout
