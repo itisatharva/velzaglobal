@@ -1,0 +1,8 @@
+# BEGIN RSVP ADMIN PROTECTION
+<FilesMatch "^(host_view|update_issue)\.php$">
+    Require all denied
+</FilesMatch>
+# END RSVP ADMIN PROTECTION
+# BEGIN WEBMANIFEST MIME
+AddType application/manifest+json .webmanifest
+# END WEBMANIFEST MIME

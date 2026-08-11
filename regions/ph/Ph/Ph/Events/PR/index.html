@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- BEGIN VELZA SOCIAL METADATA -->
+    <meta name="description" content="Confirm your attendance for the Velza Global Press Conference on August 4, 2026, at 11:00 AM at WERCO Complex, Parañaque City, Metro Manila.">
+    <link rel="canonical" href="https://velzaglobal.com/Ph/Events/PR/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_PH">
+    <meta property="og:site_name" content="Velza Global">
+    <meta property="og:title" content="Velza Global Press Conference | RSVP">
+    <meta property="og:description" content="Confirm your attendance for the Velza Global Press Conference on August 4, 2026, at 11:00 AM at WERCO Complex, Parañaque City.">
+    <meta property="og:url" content="https://velzaglobal.com/Ph/Events/PR/">
+        <link rel="image_src" href="https://velzaglobal.com/Ph/Events/PR/og-image-social-v2.jpeg">
+<meta property="og:image" content="https://velzaglobal.com/Ph/Events/PR/og-image-social-v2.jpeg">
+    <meta property="og:image:url" content="https://velzaglobal.com/Ph/Events/PR/og-image-social-v2.jpeg">
+    <meta property="og:image:secure_url" content="https://velzaglobal.com/Ph/Events/PR/og-image-social-v2.jpeg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Velza Global Press Conference invitation">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Velza Global Press Conference | RSVP">
+    <meta name="twitter:description" content="Confirm your attendance for the Velza Global Press Conference on August 4, 2026, at 11:00 AM at WERCO Complex, Parañaque City.">
+    <meta name="twitter:image" content="https://velzaglobal.com/Ph/Events/PR/og-image-social-v2.jpeg">
+    <meta name="twitter:image:alt" content="Velza Global Press Conference invitation">
+    <!-- END VELZA SOCIAL METADATA -->
+
+    <!-- BEGIN VELZA FAVICONS -->
+    <link rel="icon" href="favicon.ico?v=20260722" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=20260722">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=20260722">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=20260722">
+    <link rel="manifest" href="site.webmanifest?v=20260722">
+    <meta name="theme-color" content="#0b1628">
+    <!-- END VELZA FAVICONS -->
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>Press Conference RSVP | Velza Global</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --page-dark: #020a1b;
+      --panel: rgba(3, 11, 29, 0.58);
+      --input-bg: rgba(255, 255, 255, 0.70);
+      --input-focus: rgba(255, 255, 255, 0.94);
+      --button-top: #74dbf2;
+      --button-bottom: #4285db;
+      --error-bg: rgba(124, 0, 0, 0.65);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--page-dark);
+    }
+
+    body {
+      color: var(--white);
+      font-family: "Montserrat", Arial, sans-serif;
+    }
+
+    /*
+     * LOCK 1:
+     * Full-screen banner on every viewport.
+     */
+    .full-screen-banner {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+
+      object-fit: cover;
+      object-position: center center;
+
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .background-shade {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 7, 24, 0.03) 0%,
+          rgba(0, 7, 24, 0.08) 42%,
+          rgba(0, 7, 24, 0.22) 100%
+        );
+
+      pointer-events: none;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+
+      padding-top: clamp(4.5rem, 8vh, 7rem);
+      padding-bottom: clamp(2rem, 6vh, 4rem);
+    }
+
+    .brand-logo {
+      position: absolute;
+      top: clamp(0.85rem, 2vw, 1.4rem);
+      left: clamp(0.85rem, 2vw, 1.6rem);
+      z-index: 4;
+
+      width: clamp(4.4rem, 7vw, 6.4rem);
+      height: auto;
+    }
+
+    /*
+     * LOCK 2:
+     * Transparent, centered panel matching the reference composition.
+     */
+    .glass-panel {
+      background: var(--panel);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+      box-shadow:
+        0 1.5rem 4rem
+        rgba(0, 0, 0, 0.34);
+
+      backdrop-filter:
+        blur(7px)
+        brightness(0.75);
+
+      -webkit-backdrop-filter:
+        blur(7px)
+        brightness(0.75);
+    }
+
+    /*
+     * LOCK 3:
+     * Centered and visually balanced RSVP heading.
+     */
+    .rsvp-title {
+      margin: 0;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(2.05rem, 4.4vw, 4.2rem);
+
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .section-heading {
+      display: inline-block;
+
+      font-family:
+        "Century Gothic",
+        CenturyGothic,
+        AppleGothic,
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(0.72rem, 1vw, 0.95rem);
+
+      font-weight: 600;
+      line-height: 1.25;
+
+      letter-spacing: 0.08em;
+
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+
+      text-transform: uppercase;
+    }
+
+    .event-value {
+      margin: 0;
+
+      font-family:
+        "Century Gothic",
+        CenturyGothic,
+        AppleGothic,
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(0.82rem, 1.35vw, 1.12rem);
+
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+
+      text-transform: uppercase;
+    }
+
+    .event-address {
+      margin: 0.15rem 0 0;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(0.48rem, 0.7vw, 0.64rem);
+
+      line-height: 1.4;
+      letter-spacing: 0.003em;
+
+      text-transform: uppercase;
+    }
+
+    .location-link,
+    .location-link:visited {
+      color: #ffffff;
+      text-decoration-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .location-link:hover,
+    .location-link:focus,
+    .location-link:active {
+      color: #ffffff;
+      text-decoration-color: #ffffff;
+    }
+
+    .contact-grid {
+      font-family:
+        "Century Gothic",
+        CenturyGothic,
+        AppleGothic,
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(0.72rem, 1vw, 0.9rem);
+
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+
+      text-transform: uppercase;
+    }
+
+    .form-heading {
+      font-family:
+        "Century Gothic",
+        CenturyGothic,
+        AppleGothic,
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(0.75rem, 1vw, 0.95rem);
+
+      font-weight: 600;
+
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+
+      text-transform: uppercase;
+    }
+
+    .form-label,
+    .question-label {
+      margin: 0;
+
+      font-family:
+        "Century Gothic",
+        CenturyGothic,
+        AppleGothic,
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(0.82rem, 1.35vw, 1.12rem);
+
+      line-height: 1.4;
+      letter-spacing: 0.006em;
+
+      text-transform: uppercase;
+    }
+
+    .form-control,
+    .form-select {
+      border: 0;
+      border-radius: 0;
+
+      background-color: var(--input-bg);
+      color: #071328;
+
+      box-shadow: none;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      background-color: var(--input-focus);
+
+      border-color: transparent;
+
+      box-shadow:
+        0 0 0 0.14rem
+        rgba(113, 216, 239, 0.50);
+    }
+
+    .text-input {
+      min-height: 2.2rem;
+    }
+
+    .people-select {
+      width: 4.4rem;
+      min-height: 2.15rem;
+    }
+
+    .request-box {
+      min-height: 7rem;
+      resize: vertical;
+    }
+
+    .form-check-input {
+      width: 1rem;
+      height: 1rem;
+      margin-top: 0;
+
+      cursor: pointer;
+      accent-color: #ffffff;
+    }
+
+    .form-check-label {
+      cursor: pointer;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(0.56rem, 0.8vw, 0.72rem);
+
+      text-transform: uppercase;
+    }
+
+    .submit-button {
+      min-width: 8.5rem;
+      padding: 0.58rem 1.75rem;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.78);
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          to bottom,
+          var(--button-top),
+          var(--button-bottom)
+        );
+
+      box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.55),
+        0 0.45rem 1.2rem
+        rgba(0, 0, 0, 0.32);
+
+      color: #ffffff;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size: 0.76rem;
+      font-weight: 500;
+
+      text-transform: uppercase;
+    }
+
+    .submit-button:hover,
+    .submit-button:focus {
+      color: #ffffff;
+      filter: brightness(1.08);
+    }
+
+    .error-message {
+      display: none;
+
+      background: var(--error-bg);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+      font-size: 0.76rem;
+    }
+
+    .invalid-feedback {
+      color: #ffd9d9;
+      font-size: 0.7rem;
+    }
+
+    .modal-content {
+      border: 0;
+      border-radius: 0;
+    }
+
+    .modal-title {
+      color: #071328;
+    }
+
+    .modal-body {
+      color: #071328;
+    }
+
+    /*
+     * Bootstrap tablet and mobile refinement.
+     */
+    @media (max-width: 767.98px) {
+      .page-shell {
+        padding-top: 4.6rem;
+      }
+
+      .brand-logo {
+        width: 4.5rem;
+      }
+
+      .glass-panel {
+        background: rgba(3, 11, 29, 0.62);
+      }
+
+      .rsvp-title {
+        font-size:
+          clamp(1.7rem, 7.8vw, 3rem);
+
+        white-space: normal;
+      }
+
+      .contact-grid {
+        text-align: center;
+      }
+
+      .desktop-label {
+        text-align: left !important;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .page-shell {
+        padding-left: 0.65rem;
+        padding-right: 0.65rem;
+      }
+
+      .glass-panel {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+
+      .rsvp-title {
+        font-size:
+          clamp(1.55rem, 8.2vw, 2.45rem);
+      }
+
+      .event-value {
+        font-size:
+          clamp(0.66rem, 3.2vw, 0.88rem);
+      }
+
+      .event-address {
+        font-size:
+          clamp(0.45rem, 2.1vw, 0.58rem);
+      }
+
+      .form-label,
+      .question-label {
+        font-size:
+          clamp(0.57rem, 2.8vw, 0.72rem);
+      }
+
+      .form-check-label {
+        font-size:
+          clamp(0.52rem, 2.5vw, 0.66rem);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <img
+    class="full-screen-banner"
+    src="event-banner.jpeg"
+    alt=""
+    aria-hidden="true"
+  >
+
+  <div
+    class="background-shade"
+    aria-hidden="true"
+  ></div>
+
+  <main class="container-fluid page-shell position-relative">
+    <img
+      class="brand-logo"
+      src="Velza Logo - 1.png"
+      alt="Velza Global"
+    >
+
+    <div class="row justify-content-center g-0">
+      <div
+        class="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7"
+      >
+        <section
+          class="glass-panel px-3 px-sm-4 px-md-5 py-4 py-md-5"
+          aria-labelledby="rsvpTitle"
+        >
+          <header class="text-center mb-4 mb-md-5">
+            <h1
+              class="rsvp-title"
+              id="rsvpTitle"
+            >
+              Répondez S'il Vous Plaît
+            </h1>
+          </header>
+
+          <section
+            class="event-information text-center"
+            aria-label="Event information"
+          >
+            <div class="mb-3 mb-md-4">
+              <div class="section-heading mb-2">
+                Event
+              </div>
+
+              <p class="event-value">
+                Press Conference
+              </p>
+            </div>
+
+            <div class="mb-3 mb-md-4">
+              <div class="section-heading mb-2">
+                Location
+              </div>
+
+              <p class="event-value">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=WERCO+Complex+1700+Dr.+A.+Santos+Avenue+San+Antonio+Parañaque+City+Metro+Manila"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="location-link"
+                >
+                  WERCO COMPLEX
+                </a>
+              </p>
+
+              <p class="event-address">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=WERCO+Complex+1700+Dr.+A.+Santos+Avenue+San+Antonio+Parañaque+City+Metro+Manila"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="location-link"
+                >
+                  1700 Dr. A. Santos Avenue, San Antonio<br>
+                  Parañaque City, Metro Manila
+                </a>
+              </p>
+            </div>
+
+            <div class="mb-3 mb-md-4">
+              <div class="section-heading mb-2">
+                Date &amp; Time
+              </div>
+
+              <p class="event-value">
+                Tuesday, August 4, 2026<br>
+                11:00 AM
+              </p>
+            </div>
+
+            <div class="row g-3 mb-3 mb-md-4">
+              <div class="col-6">
+                <div class="section-heading mb-2">
+                  Attire
+                </div>
+
+                <p class="event-value">
+                  Business Formals
+                </p>
+              </div>
+
+              <div class="col-6">
+                <div class="section-heading mb-2">
+                  Meal
+                </div>
+
+                <p class="event-value">
+                  Artisan Plated Lunch
+                </p>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="section-heading mb-2">
+                Contact Person
+              </div>
+
+              <div
+                class="row justify-content-center contact-grid"
+              >
+                <div
+                  class="col-12 col-md-5 text-center event-value"
+                >
+                  <span style="white-space: nowrap;">Riza Perez Caba&nbsp;&nbsp;|&nbsp;&nbsp;<a href="tel:+639533153334">+63 9533155334</a></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="form-heading text-center mb-4">
+            Please Fill the Below
+          </div>
+
+          <div
+            class="error-message p-2 mb-3 text-center"
+            id="errorMessage"
+            role="alert"
+          >
+            Please complete every required field before submitting.
+          </div>
+
+          <form
+            id="rsvpForm"
+            class="needs-validation"
+            method="POST"
+            action="submit.php"
+            novalidate
+          >
+            <div class="row align-items-center g-2 mb-3">
+              <label
+                class="col-12 col-md-5 form-label desktop-label text-md-start"
+                for="name"
+              >
+                Name
+              </label>
+
+              <div class="col-12 col-md-7">
+                <input
+                  class="form-control text-input"
+                  id="name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                >
+
+                <div class="invalid-feedback">
+                  Please enter your name.
+                </div>
+              </div>
+            </div>
+
+            <div class="row align-items-center g-2 mb-3">
+              <label
+                class="col-12 col-md-5 form-label desktop-label text-md-start"
+                for="contact"
+              >
+                Contact Number
+              </label>
+
+              <div class="col-12 col-md-7">
+                <input
+                  class="form-control text-input"
+                  id="contact"
+                  name="contact"
+                  type="tel"
+                  inputmode="numeric"
+                  pattern="[0-9]{10}"
+                  minlength="10"
+                  maxlength="10"
+                  autocomplete="tel"
+                  required
+                >
+
+                <div class="invalid-feedback">
+                  Please enter exactly 10 digits using numbers only.
+                </div>
+              </div>
+            </div>
+
+            <div class="row align-items-center g-2 mb-3">
+              <label
+                class="col-12 col-md-5 form-label desktop-label text-md-start"
+                for="email"
+              >
+                Email
+              </label>
+
+              <div class="col-12 col-md-7">
+                <input
+                  class="form-control text-input"
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                >
+
+                <div class="invalid-feedback">
+                  Please enter a valid email address.
+                </div>
+              </div>
+            </div>
+
+            <fieldset class="row align-items-center g-2 mb-3">
+              <legend
+                class="col-12 col-md-7 question-label mb-2 mb-md-0"
+              >
+                Will you be able to attend the event?
+              </legend>
+
+              <div class="col-12 col-md-5">
+                <div
+                  class="d-flex flex-wrap align-items-center gap-3"
+                >
+                  <div class="form-check d-flex align-items-center gap-2 m-0">
+                    <input
+                      class="form-check-input"
+                      id="attendanceYes"
+                      name="attendance"
+                      type="radio"
+                      value="Yes"
+                      required
+                    >
+
+                    <label
+                      class="form-check-label"
+                      for="attendanceYes"
+                    >
+                      Yes
+                    </label>
+                  </div>
+
+                  <div class="form-check d-flex align-items-center gap-2 m-0">
+                    <input
+                      class="form-check-input"
+                      id="attendanceNo"
+                      name="attendance"
+                      type="radio"
+                      value="No"
+                      required
+                    >
+
+                    <label
+                      class="form-check-label"
+                      for="attendanceNo"
+                    >
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="row align-items-center g-2 mb-3">
+              <legend
+                class="col-12 col-md-7 question-label mb-2 mb-md-0"
+              >
+                Are you attending as
+              </legend>
+
+              <div class="col-12 col-md-5">
+                <div
+                  class="d-flex flex-wrap align-items-center gap-3"
+                >
+                  <div class="form-check d-flex align-items-center gap-2 m-0">
+                    <input
+                      class="form-check-input"
+                      id="categoryGuest"
+                      name="attendee_type"
+                      type="radio"
+                      value="Guest"
+                      required
+                    >
+
+                    <label
+                      class="form-check-label"
+                      for="categoryGuest"
+                    >
+                      Guest
+                    </label>
+                  </div>
+
+                  <div class="form-check d-flex align-items-center gap-2 m-0">
+                    <input
+                      class="form-check-input"
+                      id="categoryMedia"
+                      name="attendee_type"
+                      type="radio"
+                      value="Media"
+                      required
+                    >
+
+                    <label
+                      class="form-check-label"
+                      for="categoryMedia"
+                    >
+                      Press/Media
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <div
+              id="mediaSection"
+              style="display:none;"
+            >
+              <div class="row align-items-center g-2 mb-3">
+                <label
+                  class="col-12 col-md-5 form-label desktop-label text-md-start"
+                  for="media_name"
+                >
+                  Media Representative Name
+                </label>
+
+                <div class="col-12 col-md-7">
+                  <input
+                    class="form-control text-input"
+                    id="media_name"
+                    name="media_name"
+                    type="text"
+                    autocomplete="name"
+                  >
+
+                  <div class="invalid-feedback">
+                    Please enter the media representative name.
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-center g-2 mb-3">
+                <label
+                  class="col-12 col-md-5 form-label desktop-label text-md-start"
+                  for="media_company_name"
+                >
+                  Media Organisation / Company
+                </label>
+
+                <div class="col-12 col-md-7">
+                  <input
+                    class="form-control text-input"
+                    id="media_company_name"
+                    name="media_company_name"
+                    type="text"
+                    autocomplete="organization"
+                  >
+
+                  <div class="invalid-feedback">
+                    Please enter the media organisation or company.
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-center g-2 mb-3">
+                <label
+                  class="col-12 col-md-5 form-label desktop-label text-md-start"
+                  for="media_primary_focus"
+                >
+                  Primary Media Focus
+                </label>
+
+                <div class="col-12 col-md-7">
+                  <select
+                    class="form-select text-input"
+                    id="media_primary_focus"
+                    name="media_primary_focus"
+                  >
+                    <option value="">Please select</option>
+                    <option value="Print">Print</option>
+                    <option value="Digital">Digital</option>
+                    <option value="Radio">Radio</option>
+                    <option value="Others">Others</option>
+                  </select>
+
+                  <div class="invalid-feedback">
+                    Please select the primary media focus.
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="row align-items-center g-2 mb-3"
+                id="mediaOtherRow"
+                style="display:none;"
+              >
+                <label
+                  class="col-12 col-md-5 form-label desktop-label text-md-start"
+                  for="media_focus_other"
+                >
+                  Please Specify
+                </label>
+
+                <div class="col-12 col-md-7">
+                  <input
+                    class="form-control text-input"
+                    id="media_focus_other"
+                    name="media_focus_other"
+                    type="text"
+                  >
+
+                  <div class="invalid-feedback">
+                    Please specify the media focus.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row align-items-center g-2 mb-3">
+              <label
+                class="col-12 col-md-5 form-label desktop-label text-md-start"
+                for="invited_by"
+              >
+                Invited By
+              </label>
+
+              <div class="col-12 col-md-7">
+                <input
+                  class="form-control text-input"
+                  id="invited_by"
+                  name="invited_by"
+                  type="text"
+                  autocomplete="off"
+                  required
+                >
+
+                <div class="invalid-feedback">
+                  Please enter the name of the person who invited you.
+                </div>
+              </div>
+            </div>
+
+            <div class="row align-items-center g-2 mb-3">
+              <label
+                class="col-12 col-md-5 form-label desktop-label text-md-start"
+                for="num_people"
+              >
+                Number of People Attending
+              </label>
+
+              <div class="col-12 col-md-7">
+                <select
+                  class="form-select people-select"
+                  id="num_people"
+                  name="num_people"
+                  required
+                >
+                  <option
+                    value=""
+                    selected
+                    disabled
+                    hidden
+                  ></option>
+
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
+
+                <div class="invalid-feedback">
+                  Please select the number of people attending.
+                </div>
+              </div>
+            </div>
+
+            <div class="row align-items-start g-2 mb-3">
+              <label
+                class="col-12 col-md-5 form-label desktop-label text-md-start"
+                for="additional_request"
+              >
+                Additional Request
+              </label>
+
+              <div class="col-12 col-md-7">
+                <textarea
+                  class="form-control request-box"
+                  id="additional_request"
+                  name="additional_request"
+                  maxlength="2000"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="row align-items-center g-2 mb-3">
+              <label
+                class="col-12 col-md-5 form-label desktop-label text-md-start"
+                for="emergency_person"
+              >
+                Emergency Contact Name
+              </label>
+
+              <div class="col-12 col-md-7">
+                <input
+                  class="form-control text-input"
+                  id="emergency_person"
+                  name="emergency_person"
+                  type="text"
+                  autocomplete="name"
+                  required
+                >
+
+                <div class="invalid-feedback">
+                  Please enter the emergency contact name.
+                </div>
+              </div>
+            </div>
+
+            <div class="row align-items-center g-2 mb-3">
+              <label
+                class="col-12 col-md-5 form-label desktop-label text-md-start"
+                for="emergency_contact"
+              >
+                Emergency Contact Number
+              </label>
+
+              <div class="col-12 col-md-7">
+                <input
+                  class="form-control text-input"
+                  id="emergency_contact"
+                  name="emergency_contact"
+                  type="tel"
+                  inputmode="numeric"
+                  pattern="[0-9]{10}"
+                  minlength="10"
+                  maxlength="10"
+                  autocomplete="tel"
+                  required
+                >
+
+                <div class="invalid-feedback">
+                  Please enter exactly 10 digits using numbers only.
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 mb-4">
+              <h3 class="h6 mb-3">
+                Acknowledgements
+              </h3>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  id="consent_accuracy"
+                  name="consent_accuracy"
+                  type="checkbox"
+                  value="1"
+                  required
+                >
+
+                <label
+                  class="form-check-label"
+                  for="consent_accuracy"
+                >
+                  I confirm that the information provided is complete and
+                  accurate, including the emergency contact information.
+                </label>
+
+                <div class="invalid-feedback">
+                  You must confirm that the information is accurate.
+                </div>
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  id="consent_privacy"
+                  name="consent_privacy"
+                  type="checkbox"
+                  value="1"
+                  required
+                >
+
+                <label
+                  class="form-check-label"
+                  for="consent_privacy"
+                >
+                  I have read and agree to the Privacy Notice and consent to
+                  the processing of my information for this event.
+                </label>
+
+                <div class="invalid-feedback">
+                  You must accept the Privacy Notice.
+                </div>
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  id="consent_invitation"
+                  name="consent_invitation"
+                  type="checkbox"
+                  value="1"
+                  required
+                >
+
+                <label
+                  class="form-check-label"
+                  for="consent_invitation"
+                >
+                  I understand that this invitation is personal,
+                  non-transferable and subject to verification.
+                </label>
+
+                <div class="invalid-feedback">
+                  You must acknowledge the invitation conditions.
+                </div>
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  id="consent_admission"
+                  name="consent_admission"
+                  type="checkbox"
+                  value="1"
+                  required
+                >
+
+                <label
+                  class="form-check-label"
+                  for="consent_admission"
+                >
+                  I understand that registration does not automatically
+                  guarantee admission and that photographs or recordings may
+                  be taken during the event.
+                </label>
+
+                <div class="invalid-feedback">
+                  You must acknowledge the event admission conditions.
+                </div>
+              </div>
+
+              <div
+                class="form-check mb-3"
+                id="mediaAffiliationConsentRow"
+                style="display:none;"
+              >
+                <input
+                  class="form-check-input"
+                  id="consent_media_affiliation"
+                  name="consent_media_affiliation"
+                  type="checkbox"
+                  value="1"
+                >
+
+                <label
+                  class="form-check-label"
+                  for="consent_media_affiliation"
+                >
+                  I confirm that I represent the media organisation or
+                  company stated in this registration.
+                </label>
+
+                <div class="invalid-feedback">
+                  Media attendees must confirm their affiliation.
+                </div>
+              </div>
+
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  id="marketing_consent"
+                  name="marketing_consent"
+                  type="checkbox"
+                  value="1"
+                >
+
+                <label
+                  class="form-check-label"
+                  for="marketing_consent"
+                >
+                  I agree to receive future event invitations and updates from
+                  Velza Global Philippines. This is optional.
+                </label>
+              </div>
+            </div>
+
+            <div class="text-center pt-2">
+              <button
+                class="btn submit-button"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+    aria-labelledby="successTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h2
+            class="modal-title fs-4"
+            id="successTitle"
+          >
+            Thank You
+          </h2>
+
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body pt-0">
+          Your registration is confirmed. Please check your email (including your Spam/Junk folder) for your confirmation details.
+        </div>
+
+        <div class="modal-footer border-0">
+          <button
+            class="btn submit-button"
+            type="button"
+            data-bs-dismiss="modal"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  ></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const form =
+        document.getElementById("rsvpForm");
+
+      const categoryGuest =
+        document.getElementById("categoryGuest");
+
+      const categoryMedia =
+        document.getElementById("categoryMedia");
+
+      const mediaSection =
+        document.getElementById("mediaSection");
+
+      const mediaName =
+        document.getElementById("media_name");
+
+      const mediaPrimaryFocus =
+        document.getElementById("media_primary_focus");
+
+      const mediaCompanyName =
+        document.getElementById("media_company_name");
+
+      const mediaOtherRow =
+        document.getElementById("mediaOtherRow");
+
+      const mediaFocusOther =
+        document.getElementById("media_focus_other");
+
+      const mediaAffiliationConsentRow =
+        document.getElementById("mediaAffiliationConsentRow");
+
+      const consentMediaAffiliation =
+        document.getElementById("consent_media_affiliation");
+
+      function updateMediaFields() {
+        const isMedia = categoryMedia.checked;
+
+        mediaSection.style.display =
+          isMedia ? "block" : "none";
+
+        mediaAffiliationConsentRow.style.display =
+          isMedia ? "block" : "none";
+
+        mediaName.required = isMedia;
+        mediaPrimaryFocus.required = isMedia;
+        mediaCompanyName.required = isMedia;
+        consentMediaAffiliation.required = isMedia;
+
+        if (!isMedia) {
+          mediaName.value = "";
+          mediaPrimaryFocus.value = "";
+          mediaCompanyName.value = "";
+          mediaFocusOther.value = "";
+          consentMediaAffiliation.checked = false;
+          mediaOtherRow.style.display = "none";
+          mediaFocusOther.required = false;
+        }
+
+        updateOtherMediaField();
+      }
+
+      function updateOtherMediaField() {
+        const showOther =
+          categoryMedia.checked &&
+          mediaPrimaryFocus.value === "Others";
+
+        mediaOtherRow.style.display =
+          showOther ? "flex" : "none";
+
+        mediaFocusOther.required = showOther;
+
+        if (!showOther) {
+          mediaFocusOther.value = "";
+        }
+      }
+
+      categoryGuest.addEventListener(
+        "change",
+        updateMediaFields
+      );
+
+      categoryMedia.addEventListener(
+        "change",
+        updateMediaFields
+      );
+
+      mediaPrimaryFocus.addEventListener(
+        "change",
+        updateOtherMediaField
+      );
+
+      updateMediaFields();
+
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add("was-validated");
+        },
+        false
+      );
+
+      const parameters =
+        new URLSearchParams(window.location.search);
+
+      const errorMessage =
+        document.getElementById("errorMessage");
+
+      if (
+        parameters.get("success") === "0" ||
+        parameters.get("success") === "2" ||
+        parameters.get("success") === "3"
+      ) {
+        errorMessage.style.display = "block";
+
+        if (parameters.get("success") === "2") {
+          errorMessage.textContent =
+            "A guest with this email address or contact number is already registered for this event. Please contact the registration desk for assistance.";
+        }
+
+        if (parameters.get("success") === "3") {
+          errorMessage.textContent =
+            "Sorry, registrations are now closed. Please contact the registration desk for assistance.";
+        }
+      }
+
+      if (parameters.get("success") === "1") {
+        const modalElement =
+          document.getElementById("successModal");
+
+        const successModal =
+          new bootstrap.Modal(modalElement);
+
+        successModal.show();
+
+        modalElement.addEventListener(
+          "hidden.bs.modal",
+          function () {
+            window.history.replaceState(
+              {},
+              document.title,
+              window.location.pathname
+            );
+          }
+        );
+      }
+    }());
+  </script>
+</body>
+</html>
