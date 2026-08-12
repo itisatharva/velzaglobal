@@ -1,0 +1,55 @@
+---
+# ======================================================================
+# cPanel Git Version Control - deployment manifest
+# ======================================================================
+#
+# How this runs:
+#   cPanel > Git Version Control > Manage > "Update from Remote" then
+#   "Deploy HEAD Commit". cPanel reads this file from the checked-out
+#   branch and runs the tasks below as your cPanel user.
+#
+# TARGET: this is currently pointed at STAGING.
+#   Staging    -> /home/velzhsrg/staging
+#   Production -> /home/velzhsrg/public_html
+#   Flip DEPLOYPATH below when promoting. Change nothing else.
+#
+# Deliberately NOT using rsync --delete. A wrong DEPLOYPATH with
+# --delete would erase the live site. Stale files are the cheaper
+# failure. Revisit only after a clean production deploy.
+#
+# Never touches /home/velzhsrg/private_config/ (DB + SMTP secrets,
+# read by events/*.php and shared/vendor/simple-forms) or events/*.log.
+# ----------------------------------------------------------------------
+
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/velzhsrg/staging
+    - export REPOPATH=$(pwd)
+
+    - /bin/mkdir -p "$DEPLOYPATH"
+
+    # Ship the site. Excludes are the repo-only files DEPLOY.md says
+    # must not reach the webroot.
+    - >-
+      /usr/bin/rsync -a
+      --exclude '.git/'
+      --exclude '.gitignore'
+      --exclude '.cpanel.yml'
+      --exclude 'deployment/'
+      --exclude 'server/'
+      --exclude '*.md'
+      --exclude '.DS_Store'
+      --exclude 'events/*.log'
+      --exclude 'events/*.lock'
+      "$REPOPATH"/ "$DEPLOYPATH"/
+
+    # .htaccess at 600 causes a 500 error (DEPLOY.md STEP 3).
+    - /bin/find "$DEPLOYPATH" -type d -exec /bin/chmod 755 {} +
+    - /bin/find "$DEPLOYPATH" -type f -exec /bin/chmod 644 {} +
+
+    # Region routing depends on both .htaccess layers being readable.
+    - /bin/chmod 644 "$DEPLOYPATH"/.htaccess
+    - /bin/chmod 644 "$DEPLOYPATH"/regions/hk/.htaccess
+    - /bin/chmod 644 "$DEPLOYPATH"/regions/in/.htaccess
+    - /bin/chmod 644 "$DEPLOYPATH"/regions/ph/.htaccess
+    - /bin/chmod 644 "$DEPLOYPATH"/events/.htaccess

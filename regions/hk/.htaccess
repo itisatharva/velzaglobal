@@ -19,6 +19,16 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# Block direct access to /regions/<code>/... .
+# This guard has to live here, not only in the root .htaccess: because
+# this file declares its own RewriteEngine, Apache REPLACES the parent's
+# per-directory rewrite ruleset instead of inheriting it, so the root's
+# section 2 guard never runs for paths inside this folder.
+# THE_REQUEST holds the original request line, so an internal rewrite
+# from /aboutus still reads "GET /aboutus" here and passes through.
+RewriteCond %{THE_REQUEST} \s/+regions/ [NC]
+RewriteRule ^ - [R=404,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
