@@ -1,0 +1,287 @@
+:root {
+    --white: #ffffff;
+    --page-dark: #020a1b;
+    --panel: rgba(3, 11, 29, 0.68);
+    --panel-strong: rgba(3, 11, 29, 0.84);
+    --input-bg: rgba(255, 255, 255, 0.78);
+    --input-focus: rgba(255, 255, 255, 0.96);
+    --button-top: #74dbf2;
+    --button-bottom: #4285db;
+    --danger-bg: rgba(124, 0, 0, 0.72);
+    --success-bg: rgba(10, 92, 54, 0.72);
+    --border-soft: rgba(255, 255, 255, 0.10);
+    --text-muted: rgba(255, 255, 255, 0.72);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--page-dark);
+}
+
+body {
+    color: var(--white);
+    font-family: "Montserrat", Arial, sans-serif;
+}
+
+.full-screen-banner {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    object-fit: cover;
+    object-position: center center;
+    user-select: none;
+    pointer-events: none;
+}
+
+.background-shade {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 7, 24, 0.08) 0%,
+            rgba(0, 7, 24, 0.22) 45%,
+            rgba(0, 7, 24, 0.50) 100%
+        );
+    pointer-events: none;
+}
+
+.page-shell {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: clamp(4.75rem, 8vh, 7rem) 0.75rem 2rem;
+}
+
+.brand-logo {
+    position: absolute;
+    top: clamp(0.85rem, 2vw, 1.4rem);
+    left: clamp(0.85rem, 2vw, 1.6rem);
+    z-index: 4;
+    width: clamp(4.4rem, 7vw, 6.4rem);
+    height: auto;
+}
+
+.glass-panel {
+    background: var(--panel);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.36);
+    backdrop-filter: blur(8px) brightness(0.72);
+    -webkit-backdrop-filter: blur(8px) brightness(0.72);
+}
+
+.portal-title {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    text-align: center;
+}
+
+.portal-subtitle {
+    margin: 0.65rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.form-label {
+    margin-bottom: 0.4rem;
+    font-family:
+        "Century Gothic",
+        CenturyGothic,
+        AppleGothic,
+        Arial,
+        sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.form-control,
+.form-select {
+    min-height: 2.7rem;
+    border: 0;
+    border-radius: 0;
+    background-color: var(--input-bg);
+    color: #071328;
+    box-shadow: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--input-focus);
+    border-color: transparent;
+    box-shadow: 0 0 0 0.14rem rgba(113, 216, 239, 0.50);
+}
+
+.portal-button {
+    min-width: 9rem;
+    padding: 0.65rem 1.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    border-radius: 999px;
+    background:
+        linear-gradient(
+            to bottom,
+            var(--button-top),
+            var(--button-bottom)
+        );
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 0.45rem 1.2rem rgba(0, 0, 0, 0.32);
+    color: #ffffff;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.portal-button:hover,
+.portal-button:focus {
+    color: #ffffff;
+    filter: brightness(1.08);
+}
+
+.alert-panel {
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 0.8rem;
+}
+
+.alert-error {
+    background: var(--danger-bg);
+}
+
+.alert-success {
+    background: var(--success-bg);
+}
+
+.portal-footer {
+    margin-top: 1.25rem;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.portal-navbar {
+    background: var(--panel-strong);
+    border-bottom: 1px solid var(--border-soft);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.portal-card {
+    height: 100%;
+    padding: 1.25rem;
+    background: var(--panel);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.portal-card-title {
+    margin: 0 0 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.portal-card-value {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+}
+
+@media (max-width: 767.98px) {
+    .page-shell {
+        padding-top: 4.6rem;
+    }
+
+    .brand-logo {
+        width: 4.5rem;
+    }
+
+    .glass-panel,
+    .portal-card {
+        background: rgba(3, 11, 29, 0.74);
+    }
+}
+
+@media (max-width: 575.98px) {
+    .page-shell {
+        padding-left: 0.65rem;
+        padding-right: 0.65rem;
+    }
+
+    .portal-title {
+        font-size: clamp(1.65rem, 8vw, 2.5rem);
+    }
+}
+/* Team Portal navigation logo sizing */
+.team-navbar-logo {
+    width: auto;
+    height: 42px;
+    max-width: 150px;
+    object-fit: contain;
+}
+
+@media (max-width: 576px) {
+    .team-navbar-logo {
+        height: 34px;
+        max-width: 125px;
+    }
+}
+
+/* Final navbar logo correction */
+.team-navbar .navbar-brand {
+    width: 150px;
+    height: 56px;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.team-navbar-logo {
+    width: 150px;
+    height: 150px;
+    max-width: none;
+    object-fit: contain;
+    transform: scale(0.42);
+    transform-origin: left center;
+}
+
+@media (max-width: 576px) {
+    .team-navbar .navbar-brand {
+        width: 120px;
+        height: 48px;
+    }
+
+    .team-navbar-logo {
+        width: 120px;
+        height: 120px;
+        transform: scale(0.42);
+    }
+}
