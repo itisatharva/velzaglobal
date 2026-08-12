@@ -1,0 +1,14 @@
+# Runtime files produced by the events/RSVP subsystem - never commit these.
+# They contain live submission traces including personal-data field names.
+events/error_log
+events/*.log
+events/*.lock
+**/error_log
+**/access_log
+*.log
+*.lock
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp

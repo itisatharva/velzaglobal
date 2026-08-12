@@ -1,0 +1,283 @@
+# ======================================================================
+# VELZA GLOBAL - ROOT ROUTING LAYER
+# ======================================================================
+# Document root. Sits beside: shared/ routing/ regions/ events/ server/
+#
+# Responsibilities (global, region-independent):
+#   - security blocks
+#   - canonical host + protocol (www + https)
+#   - legacy URL redirects
+#   - .html -> extensionless 301
+#   - REGION SELECTION and internal rewrite into regions/<code>/
+#   - compression, caching, MIME, security headers
+#
+# regions/<code>/.htaccess then does one small job: resolve the
+# extensionless URL to the .html file inside that region.
+#
+# GUARD RULES USE [L], NEVER [END].
+# [END] halts Apache before it reaches regions/<code>/.htaccess and
+# every clean URL (/aboutus) would 404. Do not "tidy" this.
+# ======================================================================
+
+Options -Indexes
+Options -MultiViews
+DirectoryIndex index.html index.htm index.php
+AddDefaultCharset UTF-8
+FileETag None
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# ----------------------------------------------------------------------
+# 1. BLOCK HIDDEN FILES (except /.well-known/)
+# ----------------------------------------------------------------------
+RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,L]
+RewriteRule ^\.well-known/acme-challenge(?:/|$) - [L]
+
+# ----------------------------------------------------------------------
+# 2. BLOCK DIRECT ACCESS TO INTERNALS
+#    Region folders must not be reachable from outside, or Google
+#    indexes three duplicate copies of the whole site.
+# ----------------------------------------------------------------------
+RewriteCond %{THE_REQUEST} \s/+regions/ [NC]
+RewriteRule ^ - [R=404,L]
+
+RewriteRule ^shared/vendor/simple-forms/(?:config\.php|core(?:/|$)|help(?:/|$)|email-templates(?:/|$)) - [F,L]
+RewriteRule ^events/PHPMailer(?:/|$) - [F,L]
+
+# ----------------------------------------------------------------------
+# 3. CANONICAL HOST  (www)
+# ----------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} !^www\.velzaglobal\.com$ [NC]
+RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
+
+# ----------------------------------------------------------------------
+# 4. FORCE HTTPS
+#    Proxy-aware: trusts X-Forwarded-Proto / Forwarded first, and only
+#    falls back to Apache's own %{HTTPS} when no proxy is indicated.
+#    This is what stops the classic Cloudflare redirect loop.
+# ----------------------------------------------------------------------
+RewriteCond %{HTTP:X-Forwarded-Proto} ^http(?:\s*,|$) [NC]
+RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
+
+RewriteCond %{HTTP:X-Forwarded-Proto} ^$
+RewriteCond %{HTTP:Forwarded} (^|[;,[:space:]])proto=http([;,[:space:]]|$) [NC]
+RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
+
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} ^$
+RewriteCond %{HTTP:Forwarded} ^$
+RewriteCond %{HTTP:X-Forwarded-For} ^$
+RewriteCond %{HTTP:CF-Connecting-IP} ^$
+RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
+
+# ----------------------------------------------------------------------
+# 5. LEGACY URL REDIRECTS
+#    The first block is your original list. The second block covers the
+#    four page-*.html links still hard-coded inside the India pages -
+#    without these, Indian visitors hit a 404 on those links.
+# ----------------------------------------------------------------------
+RewriteRule ^about-us(?:\.html?)?$              /aboutus              [R=301,L,NC]
+RewriteRule ^coffee-collection(?:\.html?)?$     /coffeecollection     [R=301,L,NC]
+RewriteRule ^coming-soon(?:\.html?)?$           /comingsoon           [R=301,L,NC]
+RewriteRule ^contact-us(?:\.html?)?$            /contactus            [R=301,L,NC]
+RewriteRule ^lifestyle-essentials(?:\.html?)?$  /lifestyleessentials  [R=301,L,NC]
+RewriteRule ^luxury-beverage(?:\.html?)?$       /luxurybeverage       [R=301,L,NC]
+RewriteRule ^news-1(?:\.html?)?$                /news1                [R=301,L,NC]
+RewriteRule ^news-2(?:\.html?)?$                /news2                [R=301,L,NC]
+RewriteRule ^privacy-policy(?:\.html?)?$        /privacypolicy        [R=301,L,NC]
+RewriteRule ^pure-italian-spirits(?:\.html?)?$  /pureitalianspirits   [R=301,L,NC]
+RewriteRule ^rosso-caffe(?:\.html?)?$           /rossocaffe           [R=301,L,NC]
+RewriteRule ^terms-and-conditions(?:\.html?)?$  /termsandconditions   [R=301,L,NC]
+RewriteRule ^page-new-news(?:\.html?)?$         /news                 [R=301,L,NC]
+
+RewriteRule ^page-luxury-beverage(?:\.html?)?$      /luxurybeverage      [R=301,L,NC]
+RewriteRule ^page-lifestyle-essentials(?:\.html?)?$ /lifestyleessentials [R=301,L,NC]
+RewriteRule ^page-pure-italian-spirits(?:\.html?)?$ /pureitalianspirits  [R=301,L,NC]
+RewriteRule ^page-service-item(?:\.html?)?$         /portfolio           [R=301,L,NC]
+
+# ----------------------------------------------------------------------
+# 6. STRIP .html / .htm FROM PUBLIC URLS
+#    regions/hk is used as the page-existence oracle: all three regions
+#    carry the identical set of 23 page names.
+# ----------------------------------------------------------------------
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$ [NC]
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html?(?:[?\s]) [NC]
+RewriteCond %{DOCUMENT_ROOT}/regions/hk/%1.html -f
+RewriteRule ^(.+)\.html?$ /$1 [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$ [NC]
+RewriteCond %{THE_REQUEST} \s/+index\.(?:html?|php)(?:[?\s]) [NC]
+RewriteRule ^index\.(?:html?|php)$ / [R=301,L]
+
+# ----------------------------------------------------------------------
+# 7. TRAILING SLASH
+# ----------------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# ----------------------------------------------------------------------
+# 8. SHARED PATHS - never region-rewritten
+# ----------------------------------------------------------------------
+RewriteRule ^shared/   - [L]
+RewriteRule ^routing/  - [L]
+RewriteRule ^events/   - [L]
+RewriteRule ^server/   - [L]
+RewriteRule ^regions/  - [L]
+
+# Preserve the old live event-site URL. Existing invites, QR codes and
+# printed links pointing at /Ph/Ph/Events/PR/ keep working.
+RewriteRule ^Ph/Ph/Events/PR/?(.*)$ /events/$1 [L]
+
+# ----------------------------------------------------------------------
+# 9. REGION SELECTION
+#
+# 9a. VISITOR CHOICE BEATS GEOLOCATION.
+#     Written by routing/region-switcher.js via the header flag menu.
+#     Must come first, or a visitor can never leave the region their
+#     IP puts them in.
+# ----------------------------------------------------------------------
+RewriteCond %{HTTP_COOKIE} (?:^|;\s*)velzaRegion=in(?:;|$) [NC]
+RewriteRule ^(.*)$ /regions/in/$1 [L]
+
+RewriteCond %{HTTP_COOKIE} (?:^|;\s*)velzaRegion=ph(?:;|$) [NC]
+RewriteRule ^(.*)$ /regions/ph/$1 [L]
+
+RewriteCond %{HTTP_COOKIE} (?:^|;\s*)velzaRegion=hk(?:;|$) [NC]
+RewriteRule ^(.*)$ /regions/hk/$1 [L]
+
+# ----------------------------------------------------------------------
+# 9b. COUNTRY DETECTION
+#
+#     As written this reads CF-IPCountry, which Cloudflare adds when the
+#     domain is proxied (orange cloud).
+#
+#     If your host has a GeoIP module instead, replace
+#       %{HTTP:CF-IPCountry}
+#     with
+#       %{ENV:MMDB_COUNTRY_CODE}    (mod_maxminddb)
+#       %{ENV:GEOIP_COUNTRY_CODE}   (mod_geoip)
+#     and change nothing else. server/README-routing.md explains how to
+#     find out which one you have.
+# ----------------------------------------------------------------------
+RewriteCond %{HTTP:CF-IPCountry} ^IN$ [NC]
+RewriteRule ^(.*)$ /regions/in/$1 [L]
+
+RewriteCond %{HTTP:CF-IPCountry} ^PH$ [NC]
+RewriteRule ^(.*)$ /regions/ph/$1 [L]
+
+# ----------------------------------------------------------------------
+# 9c. FALLBACK -> Hong Kong master.
+#     Covers HK itself, every other country, and the case where no
+#     country header arrives at all. Never remove this rule: it is the
+#     only thing between a missing header and a 403.
+# ----------------------------------------------------------------------
+RewriteRule ^(.*)$ /regions/hk/$1 [L]
+
+</IfModule>
+
+# ======================================================================
+# 10. ERROR PAGES
+#     Local paths, so the original HTTP status is preserved. These route
+#     back through the region selector above, so a visitor sees the
+#     error page of their own region.
+# ======================================================================
+ErrorDocument 400 /400
+ErrorDocument 401 /401
+ErrorDocument 403 /403
+ErrorDocument 404 /404
+ErrorDocument 500 /500
+ErrorDocument 502 /502
+ErrorDocument 503 /503
+ErrorDocument 504 /504
+
+# ======================================================================
+# 11. PROTECT SENSITIVE FILES
+# ======================================================================
+<IfModule mod_authz_core.c>
+    <FilesMatch "(^\.|\.env$|\.git|\.svn|composer\.(json|lock)$|package(-lock)?\.json$|phpunit\.xml$|README(?:\..*)?$|CHANGELOG(?:\..*)?$)">
+        Require all denied
+    </FilesMatch>
+    <FilesMatch "\.(?:bak|backup|old|orig|save|swp|sql|ini|log|lock|pid|conf|config|dist|sh|md|map|scss|sass|less|yml|yaml|toml)$">
+        Require all denied
+    </FilesMatch>
+    <FilesMatch "^\.ht">
+        Require all denied
+    </FilesMatch>
+    <FilesMatch "^(?:error_log|access_log)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+# ======================================================================
+# 12. SECURITY HEADERS
+# ======================================================================
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    Header always unset X-Powered-By
+    Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+# ======================================================================
+# 13. COMPRESSION
+# ======================================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain text/html text/css text/xml text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/json application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml application/rss+xml application/atom+xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ======================================================================
+# 14. CACHING
+#
+# CRITICAL: HTML is now region-dependent - the same URL returns
+# different bytes per visitor. It must NOT be cached by shared caches.
+# Everything under /shared/ is identical for all regions and caches hard.
+# ======================================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css                "access plus 1 month"
+    ExpiresByType application/javascript  "access plus 1 month"
+    ExpiresByType text/javascript         "access plus 1 month"
+    ExpiresByType image/jpeg              "access plus 1 year"
+    ExpiresByType image/png               "access plus 1 year"
+    ExpiresByType image/gif               "access plus 1 year"
+    ExpiresByType image/webp              "access plus 1 year"
+    ExpiresByType image/avif              "access plus 1 year"
+    ExpiresByType image/svg+xml           "access plus 1 year"
+    ExpiresByType image/x-icon            "access plus 1 year"
+    ExpiresByType font/woff               "access plus 1 year"
+    ExpiresByType font/woff2              "access plus 1 year"
+    ExpiresByType font/ttf                "access plus 1 year"
+    ExpiresByType video/mp4               "access plus 1 year"
+    ExpiresByType video/webm              "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(?:jpg|jpeg|png|gif|webp|avif|svg|ico|woff|woff2|ttf|otf|eot|mp4|webm|css|js)$">
+        Header set Cache-Control "public, max-age=31536000"
+    </FilesMatch>
+
+    # Region-dependent: private only, plus Vary so proxies behave.
+    <FilesMatch "\.(?:html|htm)$">
+        Header set Cache-Control "private, no-cache, must-revalidate"
+        Header append Vary "Cookie"
+    </FilesMatch>
+</IfModule>
+
+# ======================================================================
+# 15. MIME TYPES
+# ======================================================================
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType image/avif .avif
+    AddType image/svg+xml .svg
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType application/manifest+json .webmanifest
+</IfModule>

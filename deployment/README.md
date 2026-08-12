@@ -1,15 +1,9 @@
-# Deployment
+# Deployment package
 
-Public domain: https://velzaglobal.com/
+Upload the **contents** of this folder into your document root
+(`public_html`), so that `.htaccess`, `shared/`, `routing/`, `regions/`
+and `events/` sit at the top level.
 
-Route internally by country/preference:
-- IN -> /regions/in/
-- PH -> /regions/ph/
-- HK -> /regions/hk/
-- Other -> /regions/hk/
+Read `DEPLOY.md` at the root of this package for the full procedure.
 
-Use server/CDN/edge internal rewrite. Do not redirect visitors to velzaglobal.in or velzaglobal.ph.
-
-The browser must continue to display https://velzaglobal.com/.
-
-The exact configuration depends on the deployment platform (Cloudflare, Nginx, Apache/cPanel, AWS, etc.).
+- `local-dev-server.php` — local testing only. **Do not upload.**
