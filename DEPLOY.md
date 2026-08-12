@@ -120,6 +120,12 @@ The cookie deliberately outranks the IP. Without that, a visitor who picks a cou
 
 ## STEP 1 — Confirm your country source
 
+**Status: done.** velzaglobal.com is on Cloudflare with the proxy active (Route A below).
+
+> **You are not finished after enabling the proxy.** On current Cloudflare, `CF-IPCountry` is **no longer sent automatically** — it is a Managed Transform. Go to **Rules → Settings → Managed Transforms** and enable **"Add visitor location headers."**
+>
+> Without it, `.htaccess` section 9b never matches, section 9c catches everything, and **every visitor worldwide is served Hong Kong.** The failure is silent — the site looks perfectly healthy. Verify with the STEP 4 country checks before believing the routing works.
+
 The router needs the visitor's country. Your shared LiteSpeed host almost certainly can't provide it alone.
 
 **Route A — Cloudflare (recommended, free, ~10 min).** Sends `CF-IPCountry`. Nothing to install on the host. This is what the `.htaccess` expects as written.
@@ -155,19 +161,44 @@ For a test that also exercises the real `.htaccess`, install Laragon or XAMPP, p
 
 ---
 
-## STEP 3 — Upload
+## STEP 3 — Deploy from GitHub (cPanel Git Version Control)
 
-Upload the **contents** of this folder into `public_html`, so `.htaccess`, `shared/`, `routing/`, `regions/`, `events/` sit at the top level.
+Deployment is driven by **`.cpanel.yml`** in the repo root. It rsyncs the site into the target directory, excludes the repo-only files, and fixes permissions. No more zip uploads.
 
-**Do not upload:** `deployment/`, `.gitignore`, and never a `.git/` folder.
+**Take a full cPanel backup — files *and* the database — before the first production deploy.**
 
-Zip locally, upload one zip via cPanel File Manager, extract there. FTP with ~1,700 files will drop mid-transfer and leave you half-deployed.
+### 3a. Staging first
 
-**Dotfiles:** enable cPanel File Manager → Settings → **Show Hidden Files**, or you won't see `.htaccess` after extracting.
+1. **cPanel → Subdomains** → create `staging.velzaglobal.com` with document root `/home/velzhsrg/staging` (outside `public_html`).
+2. **Cloudflare → DNS** → the staging record must be **proxied (orange cloud)**. Grey-cloud means no `CF-IPCountry`, so region routing silently falls back to HK and you will test nothing.
+3. **cPanel → Directory Privacy** → password-protect the staging docroot.
+4. **cPanel → Git Version Control → Create:**
+   - Clone URL `https://github.com/itisatharva/velzaglobal.git`
+   - Repository path `/home/velzhsrg/repositories/velzaglobal`
+   - Branch: the branch you are deploying
+   - A private repo needs a deploy key or a personal access token.
+5. **Manage → Update from Remote → Deploy HEAD Commit.** `.cpanel.yml` ships to `/home/velzhsrg/staging`.
+6. Run **STEP 4** against `https://staging.velzaglobal.com`.
 
-**Permissions:** folders `755`, files `644`. Check `public_html/.htaccess` specifically — `600` there causes a 500 error.
+The root `.htaccess` recognises any `staging.` host and, for that host only, skips the www canonical redirect, skips HSTS, and sends `X-Robots-Tag: noindex, nofollow`. One `.htaccess` serves both environments — there is no second copy to drift.
 
-**Take a full cPanel backup first.**
+### 3b. Promote to production
+
+Change the single `DEPLOYPATH` line in `.cpanel.yml`:
+
+```yaml
+- export DEPLOYPATH=/home/velzhsrg/public_html
+```
+
+Commit, push, then Update from Remote → Deploy. Nothing else changes.
+
+**Deliberately no `rsync --delete`.** A wrong `DEPLOYPATH` combined with `--delete` would erase the live site; stale leftover files are the far cheaper failure. Consider enabling it only after a clean production deploy.
+
+**Never touched by the deploy:** `/home/velzhsrg/private_config/` (the DB and SMTP credentials that `events/*.php` and the contact form read) and `events/*.log`.
+
+**Permissions** are set by `.cpanel.yml` (folders `755`, files `644`). `.htaccess` at `600` causes a 500 error, so the manifest chmods every `.htaccess` explicitly.
+
+**Still manual after deploy:** confirm the `send_reminders.php` cron entry still exists in **cPanel → Cron Jobs**. It is CLI-only and nothing in the repo configures it.
 
 ---
 
@@ -191,8 +222,18 @@ curl -sI https://www.velzaglobal.com/routing/region-config.js    | head -1
 curl -sI https://www.velzaglobal.com/shared/fonts/icomoon.woff   | head -1
 curl -sI https://www.velzaglobal.com/shared/video/hero-video-main.mp4 | head -1
 
+# root-level files (these ALL 404'd before the section 8 fix)
+for f in favicon.ico apple-touch-icon.png site.webmanifest robots.txt sitemap.xml; do
+  echo -n "$f -> "; curl -sI "https://www.velzaglobal.com/$f" | head -1
+done                                                                    # all 200
+
 # region folders are NOT public
 curl -sI https://www.velzaglobal.com/regions/in/aboutus | head -1        # 404
+curl -sI https://www.velzaglobal.com/regions/hk/index.html | head -1     # 404
+
+# homepage canonicalisation
+curl -sI https://www.velzaglobal.com/index.html | head -1                # 301 → /
+curl -sI https://www.velzaglobal.com/index      | head -1                # 301 → /
 
 # country routing — social handles are the fingerprint
 curl -s -H "CF-IPCountry: IN" https://www.velzaglobal.com/ | grep -o velzaglobalin | head -1
@@ -216,7 +257,16 @@ Then open the site in a private window, click through all 13 pages at desktop an
 
 ---
 
-## STEP 5 — Cloudflare cache rule
+## STEP 5 — Cloudflare settings
+
+### 5a. Check these before anything else
+
+1. **SSL/TLS → Overview → encryption mode must be `Full (strict)`.** cPanel AutoSSL provides a valid origin certificate, so strict works. **`Flexible` produces an infinite redirect loop** against `.htaccess` section 4 and is the single most likely cause of a dead site at cutover. (The "Full" shown on the DNS card is the *DNS setup*, a different setting — check the SSL/TLS tab itself.)
+2. **Rules → Settings → Managed Transforms → enable "Add visitor location headers."** See STEP 1 — without it there is no `CF-IPCountry` and everyone gets Hong Kong.
+3. **Speed → Optimization → Rocket Loader: OFF.** This theme is jQuery + GSAP + Slick with inline init blocks. Rocket Loader defers them and reliably breaks exactly this kind of build, including the homepage curtain animation.
+4. **SSL/TLS → Edge Certificates → Always Use HTTPS: ON.** Handles the upgrade at the edge so section 4's origin fallback rarely fires.
+
+### 5b. Cache rule (mandatory)
 
 Skipping this causes a confusing bug a fortnight later: an Indian visitor served a cached Hong Kong page.
 
@@ -229,6 +279,10 @@ Cloudflare → **Caching → Cache Rules**:
 
 If your host runs LiteSpeed Cache at server level, ask support to exclude HTML or add `velzaRegion` to the cache key.
 
+### 5c. One conflict to settle
+
+The dashboard's **"Block AI training bots"** setting contradicts `robots.txt`, which explicitly allows `GPTBot`, `ClaudeBot`, `PerplexityBot` and friends. Pick one — right now the two disagree.
+
 ---
 
 ## Rollback
@@ -237,18 +291,31 @@ Rename or delete `public_html/.htaccess`. That reverses the routing instantly �
 
 ---
 
+## Routing bugs found and fixed during staging prep
+
+Found by running the real `.htaccess` under Apache 2.4 and asserting on every route. All four were live defects in the restructured layout.
+
+1. **Every root-level file returned 404** — `favicon.ico`, `apple-touch-icon.png`, `site.webmanifest`, `robots.txt` and `sitemap.xml`. Section 8 passed through `shared/ routing/ events/ server/ regions/` but nothing else, so root files fell through to 9c and were rewritten to `/regions/hk/<file>`, which does not exist. Fixed with an `-f`/`-d` pass-through in section 8. The `-d` rule uses `^(.+)$` so it cannot match `/` itself — matching `/` would pass the homepage through to a root `index.html` that does not exist and 404 the front page.
+
+2. **`/regions/…` was publicly reachable** (200, not the intended 404). The guard lived only in the root `.htaccess`, but because each `regions/<code>/.htaccess` declares its own `RewriteEngine On`, **Apache replaces the parent's per-directory rewrite ruleset rather than inheriting it** — so the root guard never ran for those paths. Google would have indexed three duplicate copies of the site. The guard now also lives in each region `.htaccess`, keyed on `THE_REQUEST` so internal rewrites still pass.
+
+3. **`/index.html` redirected to `/index`, not `/`.** The generic `.html`-stripping rule ran first and matched, because its oracle file `regions/hk/index.html` exists, leaving the index-specific rule below it unreachable. The index rules now come first, and a bare `/index` also 301s to `/`.
+
+4. **`https://velzaglobal.com//portfolio`** — malformed canonical (doubled slash, non-www) in `regions/in/portfolio.html`.
+
 ## Pre-existing issues I did NOT change
 
-These were in your original files. Fixing them means editing page content, which you asked me not to do — so they're listed, not applied.
+1. ~~`theme-preview-color-styler.css`~~ and ~~`contact-handshake.webp`~~ — **not actually broken.** Both references are inside HTML comments on all 69 pages, so neither is ever requested. The earlier claim of "a 404 on every page view" was wrong.
 
-1. **`shared/css/theme-preview-color-styler.css` doesn't exist**, yet all 69 pages request it. A 404 on every page view. It's a Skilltech demo file — the fix is deleting the `<link>` tag, not creating the file.
+2. **`apple-touch-icon-*-precomposed.png`** — the four missing icons were in `regions/in/portfolio.html` (not `comingsoon.html`). **Fixed**: that page now uses the same icon block as `hk`/`ph`, all of which exist.
 
-2. **`shared/images/contact-handshake.webp` doesn't exist**, referenced as a background image on all three `contactus.html` pages.
+3. **`regions/in/index.html` is still a stale revision**, hard-coding `page-luxury-beverage.html`, `page-lifestyle-essentials.html` and `page-pure-italian-spirits.html`. The `.htaccess` section 5 301s keep them resolving. `regions/in/portfolio.html` also still carries Skilltech demo metadata (`og:site_name` = "SkilltechWebDesign.com", theme boilerplate `og:description`). The real fix is re-syncing both pages from `hk/`.
 
-3. **Four `apple-touch-icon-*-precomposed.png` files don't exist**, referenced by `comingsoon.html`.
+4. **`hreflang` is not applicable to this architecture, and the identical canonicals are correct.** There is exactly one URL per page; region is chosen server-side by cookie then `CF-IPCountry`. `hreflang` requires distinct crawlable URLs per locale, and section 2 deliberately 404s direct `/regions/…` access, so none exist.
+   The real consequence: **Googlebot crawls from the US, so only the HK variant will ever be indexed.** Getting IN and PH content into search results requires exposing genuine per-region URLs — an architectural change, not a meta-tag one.
 
-4. **`regions/in/index.html` and `regions/in/portfolio.html` are a stale revision.** They still hard-code `page-luxury-beverage.html`, `page-lifestyle-essentials.html`, `page-pure-italian-spirits.html` and `page-service-item.html` — filenames that no longer exist. I added 301 redirects for all four in `.htaccess` section 5, so they resolve instead of 404ing, but the underlying fix is re-syncing those two pages from `hk/`.
+5. **Unused weight still shipped:** ~90 Skilltech demo images, ~20 GSAP plugins the theme never loads (its own `___Actually Used.txt` names 4), `spectrum`, `clipboard`, `hc-offcanvas-nav-old.js`, `icomoon/demo.html`, `simple-forms/help/`, and `about-us` in four formats. Removing these is safe but touches files, so I left them.
 
-5. **No `hreflang` tags**, and all three regions declare the same canonical. Harmless today (only social links differ), but it becomes a real SEO problem the moment regional content genuinely diverges.
+6. **`events/update_issue.php`** concatenates an `intval()`-cast id into a `SELECT`. `intval` blunts the risk, but the query should be prepared like the `UPDATE` beside it already is.
 
 6. **Unused weight still shipped:** ~90 Skilltech demo images, ~20 GSAP plugins the theme never loads (its own `___Actually Used.txt` names 4), `spectrum`, `clipboard`, `hc-offcanvas-nav-old.js`, `icomoon/demo.html`, `simple-forms/help/`, and `about-us` in four formats. Removing these is safe but touches files, so I left them.

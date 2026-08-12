@@ -2,7 +2,7 @@
 # VELZA GLOBAL
 # robots.txt
 # Search Engine + AI / LLM Discovery
-# https://velzaglobal.com/
+# https://www.velzaglobal.com/
 # ============================================================
 
 
@@ -13,21 +13,28 @@
 User-agent: *
 Allow: /
 
+# URLs are extensionless: .html requests 301 to the clean URL,
+# so these Disallow paths must be extensionless too.
+
 # Unfinished / placeholder
-Disallow: /comingsoon.html
+Disallow: /comingsoon
 
 # Error pages
-Disallow: /400.html
-Disallow: /401.html
-Disallow: /403.html
-Disallow: /404.html
-Disallow: /500.html
-Disallow: /502.html
-Disallow: /503.html
-Disallow: /504.html
+Disallow: /400
+Disallow: /401
+Disallow: /403
+Disallow: /404
+Disallow: /500
+Disallow: /502
+Disallow: /503
+Disallow: /504
 
 # Third-party vendor libraries
-Disallow: /assets/vendor/
+Disallow: /shared/vendor/
+
+# Region source directories are served by internal rewrite only
+# and return 404 if requested directly.
+Disallow: /regions/
 
 
 # ============================================================
@@ -98,4 +105,4 @@ Allow: /
 # SITEMAP
 # ============================================================
 
-Sitemap: https://velzaglobal.com/sitemap.xml
+Sitemap: https://www.velzaglobal.com/sitemap.xml

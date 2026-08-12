@@ -48,7 +48,11 @@ RewriteRule ^events/PHPMailer(?:/|$) - [F,L]
 
 # ----------------------------------------------------------------------
 # 3. CANONICAL HOST  (www)
+#    The staging. exclusion keeps ONE .htaccess working on both hosts.
+#    Without it every staging request 301s to production and staging
+#    cannot be tested at all.
 # ----------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} !^staging\. [NC]
 RewriteCond %{HTTP_HOST} !^www\.velzaglobal\.com$ [NC]
 RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
 
@@ -57,20 +61,24 @@ RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
 #    Proxy-aware: trusts X-Forwarded-Proto / Forwarded first, and only
 #    falls back to Apache's own %{HTTPS} when no proxy is indicated.
 #    This is what stops the classic Cloudflare redirect loop.
+#    Targets use %{HTTP_HOST} rather than a literal host so staging
+#    upgrades to its own https:// instead of bouncing to production.
+#    On production section 3 has already forced www, so the result is
+#    identical to the previous literal target.
 # ----------------------------------------------------------------------
 RewriteCond %{HTTP:X-Forwarded-Proto} ^http(?:\s*,|$) [NC]
-RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 RewriteCond %{HTTP:X-Forwarded-Proto} ^$
 RewriteCond %{HTTP:Forwarded} (^|[;,[:space:]])proto=http([;,[:space:]]|$) [NC]
-RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} ^$
 RewriteCond %{HTTP:Forwarded} ^$
 RewriteCond %{HTTP:X-Forwarded-For} ^$
 RewriteCond %{HTTP:CF-Connecting-IP} ^$
-RewriteRule ^(.*)$ https://www.velzaglobal.com/$1 [R=301,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # ----------------------------------------------------------------------
 # 5. LEGACY URL REDIRECTS
@@ -102,14 +110,21 @@ RewriteRule ^page-service-item(?:\.html?)?$         /portfolio           [R=301,
 #    regions/hk is used as the page-existence oracle: all three regions
 #    carry the identical set of 23 page names.
 # ----------------------------------------------------------------------
+#    The index rules MUST come first. regions/hk/index.html exists, so
+#    the generic rule below matches /index.html too and would 301 it to
+#    /index - a second, non-canonical URL serving the homepage - and the
+#    index rule would never be reached.
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$ [NC]
+RewriteCond %{THE_REQUEST} \s/+index\.(?:html?|php)(?:[?\s]) [NC]
+RewriteRule ^index\.(?:html?|php)$ / [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$ [NC]
+RewriteRule ^index$ / [R=301,L]
+
 RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$ [NC]
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html?(?:[?\s]) [NC]
 RewriteCond %{DOCUMENT_ROOT}/regions/hk/%1.html -f
 RewriteRule ^(.+)\.html?$ /$1 [R=301,L]
-
-RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$ [NC]
-RewriteCond %{THE_REQUEST} \s/+index\.(?:html?|php)(?:[?\s]) [NC]
-RewriteRule ^index\.(?:html?|php)$ / [R=301,L]
 
 # ----------------------------------------------------------------------
 # 7. TRAILING SLASH
@@ -125,6 +140,21 @@ RewriteRule ^routing/  - [L]
 RewriteRule ^events/   - [L]
 RewriteRule ^server/   - [L]
 RewriteRule ^regions/  - [L]
+
+# Anything that already resolves to a real file or directory at the
+# document root is served as-is and never region-rewritten. Without
+# this, root-level files fall through to 9c and are rewritten to
+# /regions/hk/<file>, which does not exist - so favicon.ico,
+# apple-touch-icon.png, site.webmanifest, robots.txt and sitemap.xml
+# all return 404.
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Real subdirectories too, but NOT the document root itself: "/" must
+# stay region-rewritten or the homepage 404s (there is no index.html at
+# the root). The ^(.+)$ pattern is empty for "/" and so cannot match it.
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+)$ - [L]
 
 # Preserve the old live event-site URL. Existing invites, QR codes and
 # printed links pointing at /Ph/Ph/Events/PR/ keep working.
@@ -219,7 +249,18 @@ ErrorDocument 504 /504
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
     Header always unset X-Powered-By
-    Header always set Strict-Transport-Security "max-age=31536000"
+
+    # env= conditions rather than expr= on purpose: SetEnvIf + env= is
+    # supported everywhere, while an ap_expr syntax error would 500 the
+    # entire site.
+    SetEnvIf Host "^staging\." VELZA_STAGING
+
+    # HSTS on production only. Sending it from staging would pin HSTS
+    # against the domain from a host that may not keep a valid cert.
+    Header always set Strict-Transport-Security "max-age=31536000" env=!VELZA_STAGING
+
+    # Staging must never be indexed.
+    Header always set X-Robots-Tag "noindex, nofollow" env=VELZA_STAGING
 </IfModule>
 
 # ======================================================================
