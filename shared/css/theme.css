@@ -82,16 +82,16 @@
 
 .mcurtain-left {
     left: 0;
-    background-image: url(../../assets/images/curtain-background-left.svg);
+    background-image: url(../images/curtain-background-left.svg);
 }
 
 .mcurtain-center {
-    background-image: url(../../assets/images/curtain-background-center.svg);
+    background-image: url(../images/curtain-background-center.svg);
     left: 33.333%;
 }
 
 .mcurtain-right {
-    background-image: url(../../assets/images/curtain-background-right.svg);
+    background-image: url(../images/curtain-background-right.svg);
     left: 66.666%;
 }
 
@@ -4017,7 +4017,7 @@ hr.sk__divider.bright,
     width: 100%;
     height: 100%;
     background-repeat: repeat;
-    background: url(../../assets/images/overlay-pattern.png);
+    background: url(../images/overlay-pattern.png);
 }
 
 .sk__tint {
@@ -4092,7 +4092,7 @@ section.sk__skip-parallax-background-section.sk__parallax-fixer-section {
 
 /* transparent parallax background element - fixes parallax init */
 .sk__parallax-fixer {
-    background-image: url(../../assets/images/parallax-fixer-background.png);
+    background-image: url(../images/parallax-fixer-background.png);
 }
 
 /**
@@ -5305,7 +5305,7 @@ span.numbers-deco {
 }
 
 .about-right-image {
-    background-image: url(../../assets/images/about-us.jpg);
+    background-image: url(../images/about-us.jpg);
 }
 
 .custom-about-us-p2 {
@@ -5449,19 +5449,19 @@ span.numbers-deco {
 }
 
 .partner.partner-1 {
-    background-image: url(../../assets/images/partner-1.png);
+    background-image: url(../images/partner-1.png);
 }
 .partner.partner-2 {
-    background-image: url(../../assets/images/partner-2.png);
+    background-image: url(../images/partner-2.png);
 }
 .partner.partner-3 {
-    background-image: url(../../assets/images/partner-3.png);
+    background-image: url(../images/partner-3.png);
 }
 .partner.partner-4 {
-    background-image: url(../../assets/images/partner-4.png);
+    background-image: url(../images/partner-4.png);
 }
 .partner.partner-5 {
-    background-image: url(../../assets/images/partner-5.png);
+    background-image: url(../images/partner-5.png);
 }
 
 /**
@@ -6308,7 +6308,7 @@ a.sk__feature,
     background-size: cover;
     background-position: left bottom;
     background-repeat: no-repeat;
-    background-image: url(../../assets/images/section-laptop-background.svg);
+    background-image: url(../images/section-laptop-background.svg);
 }
 
 .sk__laptop-image-col {
@@ -6345,7 +6345,7 @@ a.sk__feature,
     left: 0;
     width: 982px;
     height: 1040px;
-    background-image: url(../../assets/images/MacBook-Pro-2020-Isometric-982x1040-by-Skilltech.webp);
+    background-image: url(../images/MacBook-Pro-2020-Isometric-982x1040-by-Skilltech.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -6511,7 +6511,7 @@ p.sk__rectangles-laptop-custom-p {
  */
 
 .sk__services-background.sk__parallax-background-element {
-    background-image: url(../../assets/images/services-background-v3.jpg);
+    background-image: url(../images/services-background-v3.jpg);
     -webkit-filter: contrast(1.07);
     filter: contrast(1.07);
     -webkit-transform: scale(1.22);
@@ -6986,11 +6986,11 @@ p.skills-subhead {
 }
 
 .sk__testimonial-img-1 {
-    background-image: url(../../assets/images/testimonial-img-1.webp);
+    background-image: url(../images/testimonial-img-1.webp);
 }
 
 .sk__testimonial-img-2 {
-    background-image: url(../../assets/images/testimonial-img-2.webp);
+    background-image: url(../images/testimonial-img-2.webp);
 }
 
 .sk__testimonial-txt {
@@ -7045,7 +7045,7 @@ section.sk__cta-warp {
     overflow-x: hidden;
 }
 section.sk__cta-warp:not(.no-background) {
-    background-image: url(../../assets/images/section-CTA-background-SVG.svg);
+    background-image: url(../images/section-CTA-background-SVG.svg);
 }
 @media all and (max-width: 575px) {
     section.sk__cta-warp {
@@ -7236,7 +7236,7 @@ section.sk__parallax-background-section.sk__contact-us {
 }
 
 .sk__contact-us .sk__parallax-background-element {
-    background-image: url(assets/images/contact-back.webp);
+    background-image: url(../images/contact-back.webp);
 }
 
 .sk__contact-us .sk__tint {
@@ -7561,7 +7561,7 @@ section.sk__parallax-background-section.sk__contact-us {
 
 .sk__rings-section {
     overflow-x: hidden;
-    background-image: url(../../assets/images/section-rings-background.svg);
+    background-image: url(../images/section-rings-background.svg);
 }
 
 .ring-l-container {
@@ -8691,7 +8691,7 @@ span.sk__huge-vertical-deco-text {
     width: 56px;
     height: 56px;
     margin: 18px auto 4px 0;
-    background: url(../../assets/images/gallery-icon-white.webp) no-repeat
+    background: url(../images/gallery-icon-white.webp) no-repeat
         center center;
     background-size: cover;
     border-radius: 100%;
@@ -8719,7 +8719,7 @@ a.sk__gallery-nav-link:visited {
     margin: 18px auto 18px 22px;
     width: 12px;
     height: 12px;
-    background: rgba(79, 79, 79, 0.7) url(../../assets/images/glass.svg)
+    background: rgba(79, 79, 79, 0.7) url(../images/glass.svg)
         no-repeat center center;
     background-size: cover;
     border-radius: 100%;
@@ -9157,7 +9157,7 @@ a.sk__gallery-nav-link:focus {
  */
 
 .sk__article-1-header .sk__parallax-header-image {
-    background-image: url(../../assets/images/article-1-header-cover.webp);
+    background-image: url(../images/article-1-header-cover.webp);
 }
 
 /* Blog (bigger) text */

@@ -2044,7 +2044,7 @@ a.sk__portfolio-thumblink {
 /* ===== Contact "Send Us a Message" Section Background ===== */
 
 #vg-message .sk__parallax-background-element {
-    background-image: url("assets/images/contact-back.webp");
+    background-image: url("../images/contact-back.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
