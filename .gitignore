@@ -12,3 +12,18 @@ events/*.lock
 .DS_Store
 Thumbs.db
 *.swp
+
+# Claude Code tooling.
+#
+# .agents/ and .claude/skills/ are two byte-identical copies of the same
+# third-party skills, vendored from someone else's repo and materialised
+# from skills-lock.json. They are developer tooling, not part of the site,
+# and nothing in public_html should ever serve them - so track the lockfile
+# (which pins source + hash, and is what regenerates them) and ignore the
+# vendored copies, the same way a lockfile is tracked but node_modules is not.
+#
+# .claude/ itself is deliberately NOT ignored: project settings committed
+# there later should still be shareable.
+.agents/
+.claude/skills/
+.claude/settings.local.json
