@@ -2285,7 +2285,6 @@ a.sk__portfolio-thumblink {
     margin-bottom: 10px;
 }
 
-
 /* VELZA SEO SEMANTIC HEADING COMPATIBILITY */
 /* Preserve the existing visual design after section headings are semantically
    demoted from H1 to H2 and article titles are promoted from H2 to H1. */
@@ -2306,5 +2305,67 @@ h1.h2-large {
 @media all and (max-width: 575px) {
     h1.h2-large {
         margin-bottom: 0.5em;
+    }
+}
+
+#our-portfolio1,
+#our-essentials {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#our-portfolio1 .sk__portfolio-thumbs,
+#our-essentials .sk__portfolio-thumbs {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#our-portfolio1 .custom-portfolio > .sk__portfolio-item,
+#our-essentials .custom-portfolio > .sk__portfolio-item {
+    padding: 0;
+}
+
+#our-portfolio1,
+#our-essentials {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#our-portfolio1 .container-fluid,
+#our-essentials .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100%;
+}
+
+#our-portfolio1 .row,
+#our-essentials .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#our-portfolio1 .sk__portfolio-thumbs,
+#our-essentials .sk__portfolio-thumbs {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item,
+#our-essentials .sk__portfolio-wrapper .sk__portfolio-item {
+    width: 25% !important;
+    padding: 0 !important;
+}
+
+@media (max-width: 991px) {
+    #our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-essentials .sk__portfolio-wrapper .sk__portfolio-item {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 575px) {
+    #our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-essentials .sk__portfolio-wrapper .sk__portfolio-item {
+        width: 100% !important;
     }
 }
