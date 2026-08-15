@@ -10,40 +10,39 @@
  * Then open http://localhost:8000/
  *
  * It reproduces, on your laptop, what the real server has to do:
- *   1. pick a region (cookie override  ->  country  ->  hk fallback)
+ *   1. pick a region (?_r= override  ->  country  ->  hk fallback)
  *   2. internally serve regions/<code>/...  WITHOUT changing the URL
  *   3. resolve extensionless URLs (/aboutus -> aboutus.html)
  *   4. serve /region/*.js from the shared root folder
  *
  * Because you have no real IP geolocation locally, force a region with:
- *   http://localhost:8000/?region=in
- *   http://localhost:8000/?region=ph
- *   http://localhost:8000/?region=hk
- * The choice is remembered in a cookie, exactly like production.
+ *   http://localhost:8000/?_r=in
+ *   http://localhost:8000/?_r=ph
+ *   http://localhost:8000/?_r=hk
+ * ...or fake the edge with a header:
+ *   curl -H 'CF-IPCountry: IN' http://localhost:8000/
+ *
+ * The override is NOT remembered - exactly like production. The
+ * switcher strips ?_r= from the URL on load, so a reload falls back to
+ * the country header. Nothing is stored in a cookie any more.
  */
 
 const REGIONS         = ['hk', 'ph', 'in'];
 const DEFAULT_REGION  = 'hk';
-const COOKIE_NAME     = 'velzaRegion';
+const REGION_PARAM    = '_r';
 
 // ---------------------------------------------------------------- region pick
 function pick_region(): string {
-    // 1. explicit override in the query string (dev only)
-    if (isset($_GET['region']) && in_array($_GET['region'], REGIONS, true)) {
-        setcookie(COOKIE_NAME, $_GET['region'], [
-            'path' => '/', 'max-age' => 31536000, 'samesite' => 'Lax',
-        ]);
-        return $_GET['region'];
+    // 1. one-page-view override from the switcher (.htaccess section 9a)
+    $override = $_GET[REGION_PARAM] ?? null;
+    if (is_string($override) && in_array($override, REGIONS, true)) {
+        return $override;
     }
-    // 2. visitor preference cookie (this is what the switcher writes)
-    if (isset($_COOKIE[COOKIE_NAME]) && in_array($_COOKIE[COOKIE_NAME], REGIONS, true)) {
-        return $_COOKIE[COOKIE_NAME];
-    }
-    // 3. country header - in production this is CF-IPCountry / GEOIP_COUNTRY_CODE
+    // 2. country header - in production this is CF-IPCountry / GEOIP_COUNTRY_CODE
     $cc = strtoupper($_SERVER['HTTP_CF_IPCOUNTRY'] ?? $_SERVER['HTTP_X_COUNTRY'] ?? '');
     if ($cc === 'IN') return 'in';
     if ($cc === 'PH') return 'ph';
-    // 4. everything else, including HK
+    // 3. everything else, including HK
     return DEFAULT_REGION;
 }
 

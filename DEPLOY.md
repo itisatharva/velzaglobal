@@ -84,7 +84,11 @@ Two vendor stylesheets were patched so their fonts resolve from `shared/fonts/`:
 
 Your original wrote the region cookie and updated the flag, but never reloaded. The server can only act on that cookie at the *next* request, and none was made — so clicking "India" changed a flag and nothing else.
 
-The version here reloads after writing the cookie, and reads the cookie before `localStorage` (the cookie is the only thing the server sees, so the two must not disagree). Same storage keys, same `velzaRegionChanged` event, same `window.VelzaRegion` API. No visual change.
+The version here reloads, and there is **no cookie and no `localStorage`** at all. The region model is: *geolocation decides; the flag menu overrides it for exactly one page view.* The choice rides in the `?_r=<code>` query parameter, which the switcher strips from the address bar as soon as the page loads — so a reload or any navigation arrives without it and falls back to geolocation.
+
+`getRegion()` reads `data-velza-region` off `<html>`, which is baked into each `regions/<code>/*.html`. That attribute is the region the server *actually* served. The previous version guessed it from storage and defaulted to `hk`, which is why a visitor in India was served the India site while the menu read "Hong Kong (HQ)" — and why the "Hong Kong (HQ)" menu item did nothing for them (`setRegion()` no-ops when the target equals the current region, and the current region was wrongly believed to be `hk`).
+
+Same `velzaRegionChanged` event, same `window.VelzaRegion` API. The switcher also clears any leftover `velzaRegion` cookie from the previous build; that cleanup can be deleted after one deploy cycle.
 
 `region-config.js` is unchanged.
 
@@ -103,7 +107,7 @@ request  →  root .htaccess
               ├─ security, https, www, legacy 301s, .html stripping
               ├─ /shared/ /routing/ /events/ pass straight through
               └─ region selection:
-                    1. velzaRegion cookie   (visitor's explicit choice)
+                    1. ?_r=<code>           (visitor's pick, one page view)
                     2. CF-IPCountry         (IN → in, PH → ph)
                     3. hk                   (everything else)
                           ↓
@@ -114,7 +118,9 @@ request  →  root .htaccess
 
 The address bar keeps showing `https://www.velzaglobal.com/aboutus` throughout. Region folders return 404 if requested directly, so Google can't index three duplicate copies.
 
-The cookie deliberately outranks the IP. Without that, a visitor who picks a country from your header menu gets overridden by their IP on the very next page load.
+The `?_r=` override deliberately outranks the IP — without it the header menu could never move a visitor off their geo region at all.
+
+It is equally deliberate that the override is **not persisted**. A visitor in India who picks Hong Kong sees Hong Kong for that page view; reload or click through to another page and they are back on the India site. Geolocation is the steady state, the menu is a peek. If you ever want the pick to stick, that is a change to `.htaccess` section 9a plus `stripParam()` in the switcher — not a config toggle.
 
 ---
 
@@ -239,9 +245,20 @@ curl -sI https://www.velzaglobal.com/index      | head -1                # 301 �
 curl -s -H "CF-IPCountry: IN" https://www.velzaglobal.com/ | grep -o velzaglobalin | head -1
 curl -s -H "CF-IPCountry: DE" https://www.velzaglobal.com/ | grep -o velzaglobalhk | head -1
 
-# cookie beats IP
+# ?_r= beats IP (one page view only)
+curl -s -H "CF-IPCountry: IN" \
+     "https://www.velzaglobal.com/?_r=hk" | grep -o velzaglobalhk | head -1
+
+# ...and is NOT remembered: same visitor, no param, back to India
+curl -s -H "CF-IPCountry: IN" https://www.velzaglobal.com/ | grep -o velzaglobalin | head -1
+
+# a stale cookie from the old build must now be ignored
 curl -s -H "CF-IPCountry: IN" -H "Cookie: velzaRegion=hk" \
-     https://www.velzaglobal.com/ | grep -o velzaglobalhk | head -1
+     https://www.velzaglobal.com/ | grep -o velzaglobalin | head -1
+
+# the switcher label must match the region served, not default to hk
+curl -s -H "CF-IPCountry: IN" https://www.velzaglobal.com/ \
+     | grep -o 'data-velza-region="[a-z]*"'                       # expect "in"
 
 # legacy redirects + old event URL
 curl -sI https://www.velzaglobal.com/about-us.html          | head -1    # 301
@@ -277,7 +294,7 @@ Cloudflare → **Caching → Cache Rules**:
 
 `/shared/` is byte-identical across all regions, so it caches hard and you keep the speed. Only the region-dependent HTML bypasses. The `.htaccess` already sets `Cache-Control: private` and `Vary: Cookie` on HTML for browsers and other proxies.
 
-If your host runs LiteSpeed Cache at server level, ask support to exclude HTML or add `velzaRegion` to the cache key.
+If your host runs LiteSpeed Cache at server level, ask support to exclude HTML from the cache. The region is chosen from the visitor's IP, which is not a request header a cache can key on — so cached HTML will leak one country's site to another. Also confirm the cache does not strip query strings, or the `?_r=` override stops working.
 
 ### 5c. One conflict to settle
 
