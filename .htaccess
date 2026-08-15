@@ -163,18 +163,24 @@ RewriteRule ^Ph/Ph/Events/PR/?(.*)$ /events/$1 [L]
 # ----------------------------------------------------------------------
 # 9. REGION SELECTION
 #
-# 9a. VISITOR CHOICE BEATS GEOLOCATION.
-#     Written by routing/region-switcher.js via the header flag menu.
-#     Must come first, or a visitor can never leave the region their
-#     IP puts them in.
+# 9a. VISITOR CHOICE BEATS GEOLOCATION - FOR ONE PAGE VIEW ONLY.
+#     ?_r=<code> is appended by routing/region-switcher.js when the
+#     visitor picks a region from the header flag menu. Must come first,
+#     or the menu could never move a visitor off their geo region.
+#
+#     The override is deliberately NOT persisted - no cookie, no
+#     session. The switcher strips ?_r= from the address bar as soon as
+#     the page loads, so a reload or any navigation arrives here without
+#     it and falls through to geolocation below. That is the intended
+#     behaviour: the choice lasts exactly one page view.
 # ----------------------------------------------------------------------
-RewriteCond %{HTTP_COOKIE} (?:^|;\s*)velzaRegion=in(?:;|$) [NC]
+RewriteCond %{QUERY_STRING} (?:^|&)_r=in(?:&|$) [NC]
 RewriteRule ^(.*)$ /regions/in/$1 [L]
 
-RewriteCond %{HTTP_COOKIE} (?:^|;\s*)velzaRegion=ph(?:;|$) [NC]
+RewriteCond %{QUERY_STRING} (?:^|&)_r=ph(?:&|$) [NC]
 RewriteRule ^(.*)$ /regions/ph/$1 [L]
 
-RewriteCond %{HTTP_COOKIE} (?:^|;\s*)velzaRegion=hk(?:;|$) [NC]
+RewriteCond %{QUERY_STRING} (?:^|&)_r=hk(?:&|$) [NC]
 RewriteRule ^(.*)$ /regions/hk/$1 [L]
 
 # ----------------------------------------------------------------------
@@ -304,10 +310,14 @@ ErrorDocument 504 /504
         Header set Cache-Control "public, max-age=31536000"
     </FilesMatch>
 
-    # Region-dependent: private only, plus Vary so proxies behave.
+    # Region-dependent, and the region comes from the visitor's IP -
+    # which is not a request header a cache can Vary on. "private" is
+    # therefore the only correct answer: shared caches must not store
+    # this at all, or one country's HTML gets served to another.
+    # (No Vary on Cookie: the region no longer depends on any cookie.
+    # The ?_r= override is a query parameter, already in the cache key.)
     <FilesMatch "\.(?:html|htm)$">
         Header set Cache-Control "private, no-cache, must-revalidate"
-        Header append Vary "Cookie"
     </FilesMatch>
 </IfModule>
 

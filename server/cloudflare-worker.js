@@ -10,22 +10,21 @@
  * Origin layout it expects:
  *   /regions/hk/...   /regions/ph/...   /regions/in/...   /region/...
  *
- * Precedence, deliberately:  cookie  >  country  >  hk fallback.
- * A person who manually picks a country must never be overridden by
- * their IP on the next page load.
+ * Precedence, deliberately:  ?_r= param  >  country  >  hk fallback.
+ * The manual pick is good for ONE page view. It is not persisted, so a
+ * reload or any navigation drops back to the visitor's geo region. Keep
+ * this in step with .htaccess section 9 - both encode the same contract.
  */
 
 const REGIONS = new Set(["hk", "ph", "in"]);
 const DEFAULT_REGION = "hk";
-const COOKIE_NAME = "velzaRegion";
+const REGION_PARAM = "_r";
 
 // Paths that are shared and must NOT be pushed into a region folder.
 const SHARED_PREFIXES = ["/shared/", "/routing/", "/events/", "/.well-known/"];
 
-function regionFromCookie(request) {
-  const header = request.headers.get("Cookie") || "";
-  const match = header.match(/(?:^|;\s*)velzaRegion=([a-z]{2})(?:;|$)/i);
-  const code = match && match[1].toLowerCase();
+function regionFromParam(url) {
+  const code = (url.searchParams.get(REGION_PARAM) || "").toLowerCase();
   return REGIONS.has(code) ? code : null;
 }
 
@@ -51,7 +50,7 @@ export default {
       return new Response("Not found", { status: 404 });
     }
 
-    const region = regionFromCookie(request) || regionFromCountry(request);
+    const region = regionFromParam(url) || regionFromCountry(request);
 
     const origin = new URL(request.url);
     origin.pathname = `/regions/${region}${url.pathname}`;
@@ -64,11 +63,12 @@ export default {
     const out = new Response(response.body, response);
     out.headers.set("X-Velza-Region", region);
 
-    // Tell shared caches the HTML is not one-size-fits-all.
+    // The region comes from the visitor's IP, which no cache can Vary
+    // on. Shared caches must not store this HTML at all. (The ?_r=
+    // override needs no Vary - it is already part of the cache key.)
     const type = out.headers.get("Content-Type") || "";
     if (type.includes("text/html")) {
-      const vary = out.headers.get("Vary");
-      out.headers.set("Vary", vary ? `${vary}, Cookie` : "Cookie");
+      out.headers.set("Cache-Control", "private, no-cache, must-revalidate");
     }
 
     return out;
