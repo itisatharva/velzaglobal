@@ -7,3 +7,5 @@ and `events/` sit at the top level.
 Read `DEPLOY.md` at the root of this package for the full procedure.
 
 - `local-dev-server.php` — local testing only. **Do not upload.**
+- `verify-deploy.sh` — post-deploy checks (cache headers, icon bytes vs the
+  repo, Cloudflare staleness). Local testing only. **Do not upload.**
