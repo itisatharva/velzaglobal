@@ -190,27 +190,28 @@ The root `.htaccess` recognises any `staging.` host and, for that host only, ski
 
 ### 3b. Promote to production
 
-**The target is the branch. There is no path to edit.** `.cpanel.yml` reads
-the checked-out branch and resolves:
+**`.cpanel.yml` targets production unconditionally.** Every
+Update from Remote → Deploy HEAD Commit publishes to
+`/home/velzhsrg/public_html`, i.e. straight to velzaglobal.com. There is
+no path to edit and no staging branch of the manifest.
 
-| Branch | Deploys to |
-|---|---|
-| `main` | `/home/velzhsrg/public_html` (production) |
-| anything else | `/home/velzhsrg/staging` |
+So deploying is: **merge to `main`, point the cPanel repo at `main`,
+Update from Remote → Deploy HEAD Commit.**
 
-So promoting is: **merge to `main`, point the production cPanel repo at
-`main`, Update from Remote → Deploy HEAD Commit.**
+Two consequences of the unconditional target:
 
-The branch is read rather than hard-coded because a literal path lives in
-the file and therefore travels with every branch cut from the one carrying
-it. Set it to `public_html` on `main` and the next feature branch inherits
-`public_html` — deploy that branch to the staging repo and it overwrites the
-live site. Branch-derived, a feature branch can only ever resolve to staging.
-Anything unexpected (detached HEAD, `git` unreadable) also falls to staging,
-never production.
+1. **Whatever branch cPanel has checked out is what the public gets.**
+   Check the branch in Git Version Control before deploying. Keep it on
+   `main` and merge into `main` when you want something live.
+2. **This manifest no longer sends anything to `/home/velzhsrg/staging`.**
+   A staging cPanel repo running this file publishes to production. To keep
+   staging alive, give it a long-lived branch whose `.cpanel.yml` keeps
+   `export DEPLOYPATH=/home/velzhsrg/staging`, and never merge that one line
+   into `main`.
 
-The first line of the deploy log prints `Deploying branch <x> -> <path>`.
-Read it before believing a deploy went where you intended.
+The first line of the deploy log prints
+`PUBLISHING branch <x> LIVE -> <path>`. Read it before believing a deploy
+went where you intended.
 
 **Before the first production deploy:** `public_html` still holds the old
 manually-uploaded site, and there is no `rsync --delete`. Section 8 of

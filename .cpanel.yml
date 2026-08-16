@@ -8,19 +8,21 @@
 #   "Deploy HEAD Commit". cPanel reads this file from the checked-out
 #   branch and runs the tasks below as your cPanel user.
 #
-# TARGET: derived from the checked-out branch, not hard-coded.
-#   main           -> /home/velzhsrg/public_html   (production)
-#   anything else  -> /home/velzhsrg/staging
+# TARGET: PRODUCTION. Every deploy publishes to velzaglobal.com.
+#   /home/velzhsrg/public_html
 #
-# It reads the branch rather than a literal path on purpose. A literal
-# path lives in the file, so it travels with every branch cut from the
-# one that carries it: set it to public_html on main and the next
-# feature branch inherits public_html, and deploying that branch to the
-# staging repo writes to the live site. Branch-derived, a feature branch
-# can only ever resolve to staging.
+# This is unconditional by request: hitting "Deploy HEAD Commit" always
+# goes live, whatever branch is checked out. Two consequences to hold
+# in mind:
 #
-# The fallback direction is deliberate: an unreadable branch, a detached
-# HEAD, or anything unexpected resolves to STAGING, never production.
+#   1. Deploy from main. Whatever branch cPanel has checked out is what
+#      the public sees - a half-finished branch included.
+#   2. This file no longer routes anything to /home/velzhsrg/staging.
+#      A staging cPanel repo running this same file would publish to
+#      production. Point staging at its own branch whose .cpanel.yml
+#      keeps DEPLOYPATH=/home/velzhsrg/staging, or stop deploying it.
+#
+# The deploy log's first line prints the resolved path. Read it.
 #
 # Deliberately NOT using rsync --delete. A wrong DEPLOYPATH with
 # --delete would erase the live site. Stale files are the cheaper
@@ -33,12 +35,11 @@
 deployment:
   tasks:
     - export REPOPATH=$(pwd)
+    - export DEPLOYPATH=/home/velzhsrg/public_html
     - export DEPLOYBRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-    - 'export DEPLOYPATH=$([ "$DEPLOYBRANCH" = "main" ] && echo /home/velzhsrg/public_html || echo /home/velzhsrg/staging)'
 
-    # Surfaces in the cPanel deploy log, so a deploy that lands in the
-    # wrong place is visible without guessing.
-    - 'echo "Deploying branch $DEPLOYBRANCH -> $DEPLOYPATH"'
+    # Surfaces in the cPanel deploy log: which branch just went live.
+    - 'echo "PUBLISHING branch $DEPLOYBRANCH LIVE -> $DEPLOYPATH"'
 
     - /bin/mkdir -p "$DEPLOYPATH"
 
