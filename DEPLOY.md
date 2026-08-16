@@ -292,6 +292,15 @@ curl -sI https://www.velzaglobal.com/Ph/Ph/Events/PR/       | head -1    # 200
 curl -sI https://www.velzaglobal.com/no-such-page           | head -1    # 404
 ```
 
+For the checks that are tedious by hand — cache headers, whether the deployed icon bytes actually match the repo, and whether Cloudflare is still serving a pre-deploy copy — run:
+
+```bash
+./deployment/verify-deploy.sh                            # production
+./deployment/verify-deploy.sh https://staging.velzaglobal.com
+```
+
+It exits non-zero if anything fails, so it can gate a release. A 200 response only proves the server answered *something*; the byte comparison against the repo is what actually proves the deploy landed.
+
 Once Cloudflare is live it sets `CF-IPCountry` from the real IP, so a manual header may be ignored — test with a VPN instead if results look odd.
 
 Then open the site in a private window, click through all 13 pages at desktop and mobile widths, **and submit one test RSVP** at `/events/`. That's live PHP against a real database — verify it before calling this done.
@@ -323,6 +332,18 @@ If your host runs LiteSpeed Cache at server level, ask support to exclude HTML f
 ### 5c. One conflict to settle
 
 The dashboard's **"Block AI training bots"** setting contradicts `robots.txt`, which explicitly allows `GPTBot`, `ClaudeBot`, `PerplexityBot` and friends. Pick one — right now the two disagree.
+
+### 5d. Purge after any `/shared/` change
+
+**Every deploy that touches `/shared/` needs a Cloudflare purge.** This follows directly from 5b: `/shared/` is the one path that caches hard at the edge, so a deployed change sits behind whatever Cloudflare cached before it.
+
+Cloudflare → **Caching → Configuration → Purge Everything** (or purge-by-URL for the specific files).
+
+Skipping it is deceptive rather than obviously broken. The origin is correct and `curl` from a cold PoP looks fine, while visitors routed through a warm PoP keep getting the old asset — and they keep getting it for as long as the *cached copy's* `Cache-Control` says, which for content assets is a year. Edge caches are per-PoP, so "it looks right from here" proves nothing.
+
+This bit us on 2026-08-17: after the icon cache-header deploy, `/shared/images/favicon-32x32.png` still served the previous `max-age=31536000` from a `HIT` while the origin was already correct at `max-age=86400`.
+
+Root-level files are unaffected — 5b bypasses cache for everything outside `/shared/`, so `/favicon.ico`, `/site.webmanifest`, `robots.txt` and all HTML go live the moment cPanel finishes. `./deployment/verify-deploy.sh` reports exactly which paths are still stale and need the purge.
 
 ---
 
