@@ -310,6 +310,18 @@ ErrorDocument 504 /504
         Header set Cache-Control "public, max-age=31536000"
     </FilesMatch>
 
+    # Icons change in place at fixed URLs - /favicon.ico especially, since
+    # that is the path Google falls back to and it can never be renamed.
+    # They must not inherit the 1-year blanket above: that is what stranded
+    # the old clipped favicon in browser caches until 2027. Must stay AFTER
+    # the rule above, which also matches .ico/.png - the last Header set wins.
+    # The server answers conditional requests with 304, so a 1-day TTL costs
+    # a header round-trip, not a redownload.
+    <FilesMatch "^(favicon.*\.(?:ico|png)|apple-touch-icon.*\.png|android-chrome-.*\.png|mstile-.*\.png|site\.webmanifest)$">
+        Header set Cache-Control "public, max-age=86400"
+        Header unset Expires
+    </FilesMatch>
+
     # Region-dependent, and the region comes from the visitor's IP -
     # which is not a request header a cache can Vary on. "private" is
     # therefore the only correct answer: shared caches must not store
