@@ -8,10 +8,21 @@
 #   "Deploy HEAD Commit". cPanel reads this file from the checked-out
 #   branch and runs the tasks below as your cPanel user.
 #
-# TARGET: this is currently pointed at STAGING.
-#   Staging    -> /home/velzhsrg/staging
-#   Production -> /home/velzhsrg/public_html
-#   Flip DEPLOYPATH below when promoting. Change nothing else.
+# TARGET: PRODUCTION. Every deploy publishes to velzaglobal.com.
+#   /home/velzhsrg/public_html
+#
+# This is unconditional by request: hitting "Deploy HEAD Commit" always
+# goes live, whatever branch is checked out. Two consequences to hold
+# in mind:
+#
+#   1. Deploy from main. Whatever branch cPanel has checked out is what
+#      the public sees - a half-finished branch included.
+#   2. This file no longer routes anything to /home/velzhsrg/staging.
+#      A staging cPanel repo running this same file would publish to
+#      production. Point staging at its own branch whose .cpanel.yml
+#      keeps DEPLOYPATH=/home/velzhsrg/staging, or stop deploying it.
+#
+# The deploy log's first line prints the resolved path. Read it.
 #
 # Deliberately NOT using rsync --delete. A wrong DEPLOYPATH with
 # --delete would erase the live site. Stale files are the cheaper
@@ -23,8 +34,12 @@
 
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/velzhsrg/staging
     - export REPOPATH=$(pwd)
+    - export DEPLOYPATH=/home/velzhsrg/public_html
+    - export DEPLOYBRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+    # Surfaces in the cPanel deploy log: which branch just went live.
+    - 'echo "PUBLISHING branch $DEPLOYBRANCH LIVE -> $DEPLOYPATH"'
 
     - /bin/mkdir -p "$DEPLOYPATH"
 
@@ -39,6 +54,7 @@ deployment:
       --exclude 'server/'
       --exclude '*.md'
       --exclude '.DS_Store'
+      --exclude 'skills-lock.json'
       --exclude 'events/*.log'
       --exclude 'events/*.lock'
       "$REPOPATH"/ "$DEPLOYPATH"/
