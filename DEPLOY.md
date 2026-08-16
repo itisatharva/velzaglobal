@@ -190,13 +190,36 @@ The root `.htaccess` recognises any `staging.` host and, for that host only, ski
 
 ### 3b. Promote to production
 
-Change the single `DEPLOYPATH` line in `.cpanel.yml`:
+**The target is the branch. There is no path to edit.** `.cpanel.yml` reads
+the checked-out branch and resolves:
 
-```yaml
-- export DEPLOYPATH=/home/velzhsrg/public_html
-```
+| Branch | Deploys to |
+|---|---|
+| `main` | `/home/velzhsrg/public_html` (production) |
+| anything else | `/home/velzhsrg/staging` |
 
-Commit, push, then Update from Remote → Deploy. Nothing else changes.
+So promoting is: **merge to `main`, point the production cPanel repo at
+`main`, Update from Remote → Deploy HEAD Commit.**
+
+The branch is read rather than hard-coded because a literal path lives in
+the file and therefore travels with every branch cut from the one carrying
+it. Set it to `public_html` on `main` and the next feature branch inherits
+`public_html` — deploy that branch to the staging repo and it overwrites the
+live site. Branch-derived, a feature branch can only ever resolve to staging.
+Anything unexpected (detached HEAD, `git` unreadable) also falls to staging,
+never production.
+
+The first line of the deploy log prints `Deploying branch <x> -> <path>`.
+Read it before believing a deploy went where you intended.
+
+**Before the first production deploy:** `public_html` still holds the old
+manually-uploaded site, and there is no `rsync --delete`. Section 8 of
+`.htaccess` serves any real file or directory at the document root as-is,
+ahead of region routing — so leftover `assets/`, `region/` and old `.html`
+files stay publicly reachable alongside the new site. Old page URLs still
+301 correctly (sections 5–6 run first), so this is clutter and an indexing
+risk, not breakage. Take the full backup, verify it, then empty
+`public_html` except `.well-known/` before deploying into it.
 
 **Deliberately no `rsync --delete`.** A wrong `DEPLOYPATH` combined with `--delete` would erase the live site; stale leftover files are the far cheaper failure. Consider enabling it only after a clean production deploy.
 

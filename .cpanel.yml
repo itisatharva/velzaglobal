@@ -8,10 +8,19 @@
 #   "Deploy HEAD Commit". cPanel reads this file from the checked-out
 #   branch and runs the tasks below as your cPanel user.
 #
-# TARGET: this is currently pointed at STAGING.
-#   Staging    -> /home/velzhsrg/staging
-#   Production -> /home/velzhsrg/public_html
-#   Flip DEPLOYPATH below when promoting. Change nothing else.
+# TARGET: derived from the checked-out branch, not hard-coded.
+#   main           -> /home/velzhsrg/public_html   (production)
+#   anything else  -> /home/velzhsrg/staging
+#
+# It reads the branch rather than a literal path on purpose. A literal
+# path lives in the file, so it travels with every branch cut from the
+# one that carries it: set it to public_html on main and the next
+# feature branch inherits public_html, and deploying that branch to the
+# staging repo writes to the live site. Branch-derived, a feature branch
+# can only ever resolve to staging.
+#
+# The fallback direction is deliberate: an unreadable branch, a detached
+# HEAD, or anything unexpected resolves to STAGING, never production.
 #
 # Deliberately NOT using rsync --delete. A wrong DEPLOYPATH with
 # --delete would erase the live site. Stale files are the cheaper
@@ -23,8 +32,13 @@
 
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/velzhsrg/staging
     - export REPOPATH=$(pwd)
+    - export DEPLOYBRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    - 'export DEPLOYPATH=$([ "$DEPLOYBRANCH" = "main" ] && echo /home/velzhsrg/public_html || echo /home/velzhsrg/staging)'
+
+    # Surfaces in the cPanel deploy log, so a deploy that lands in the
+    # wrong place is visible without guessing.
+    - 'echo "Deploying branch $DEPLOYBRANCH -> $DEPLOYPATH"'
 
     - /bin/mkdir -p "$DEPLOYPATH"
 
@@ -39,6 +53,7 @@ deployment:
       --exclude 'server/'
       --exclude '*.md'
       --exclude '.DS_Store'
+      --exclude 'skills-lock.json'
       --exclude 'events/*.log'
       --exclude 'events/*.lock'
       "$REPOPATH"/ "$DEPLOYPATH"/
