@@ -8691,8 +8691,7 @@ span.sk__huge-vertical-deco-text {
     width: 56px;
     height: 56px;
     margin: 18px auto 4px 0;
-    background: url(../images/gallery-icon-white.webp) no-repeat
-        center center;
+    background: url(../images/gallery-icon-white.webp) no-repeat center center;
     background-size: cover;
     border-radius: 100%;
     -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.33));
@@ -8719,8 +8718,8 @@ a.sk__gallery-nav-link:visited {
     margin: 18px auto 18px 22px;
     width: 12px;
     height: 12px;
-    background: rgba(79, 79, 79, 0.7) url(../images/glass.svg)
-        no-repeat center center;
+    background: rgba(79, 79, 79, 0.7) url(../images/glass.svg) no-repeat center
+        center;
     background-size: cover;
     border-radius: 100%;
     display: block;
