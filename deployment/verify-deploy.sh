@@ -67,7 +67,7 @@ echo "Repo: $REPO"
 echo
 echo "1. SITE IS UP"
 # A malformed .htaccess 500s everything - catch that before anything else.
-for path in / /favicon.ico /robots.txt; do
+for path in / /favicon.ico /robots.txt /sitemap.xml /llms.txt; do
     code="$(status_of "$SITE$path")"
     check "$path" "200" "$code"
 done
