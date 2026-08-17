@@ -220,6 +220,17 @@ $(document).ready(function () {
         $("body").toggleClass("sk__nav-open");
     });
 
+    var $offcanvasNavEl = $(".hc-offcanvas-nav");
+    if ($offcanvasNavEl.length) {
+        var navScrollLockObserver = new MutationObserver(function () {
+            smoother.paused($offcanvasNavEl.hasClass("nav-open"));
+        });
+        navScrollLockObserver.observe($offcanvasNavEl.get(0), {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+    }
+
     /**
      * Nav Menu Expand / Retract
      */
