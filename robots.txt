@@ -7,10 +7,63 @@
 
 
 # ------------------------------------------------------------
-# ALL COMPLIANT SEARCH ENGINES & CRAWLERS
+# SITEMAP
 # ------------------------------------------------------------
+# Sitemap is a non-group directive, so its position does not matter to
+# the spec - but it is declared FIRST on purpose. Cloudflare prepends a
+# "Managed Content" block to this file at the edge, and a parser that
+# stops early on a directive it does not recognise would never reach a
+# Sitemap line placed at the bottom.
+
+Sitemap: https://www.velzaglobal.com/sitemap.xml
+
+
+# ------------------------------------------------------------
+# ONE GROUP, EVERY CRAWLER
+# ------------------------------------------------------------
+# robots.txt groups do NOT inherit. A crawler obeys only the single
+# most-specific group that names it and ignores every other group,
+# including "User-agent: *". Giving each bot its own "Allow: /" group -
+# as this file used to - therefore exempted every named bot from the
+# Disallow list below: Googlebot was free to crawl /404, /comingsoon
+# and /shared/vendor/.
+#
+# Stacking the user-agent lines in front of ONE rule set is the spec's
+# own answer (RFC 9309 s2.2.1: a group is one or more user-agent lines
+# followed by rules). Every agent listed here gets the identical policy,
+# and the Disallow list stays written exactly once.
 
 User-agent: *
+
+# --- OpenAI / ChatGPT ---
+# ChatGPT Search discovery and citation
+User-agent: OAI-SearchBot
+# OpenAI model crawler
+User-agent: GPTBot
+
+# --- Anthropic / Claude ---
+# Claude web-search indexing
+User-agent: Claude-SearchBot
+# User-requested Claude webpage access
+User-agent: Claude-User
+# Anthropic model-development crawler
+User-agent: ClaudeBot
+
+# --- Perplexity ---
+# Perplexity search indexing
+User-agent: PerplexityBot
+# User-requested Perplexity webpage retrieval
+User-agent: Perplexity-User
+
+# --- Google / Gemini ---
+# Google Search, including Google's AI search experiences
+User-agent: Googlebot
+# Gemini / Google AI model and grounding controls
+User-agent: Google-Extended
+
+# --- Microsoft / Bing / Copilot ---
+User-agent: Bingbot
+
 Allow: /
 
 # URLs are extensionless: .html requests 301 to the clean URL,
@@ -38,71 +91,10 @@ Disallow: /regions/
 
 
 # ============================================================
-# OPENAI / CHATGPT
+# SITEMAP (repeated)
 # ============================================================
-
-# ChatGPT Search discovery and citation
-User-agent: OAI-SearchBot
-Allow: /
-
-# OpenAI model crawler
-User-agent: GPTBot
-Allow: /
-
-
-# ============================================================
-# ANTHROPIC / CLAUDE
-# ============================================================
-
-# Claude web-search indexing
-User-agent: Claude-SearchBot
-Allow: /
-
-# User-requested Claude webpage access
-User-agent: Claude-User
-Allow: /
-
-# Anthropic model-development crawler
-User-agent: ClaudeBot
-Allow: /
-
-
-# ============================================================
-# PERPLEXITY
-# ============================================================
-
-# Perplexity search indexing
-User-agent: PerplexityBot
-Allow: /
-
-# User-requested Perplexity webpage retrieval
-User-agent: Perplexity-User
-Allow: /
-
-
-# ============================================================
-# GOOGLE / GEMINI
-# ============================================================
-
-# Google Search, including Google's AI search experiences
-User-agent: Googlebot
-Allow: /
-
-# Gemini / Google AI model and grounding controls
-User-agent: Google-Extended
-Allow: /
-
-
-# ============================================================
-# MICROSOFT / BING / COPILOT
-# ============================================================
-
-User-agent: Bingbot
-Allow: /
-
-
-# ============================================================
-# SITEMAP
-# ============================================================
+# Duplicate Sitemap directives are legal and are de-duplicated by
+# crawlers. Kept here as well so the declaration survives whichever end
+# of the file a given parser reads.
 
 Sitemap: https://www.velzaglobal.com/sitemap.xml
