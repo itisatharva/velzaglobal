@@ -1,0 +1,44 @@
+# Velza Global Group
+
+> Velza Global Group develops, manufactures, imports and distributes premium
+> beverage, FMCG and lifestyle brands across Hong Kong, India and the
+> Philippines through strategic partnerships.
+
+Velza Global Group is a brand development and distribution company operating in
+three markets: Hong Kong, India and the Philippines. Its portfolio spans
+caffeinated and energy beverages, Italian spirits, coffee, lifestyle
+accessories, and the Rosso Caffè café concept. Its best-known partnership is
+with Tonino Lamborghini, whose caffeinated beverages Velza manufactures and
+distributes in India and launched exclusively in the Philippines.
+
+Note on regional serving: every URL below is a single canonical address. The
+site detects the visitor's country at the edge and serves a Hong Kong, India or
+Philippines variant of the same page from an internal path. There are no
+separate per-country URLs to crawl, and the regional source directories are not
+directly reachable.
+
+## Company
+
+- [Velza Global Group | Premium FMCG, Beverages & Lifestyle](https://www.velzaglobal.com/): Home page. How Velza Global builds premium beverage, FMCG and lifestyle brands across its three markets through strategic partnerships.
+- [About Velza Global Group](https://www.velzaglobal.com/aboutus): How Velza Global develops, manufactures, imports and distributes premium consumer brands across Hong Kong, India and the Philippines.
+- [Contact Velza Global Group](https://www.velzaglobal.com/contactus): Contact details and enquiry form for distribution, strategic partnerships, hospitality opportunities and general business enquiries.
+
+## Brands and portfolio
+
+- [Premium Brand Portfolio](https://www.velzaglobal.com/portfolio): Overview of the full portfolio — luxury beverages, Italian spirits, coffee, lifestyle essentials and Rosso Caffè.
+- [Tonino Lamborghini Caffeinated Beverages](https://www.velzaglobal.com/luxurybeverage): The Tonino Lamborghini caffeinated beverage range presented by Velza Global, including Original and zero-sugar variants.
+- [Premium Italian Spirits Collection](https://www.velzaglobal.com/pureitalianspirits): Vodka, gin, whisky and tequila, positioned around heritage, quality and refined serving rituals.
+- [Premium Italian Coffee Collection](https://www.velzaglobal.com/coffeecollection): Italian-inspired coffee blends — Black, Red, Platinum, decaffeinated and filter.
+- [Premium Lifestyle Essentials](https://www.velzaglobal.com/lifestyleessentials): Watches, eyewear, leather goods and accessories curated around Italian design and craftsmanship.
+- [Rosso Caffè](https://www.velzaglobal.com/rossocaffe): An Italian-inspired café concept built around premium coffee, artisanal food and hospitality.
+
+## News
+
+- [Velza Global News](https://www.velzaglobal.com/news): Index of announcements, strategic partnerships, product launches and milestones.
+- [Tonino Lamborghini & Velza Global Partnership in Philippines](https://www.velzaglobal.com/news1): Strategic partnership to launch Tonino Lamborghini Energy Drink exclusively in the Philippine market.
+- [Velza Global & Tonino Lamborghini Partnership in India](https://www.velzaglobal.com/news2): Strategic partnership to manufacture and distribute Tonino Lamborghini Caffeinated Beverages in India.
+
+## Optional
+
+- [Privacy Policy](https://www.velzaglobal.com/privacypolicy): Handling of personal information, confidentiality, website usage, grievances and policy updates.
+- [Terms & Conditions](https://www.velzaglobal.com/termsandconditions): Content use, acceptable site use, external links, liability and indemnity.
