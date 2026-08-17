@@ -1,12 +1,3 @@
-/* ------------------------------------------------------------------
-   responsive-fix.css
-   1) Carries the top-tier (max-width:1920px) rules above 1920px so that
-      viewports wider than Full HD keep the same layout instead of
-      falling back to the untuned base values.
-   2) Small guards against horizontal overflow.
-   Load this AFTER theme.css / theme-colors.css / custom.css.
-   ------------------------------------------------------------------ */
-
 @media all and (min-width: 1921px) {
     #sk__hero-carousel-slider .carousel-control-next {
         top: 136px;
@@ -100,52 +91,10 @@
         font-size: 20px;
     }
 }
-
-/* ==================================================================
-   A. HORIZONTAL OVERFLOW — ROOT-CAUSE FIXES
-   Each block below was traced to a specific element in a real browser
-   at real viewport sizes. No blanket `overflow-x: hidden` is used.
-   ================================================================== */
-
-/* ------------------------------------------------------------------
-   A1. About-us / Featured-project hero section
-   -------------------------------------------
-   theme.css gives `.sk__featured-project-section { overflow-x: hidden }`
-   so the decorative `.sk__rectangle-white-*` layers and the 780px
-   `.sk__rectangles-full-left` block stay inside the section.
-
-   custom.css later sets `overflow: visible !important` on
-   `.sk__about-us-section.sk__featured-project-section` to stop the intro
-   copy being clipped VERTICALLY. That fixed the vertical clipping but
-   also removed the horizontal containment, which is what produced
-   27-38px of real horizontal scroll on aboutus.html and portfolio.html
-   at 320-768px.
-
-   `overflow-x: clip` restores horizontal containment WITHOUT creating a
-   scroll container, so `overflow-y: visible` stays visible (unlike
-   `hidden`, which would force the y axis to `auto`) and the vertical fix
-   in custom.css keeps working. GSAP's parallax still animates — clip
-   only affects painting, not transforms.
-   ------------------------------------------------------------------ */
 .sk__about-us-section.sk__featured-project-section {
     overflow-x: clip !important;
     overflow-y: visible !important;
 }
-
-/* ------------------------------------------------------------------
-   A2. Divider rows sitting outside a container
-   --------------------------------------------
-   `<section> > <div class="row mt-2 sk__fade-in-7">` appears on
-   aboutus, portfolio, news, rossocaffe, luxurybeverage, coffeecollection,
-   lifestyleessentials and pureitalianspirits. Bootstrap's `.row` carries
-   -12px inline margins that are meant to be cancelled by a `.container`'s
-   12px padding. With no container the row hangs 12px past the section on
-   both sides — a constant 12px of horizontal scroll at EVERY viewport.
-
-   Zeroing the row margins and the matching `.col` padding leaves the
-   divider in exactly the same place (it was rendered from 0 to 100%
-   before, and still is) while removing the overflow.
-   ------------------------------------------------------------------ */
 section > .row.mt-2.sk__fade-in-7 {
     margin-left: 0;
     margin-right: 0;
@@ -155,19 +104,6 @@ section > .row.mt-2.sk__fade-in-7 > [class*="col-"] {
     padding-left: 0;
     padding-right: 0;
 }
-
-/* ------------------------------------------------------------------
-   A3. Tablet gap in `.sk__rectangles-full-left`
-   ---------------------------------------------
-   theme.css sets `width: 780px` and overrides it to `width: 100%` only
-   at <=767px. The 768-991px range (iPad portrait, 820x1180, 834x1112)
-   never gets that override, so a 780px block sits inside a 738px
-   content box and pushes the page 27px wide.
-
-   `min-width: 0` is required as well: the block is a flex item, and a
-   flex item's automatic minimum size would otherwise keep it at its
-   780px content width even after `width: 100%`.
-   ------------------------------------------------------------------ */
 @media all and (min-width: 768px) and (max-width: 991px) {
     .sk__featured-project-infos-container > .featured-project {
         min-width: 0;
@@ -176,35 +112,8 @@ section > .row.mt-2.sk__fade-in-7 > [class*="col-"] {
     .sk__rectangles-full-left {
         width: 100%;
         min-width: 0;
-        /* padding is deliberately NOT touched — the theme's 110px is kept so
-           the copy keeps its existing inset. Only the width is corrected. */
     }
 }
-
-/* ==================================================================
-   B. HEADER / COUNTRY SWITCHER
-   ================================================================== */
-
-/* ------------------------------------------------------------------
-   B1. Country switcher is pushed off-screen on small phones
-   ---------------------------------------------------------
-   custom.css slides the switcher to the left edge of the open off-canvas
-   panel with `body.sk__nav-open .sk__country-switcher-wrap { right: 306px }`.
-
-   The switcher is 180px wide and `.sk__header-actions` adds its own inset,
-   so measured across a width sweep the switcher's left edge lands at
-   (viewport - 546px). It therefore only clears the left edge from about
-   546px up; at 520px it is still cut off by 26px. 560px is the first
-   width that is comfortably clean (left edge at 14px, panel starting at
-   270px), so that is the cutoff.
-
-   Below it the switcher is hidden while the menu is open, which is the
-   same treatment custom.css already applies on scroll
-   (`body.sk__scrolling-started`). `right` is also pinned to its normal
-   value so the button fades out where it sits instead of sliding across
-   the open panel — without this, custom.css's `transition: right .4s`
-   drags it over the menu for the whole opening animation.
-   ------------------------------------------------------------------ */
 @media all and (max-width: 559px) {
     body.sk__nav-open .sk__country-switcher-wrap {
         right: 55px;
@@ -213,71 +122,9 @@ section > .row.mt-2.sk__fade-in-7 > [class*="col-"] {
         pointer-events: none;
     }
 }
-
-/* ------------------------------------------------------------------
-   B1b. Country switcher is painted OVER the open off-canvas panel
-   ---------------------------------------------------------------
-   This is the overlap visible in the screenshots at both phone and
-   desktop sizes: the switcher sits on top of the panel's "VELZA Global"
-   title while the menu is open.
-
-   Cause is stacking, not position. `.sk__header-actions` is z-index 9999;
-   the off-canvas panel `.nav-container` is z-index 9998. So for the whole
-   0.4s that custom.css spends transitioning the switcher's `right` from
-   its resting offset to 306px, the button travels across the panel and is
-   drawn on top of it.
-
-   There is a second, worse case. The move to 306px is driven by
-   `body.sk__nav-open`. If the panel is open while that class is NOT on
-   the body — which happens when a navigation is started and then the page
-   is restored from the back/forward cache with the menu still open — the
-   switcher stays at its normal header offset, which sits INSIDE the
-   panel's area. Measured at 1879px wide: switcher 1561-1741, panel
-   1589-1879, so 152px of the button is drawn straight over the menu.
-
-   The rule is therefore NOT scoped to `body.sk__nav-open` — scoping it
-   there is exactly what let this case through. It is unconditional, which
-   is safe because the panel is `visibility: hidden` and parked off-screen
-   whenever the menu is closed, so nothing is behind anything then.
-
-   9997 still sits far above all page content. `.sk__mobile-menu-bar`
-   (9998) is a child of `.sk__header-actions`, so it stays in the same
-   stacking context and keeps its order; `.sk__mobile-main-logo` (9998)
-   and `.hc-nav-trigger` (9999) are elsewhere on screen and never overlap
-   the switcher.
-   ------------------------------------------------------------------ */
 .sk__header-actions {
     z-index: 9997;
 }
-
-/* ------------------------------------------------------------------
-   B1c. Logo disappears and the switcher sits in its "menu open" spot
-        while the menu is actually closed
-   -----------------------------------------------------------------
-   Two rules key off `body.sk__nav-open`:
-
-     theme.css   body.sk__nav-open .sk__mobile-main-logo   { opacity: 0 !important }
-     custom.css  body.sk__nav-open .sk__country-switcher-wrap { right: 306px }
-
-   If that class is left on the body while the panel is closed, the logo
-   is forced invisible and the switcher stays parked in its menu-open
-   position. Measured at 1504px wide: logo opacity 1 -> 0, and the
-   switcher jumps from right-edge 1366 to 1138 — shifted 228px left.
-
-   The class gets stranded when the page is left with the menu open and
-   then restored from the back/forward cache, which is what happens every
-   time a menu link is followed and the user comes back.
-
-   `.hc-offcanvas-nav.nav-open` is the off-canvas library's own flag for
-   "the panel is genuinely open", so it is the honest test. When the body
-   claims the menu is open but the panel does not, the normal resting
-   state is restored. `:has()` needs Chrome 105+ / Safari 15.4+ / Firefox
-   121+; where it is unsupported the selector is simply ignored, which
-   leaves today's behaviour rather than breaking anything.
-
-   This does not paper over the underlying cause — see the note about
-   root-relative links below.
-   ------------------------------------------------------------------ */
 body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open)) .sk__mobile-main-logo {
     opacity: 1 !important;
 }
@@ -299,25 +146,6 @@ body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
         right: 78px;
     }
 }
-
-/* ------------------------------------------------------------------
-   B2. Hero slide clips its own last line on phones
-   ------------------------------------------------
-   custom.css (line ~790, inside `@media (max-width: 767px)`) pins the
-   hero slide with `height: 700px !important` to stop it being a full
-   100vh. The slide is a flex column and `section.sk__hero-item-theme-style`
-   is `overflow: hidden`, so anything past 700px is cut away silently.
-
-   Measured on index.html with the slide at rest: the closing
-   `.hero-box-bottom-right h4` ("EXCELLENCE") lands at y 719-740 on a
-   390px screen and 708-729 on a 375px screen, while the slide ends at
-   699 — so that line is clipped off entirely and never shown.
-
-   Turning the fixed height into a floor keeps the 700px look wherever
-   the content already fits (which is every slide that fits today, so
-   nothing moves) and lets the slide grow only on the phones where it
-   currently loses a line.
-   ------------------------------------------------------------------ */
 @media all and (max-width: 767px) {
     #sk__hero-carousel-slider .carousel-item,
     section.sk__parallax-background-section.sk__hero-item-theme-style,
@@ -326,20 +154,6 @@ body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
         min-height: 700px !important;
     }
 }
-
-/* ==================================================================
-   C. TYPOGRAPHY GUARD
-   ================================================================== */
-
-/* ------------------------------------------------------------------
-   C1. Long single words in narrow feature/icon columns
-   ----------------------------------------------------
-   In the 3- and 4-up feature grids a column can get narrower than a
-   single long word ("Manufacturing", "Sustainable"), and the word then
-   paints outside its box. `overflow-wrap: break-word` only ever engages
-   when a word genuinely cannot fit on its own line, so wrapping is
-   unchanged everywhere the text already fits.
-   ------------------------------------------------------------------ */
 .sk__feature1 h2,
 .sk__feature1 h3,
 .sk__feature1 h4,
@@ -348,23 +162,3 @@ body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
 .sk__iconbox h5 {
     overflow-wrap: break-word;
 }
-
-/* ---------------------------------------------------------------------------
-   Nothing else lives in this file on purpose.
-
-   Three rules used to sit here and were removed because they broke the site:
-
-     html, body { overflow-x: hidden; max-width: 100% }
-         GSAP ScrollSmoother owns the scroll context via #smooth-wrapper.
-         Setting overflow on html/body creates a second one, which is what
-         made scrolling jump and stick.
-
-     img, video, svg, canvas { max-width: 100% }
-         The hero parallax images are deliberately larger than their frame so
-         they have room to translate. Capping them killed the parallax.
-
-     .sk__image-back-cover img.sk__parallax-background-element { ... object-fit }
-         Same cause — pinned the element GSAP needs to move.
-
-   Do not reintroduce them.
-   --------------------------------------------------------------------------- */
