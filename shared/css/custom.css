@@ -1869,3 +1869,58 @@ h1.h2-large {
         width: 100% !important;
     }
 }
+
+/* ======================================================
+   Portfolio page — top 3-card row, edge-to-edge fill
+   Scoped to #our-portfolio2 only. Does not touch
+   #our-portfolio1 / #our-essentials used elsewhere.
+   The full-card (Rosso Caffè) row below is left alone.
+   ====================================================== */
+
+#our-portfolio2,
+#our-portfolio2 .sk__portfolio-thumbs {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#our-portfolio2 .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100%;
+}
+
+#our-portfolio2 .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* the 3 top cards: 25% -> 33.3333% so they fill the row with no gap */
+#our-portfolio2 .custom-portfolio > .sk__portfolio-item:not(.full-card) {
+    width: 33.3333% !important;
+    flex: 0 0 33.3333% !important;
+    max-width: 33.3333% !important;
+    padding: 0 !important;
+}
+
+/* full-card row untouched — restated so it can never inherit the above */
+#our-portfolio2 .custom-portfolio > .sk__portfolio-item.full-card {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+
+@media (max-width: 991px) {
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item:not(.full-card) {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media (max-width: 575px) {
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item:not(.full-card) {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}

@@ -1,6 +1,26 @@
 <!doctype html>
 <html lang="en-US">
     <head>
+        <!-- Velza Consent Mode v2 defaults — MUST stay above the GTM snippet -->
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("consent", "default", {
+                ad_storage: "denied",
+                ad_user_data: "denied",
+                ad_personalization: "denied",
+                analytics_storage: "denied",
+                functionality_storage: "denied",
+                personalization_storage: "denied",
+                security_storage: "granted",
+                wait_for_update: 500,
+            });
+            gtag("set", "ads_data_redaction", true);
+            gtag("set", "url_passthrough", true);
+        </script>
+        <!-- End Velza Consent Mode v2 defaults -->
         <!-- Google Tag Manager -->
         <script>
             (function (w, d, s, l, i) {
@@ -21,52 +41,164 @@
         <meta charset="utf-8" />
         <meta
             name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
+        <!-- SEO / Social Metadata -->
         <meta
             name="description"
-            content="This is DarkTheme, see it live now!"
+            content="Explore Velza Global&#x27;s portfolio of luxury beverages, Italian spirits, coffee, lifestyle essentials and Rosso Caffè experiences."
         />
-        <meta name="author" content="Skilltech Web Design" />
+        <meta name="author" content="Velza Global Group" />
         <meta
-            name="keywords"
-            content="DarkTheme, dark theme, best dark theme, best dark html, best dark website design, best dark websites, dark web design, best html themes, best html templates, best websites, dark portfolio, dark creative, gsap theme, skilltech, skilltech web design"
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
 
+        <title>Premium Brand Portfolio | Velza Global Group</title>
+        <link rel="canonical" href="https://www.velzaglobal.com/portfolio" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Velza Global Group" />
+        <meta property="og:locale" content="en_IN" />
         <meta
             property="og:title"
-            content="DarkTheme - The Ultimate Dark HTML Template"
+            content="Premium Brand Portfolio | Velza Global Group"
         />
         <meta
             property="og:description"
-            content="Superior Dark Multipurpose Theme · $235 Added Value · Stunning Effects & Clean Code · Build a Website Today with DarkTheme!"
+            content="Explore Velza Global&#x27;s portfolio of luxury beverages, Italian spirits, coffee, lifestyle essentials and Rosso Caffè experiences."
+        />
+        <meta
+            property="og:url"
+            content="https://www.velzaglobal.com/portfolio"
         />
         <meta
             property="og:image"
-            content="/shared/images/facebook-post-image-default.jpg"
+            content="https://www.velzaglobal.com/shared/images/Portfolio%20Page%20Banner.webp"
+        />
+        <meta
+            property="og:image:alt"
+            content="Velza Global Group premium brand portfolio"
         />
 
-        <meta property="og:site_name" content="SkilltechWebDesign.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Premium Brand Portfolio | Velza Global Group"
+        />
+        <meta
+            name="twitter:description"
+            content="Explore Velza Global&#x27;s portfolio of luxury beverages, Italian spirits, coffee, lifestyle essentials and Rosso Caffè experiences."
+        />
+        <meta
+            name="twitter:image"
+            content="https://www.velzaglobal.com/shared/images/Portfolio%20Page%20Banner.webp"
+        />
 
-        <title>Portfolio</title>
-        <link rel="canonical" href="https://www.velzaglobal.com/portfolio" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "BreadcrumbList",
+                        "@id": "https://www.velzaglobal.com/portfolio#breadcrumb",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "Home",
+                                "item": "https://www.velzaglobal.com/"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "name": "Our Portfolio",
+                                "item": "https://www.velzaglobal.com/portfolio"
+                            }
+                        ]
+                    }
+                ]
+            }
+        </script>
+        <!-- End SEO / Social Metadata -->
 
         <link rel="icon" href="/favicon.ico?v=3" type="image/x-icon" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/shared/images/favicon-16x16.png?v=3" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/shared/images/favicon-32x32.png?v=3" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/shared/images/favicon-96x96.png?v=3" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/shared/images/favicon-16x16.png?v=3"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/shared/images/favicon-32x32.png?v=3"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="/shared/images/favicon-96x96.png?v=3"
+        />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="/shared/images/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon" sizes="60x60" href="/shared/images/apple-touch-icon-60x60.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="/shared/images/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="76x76" href="/shared/images/apple-touch-icon-76x76.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="/shared/images/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon" sizes="120x120" href="/shared/images/apple-touch-icon-120x120.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="/shared/images/apple-touch-icon-144x144.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/shared/images/apple-touch-icon-152x152.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/shared/images/apple-touch-icon-167x167.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/shared/images/apple-touch-icon-180x180.png" />
+        <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="/shared/images/apple-touch-icon-57x57.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="60x60"
+            href="/shared/images/apple-touch-icon-60x60.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="/shared/images/apple-touch-icon-72x72.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="/shared/images/apple-touch-icon-76x76.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="/shared/images/apple-touch-icon-114x114.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="/shared/images/apple-touch-icon-120x120.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="/shared/images/apple-touch-icon-144x144.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/shared/images/apple-touch-icon-152x152.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="167x167"
+            href="/shared/images/apple-touch-icon-167x167.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/shared/images/apple-touch-icon-180x180.png"
+        />
         <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta
+            name="msapplication-TileImage"
+            content="/shared/images/mstile-150x150.png"
+        />
 
         <!-- Bootstrap CSS -->
         <link
@@ -99,9 +231,9 @@
 
         <!-- Theme Preview Only CSS -->
         <!-- <link
-            href="/shared/css/theme-preview-color-styler.css"
-            rel="stylesheet"
-        /> -->
+        href="/shared/css/theme-preview-color-styler.css"
+        rel="stylesheet"
+    /> -->
 
         <!-- jQuery -->
         <script src="/shared/vendor/jquery/jquery.min.js"></script>
@@ -176,9 +308,7 @@
 
                     <!-- Regular Menu Items Start -->
                     <li class="nav-item menu-item-has-children">
-                        <a
-                            class="nav-link hvr-underline-from-center"
-                            href="/"
+                        <a class="nav-link hvr-underline-from-center" href="/"
                             >Home</a
                         >
                     </li>
@@ -320,7 +450,7 @@
                                         >
                                             <a
                                                 class="btn btn-outline-light animated-element phase-1 mb-4"
-                                                href="#our-portfolio"
+                                                href="#our-portfolio2"
                                                 role="button"
                                                 >Explore Our Collection</a
                                             >
@@ -483,7 +613,7 @@
 				================================================== -->
                     <section
                         class="sk__portfolio-section sk__py-l dark-shade-2-bg sk__solid-menu-bar"
-                        id="our-portfolio"
+                        id="our-portfolio2"
                     >
                         <div class="container-fluid">
                             <div class="row">
@@ -1133,7 +1263,7 @@
         <script src="/shared/js/theme.js"></script>
         <script src="/shared/js/responsive-fix.js"></script>
         <script src="/shared/js/cookie-consent.js"></script>
-    
+
         <!-- Velza Global Regional Architecture -->
         <script src="/routing/region-config.js"></script>
         <script src="/routing/region-switcher.js"></script>
