@@ -162,3 +162,1578 @@ body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
 .sk__iconbox h5 {
     overflow-wrap: break-word;
 }
+
+/* NEW RESPONSIVE FIXES*/
+
+@media all and (min-width: 1921px) {
+    #sk__hero-carousel-slider .carousel-control-next {
+        top: 136px;
+        right: 29px;
+    }
+    #sk__hero-carousel-slider .carousel-control-prev {
+        top: 136px;
+        right: 85px;
+    }
+    .sk__404 {
+        font-size: 187px;
+        letter-spacing: -15px;
+    }
+    .sk__featurebox h4 {
+        font-size: 36px;
+        letter-spacing: -2px;
+    }
+    .sk__featured-project-background {
+        -webkit-transform: scale(0.85);
+        -ms-transform: scale(0.85);
+        transform: scale(0.85);
+        top: 7.5%;
+    }
+    .sk__gallery-basic-thumbnails .carousel-control-next {
+        top: 60px;
+        right: 29px;
+    }
+    .sk__gallery-basic-thumbnails .carousel-control-prev {
+        top: 60px;
+        right: 85px;
+    }
+    .sk__iconbox h5 {
+        font-size: 19px;
+    }
+    .sk__icons-presentation-icons span {
+        font-size: 26px;
+    }
+    .sk__project-body {
+        margin-bottom: 160px;
+    }
+    .sk__single-article .post-content p {
+        font-size: 18px;
+        line-height: 1.7;
+        font-weight: 300;
+    }
+    .sk__strip-header {
+        padding-top: 84px;
+        padding-bottom: 75px;
+    }
+    a.sk__iconbox-icon-link {
+        margin: 0 auto 15px;
+        width: 112px;
+        height: 112px;
+    }
+    a.sk__iconbox-icon-link > span.sk__iconbox-icon {
+        width: 112px;
+        height: 112px;
+        border-radius: 114px;
+    }
+    a.sk__iconbox-icon-link > span.sk__iconbox-icon > span.sk__iconbox-trail {
+        width: 108px;
+        height: 108px;
+        border-radius: 114px;
+    }
+    a.sk__iconbox-icon-link > span.sk__iconbox-icon:after {
+        width: 112px;
+        height: 112px;
+        border-radius: 114px;
+    }
+    a.sk__iconbox-icon-link i,
+    a.sk__iconbox-icon-link span[class^="icon-"] {
+        font-size: 41px;
+    }
+    a.sk__iconbox-icon-link:hover
+        > span.sk__iconbox-icon
+        > span.sk__iconbox-trail {
+        border-top-left-radius: 54px;
+        border-top-right-radius: 54px;
+    }
+    a.sk__iconbox-icon-link:hover > span.sk__iconbox-icon:after {
+        -webkit-transform: scale(0.925) translate(-1px, -1px);
+        -ms-transform: scale(0.925) translate(-1px, -1px);
+        transform: scale(0.925) translate(-1px, -1px);
+    }
+    h2.h2-super,
+    span.h2-super.sk__gradient-fancy-text-back {
+        font-size: 49px;
+        letter-spacing: -2.5px;
+    }
+    p.p-super {
+        font-size: 20px;
+    }
+}
+.sk__about-us-section.sk__featured-project-section {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+}
+section > .row.mt-2.sk__fade-in-7 {
+    margin-left: 0;
+    margin-right: 0;
+}
+section > .row.mt-2.sk__fade-in-7 > .col,
+section > .row.mt-2.sk__fade-in-7 > [class*="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+}
+@media all and (min-width: 768px) and (max-width: 991px) {
+    .sk__featured-project-infos-container > .featured-project {
+        min-width: 0;
+        max-width: 100%;
+    }
+    .sk__rectangles-full-left {
+        width: 100%;
+        min-width: 0;
+    }
+}
+@media all and (max-width: 559px) {
+    body.sk__nav-open .sk__country-switcher-wrap {
+        right: 55px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+.sk__header-actions {
+    z-index: 9997;
+}
+body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open)) .sk__mobile-main-logo {
+    opacity: 1 !important;
+}
+body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
+    .sk__country-switcher-wrap {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+@media all and (max-width: 767px) {
+    body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
+        .sk__country-switcher-wrap {
+        right: 55px;
+    }
+}
+@media all and (min-width: 768px) {
+    body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
+        .sk__country-switcher-wrap {
+        right: 78px;
+    }
+}
+.sk__feature1 h2,
+.sk__feature1 h3,
+.sk__feature1 h4,
+.sk__feature1 h5,
+.sk__featurebox h4,
+.sk__iconbox h5 {
+    overflow-wrap: break-word;
+}
+
+/* --- 768-991px : tablet --- */
+@media all and (min-width: 768px) and (max-width: 991px) {
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        min-height: 620px !important;
+    }
+    .sk__hero-item-theme-style {
+        padding: 120px 40px 40px !important;
+        gap: 22px;
+    }
+    :is(h1, h2).hero-h1,
+    span.hero-h1.sk__gradient-fancy-text-back {
+        font-size: 32px;
+    }
+    .hero-box-bottom-right {
+        margin-bottom: 40px;
+    }
+    .hero-box-bottom-right .big-abbreviated-heading,
+    .hero-box-bottom-right
+        span.big-abbreviated-heading.sk__gradient-fancy-text-back {
+        font-size: 34px;
+    }
+    .hero-box-bottom-right h4 {
+        font-size: 20px;
+    }
+    .hero-box-bottom-left h5,
+    .hero-box-bottom-left h3 {
+        font-size: 18px;
+    }
+}
+
+/* --- 576-767px : large phone / small tablet landscape --- */
+@media all and (min-width: 576px) and (max-width: 767px) {
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        min-height: 560px !important;
+    }
+    .sk__hero-item-theme-style {
+        padding: 84px 24px 32px !important;
+        gap: 18px;
+    }
+    :is(h1, h2).hero-h1,
+    span.hero-h1.sk__gradient-fancy-text-back {
+        font-size: 26px;
+    }
+    .hero-box-p {
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .hero-box-bottom-right {
+        margin-bottom: 70px;
+    }
+    .hero-box-bottom-right .big-abbreviated-heading,
+    .hero-box-bottom-right
+        span.big-abbreviated-heading.sk__gradient-fancy-text-back {
+        font-size: 28px;
+    }
+    .hero-box-bottom-right h4 {
+        font-size: 18px;
+    }
+    .hero-box-bottom-left h5,
+    .hero-box-bottom-left h3 {
+        font-size: 15px;
+    }
+}
+
+/* --- 360-575px : typical phone --- */
+@media all and (min-width: 360px) and (max-width: 575px) {
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        min-height: 520px !important;
+    }
+    .sk__hero-item-theme-style {
+        padding: 80px 20px 28px !important;
+        gap: 16px;
+    }
+    :is(h1, h2).hero-h1,
+    span.hero-h1.sk__gradient-fancy-text-back {
+        font-size: 22px;
+    }
+    .hero-box-p {
+        font-size: 12px;
+        line-height: 19px;
+    }
+    .hero-box-bottom-left .btn {
+        margin-bottom: 0.75rem !important;
+    }
+    .hero-box-bottom-right {
+        margin-bottom: 40px;
+    }
+    .hero-box-bottom-right .big-abbreviated-heading,
+    .hero-box-bottom-right
+        span.big-abbreviated-heading.sk__gradient-fancy-text-back {
+        font-size: 24px;
+    }
+    .hero-box-bottom-right h4 {
+        font-size: 16px;
+    }
+    .hero-box-bottom-left h5,
+    .hero-box-bottom-left h3 {
+        font-size: 14px;
+    }
+}
+
+/* --- <360px : smallest phones --- */
+@media all and (max-width: 359px) {
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        min-height: 480px !important;
+    }
+    .sk__hero-item-theme-style {
+        padding: 76px 16px 24px !important;
+        gap: 14px;
+    }
+    :is(h1, h2).hero-h1,
+    span.hero-h1.sk__gradient-fancy-text-back {
+        font-size: 18px;
+    }
+    .hero-box-p {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .hero-box-bottom-left .btn {
+        margin-bottom: 0.6rem !important;
+    }
+    .hero-box-bottom-right {
+        margin-bottom: 32px;
+    }
+    .hero-box-bottom-right .big-abbreviated-heading,
+    .hero-box-bottom-right
+        span.big-abbreviated-heading.sk__gradient-fancy-text-back {
+        font-size: 20px;
+    }
+    .hero-box-bottom-right h4 {
+        font-size: 14px;
+    }
+    .hero-box-bottom-left h5,
+    .hero-box-bottom-left h3 {
+        font-size: 13px;
+    }
+}
+
+/* ==================================================================
+   VELZA GLOBAL — RESPONSIVE FIXES
+   Mobile + Tablet only
+   Desktop / large screens are intentionally untouched.
+   Load this file AFTER theme.css and custom.css.
+   ================================================================== */
+
+/* ================================================================
+   1. COMMON HERO RESPONSIVE BASE
+   Fixes:
+   - hero content sitting at the top
+   - excessive top/bottom spacing
+   - mobile hero content not centered
+   - background image staying inside the hero section
+   ================================================================ */
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        height: 520px !important;
+        min-height: 520px !important;
+    }
+
+    .sk__hero-item-theme-style {
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 90px 32px 30px !important;
+        gap: 14px !important;
+    }
+
+    .sk__hero-item-theme-style .flex-helper-div {
+        display: none !important;
+    }
+
+    .sk__hero-item-theme-style img.sk__parallax-background-element {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    .hero-h1-box {
+        left: 0 !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    .hero-box-bottom-left {
+        width: 100% !important;
+        max-width: 760px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .hero-h1 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .hero-box-bottom-left p {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+}
+
+@media all and (min-width: 576px) and (max-width: 767px) {
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        height: 500px !important;
+        min-height: 500px !important;
+    }
+
+    .sk__hero-item-theme-style {
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 75px 24px 25px !important;
+        gap: 12px !important;
+    }
+
+    .sk__hero-item-theme-style .flex-helper-div {
+        display: none !important;
+    }
+
+    .sk__hero-item-theme-style img.sk__parallax-background-element {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    .hero-h1-box {
+        left: 0 !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    .hero-box-bottom-left {
+        width: 100% !important;
+        max-width: 92% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .hero-h1 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .hero-box-bottom-left p {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+}
+
+@media all and (min-width: 360px) and (max-width: 575px) {
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        height: 520px !important;
+        min-height: 520px !important;
+    }
+
+    .sk__hero-item-theme-style {
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 115px 20px 20px !important;
+        gap: 10px !important;
+    }
+
+    .sk__hero-item-theme-style .flex-helper-div {
+        display: none !important;
+    }
+
+    .sk__hero-item-theme-style img.sk__parallax-background-element {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    .hero-h1-box {
+        left: 0 !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    .hero-box-bottom-left {
+        width: 100% !important;
+        max-width: 94% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .hero-h1 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .hero-box-bottom-left p {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+}
+
+@media all and (max-width: 359px) {
+    #sk__hero-carousel-slider .carousel-item,
+    section.sk__parallax-background-section.sk__hero-item-theme-style,
+    .sk__hero-item-theme-style {
+        height: 500px !important;
+        min-height: 500px !important;
+    }
+
+    .sk__hero-item-theme-style {
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 65px 16px 15px !important;
+        gap: 8px !important;
+    }
+
+    .sk__hero-item-theme-style .flex-helper-div {
+        display: none !important;
+    }
+
+    .sk__hero-item-theme-style img.sk__parallax-background-element {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    .hero-h1-box {
+        left: 0 !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+
+    .hero-box-bottom-left {
+        width: 100% !important;
+        max-width: 94% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .hero-h1 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .hero-box-bottom-left p {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+}
+
+/* ================================================================
+   2. ABOUT US HERO
+   Scoped only to the hero immediately before #about-us.
+   Desktop is untouched.
+   ================================================================ */
+
+/* --- 768-991px : tablet --- */
+
+/* --- 768-991px : tablet --- */
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+    .sk__hero-section:has(+ #about-us) .hero-h1-box {
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left {
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #about-us) .sk__hero-item-theme-style {
+        min-height: 440px !important;
+        padding: 120px 32px 20px !important;
+        gap: 10px;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left p {
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left .btn {
+        padding: 13px 26px 12px;
+        font-size: 13px;
+    }
+}
+
+/* --- 576-767px : large phone / small tablet landscape --- */
+
+@media all and (min-width: 576px) and (max-width: 767px) {
+    .sk__hero-section:has(+ #about-us) .hero-h1-box {
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left {
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #about-us) .sk__hero-item-theme-style {
+        min-height: 410px !important;
+        padding: 84px 24px 18px !important;
+        gap: 8px;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-h1 {
+        font-size: 24px;
+        letter-spacing: -1px;
+        text-align: center;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left p {
+        font-size: 13px;
+        line-height: 20px;
+        text-align: center;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left .btn {
+        padding: 12px 22px 11px;
+        font-size: 12px;
+    }
+}
+
+/* --- 360-575px : typical phone --- */
+
+@media all and (min-width: 360px) and (max-width: 575px) {
+    .sk__hero-section:has(+ #about-us) .hero-h1-box {
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left {
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #about-us) .sk__hero-item-theme-style {
+        min-height: 440px !important;
+        padding: 80px 20px 15px !important;
+        gap: 7px;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-h1 {
+        font-size: 20px;
+        letter-spacing: -0.5px;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left p {
+        font-size: 12px;
+        line-height: 19px;
+        text-align: center;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left .btn {
+        padding: 11px 20px 10px;
+        font-size: 11px;
+    }
+}
+
+/* --- <360px : smallest phones --- */
+
+@media all and (max-width: 359px) {
+    .sk__hero-section:has(+ #about-us) .hero-h1-box {
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left {
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #about-us) .sk__hero-item-theme-style {
+        min-height: 420px !important;
+        padding: 76px 16px 12px !important;
+        gap: 7px;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-h1 {
+        font-size: 17px;
+        letter-spacing: -0.5px;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left p {
+        font-size: 12px;
+        line-height: 18px;
+        text-align: center;
+    }
+
+    .sk__hero-section:has(+ #about-us) .hero-box-bottom-left .btn {
+        padding: 10px 18px 9px;
+        font-size: 11px;
+    }
+}
+/* ================================================================
+   3. PORTFOLIO HERO
+   Scoped only to the hero immediately before #our-portfolio.
+   Desktop is untouched.
+   ================================================================ */
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+    .sk__hero-section:has(+ #our-portfolio) .sk__hero-item-theme-style {
+        height: 520px !important;
+        min-height: 520px !important;
+        padding: 90px 32px 30px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 14px !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-h1-box {
+        left: 0 !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-h1 {
+        font-size: 30px;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-box-bottom-left {
+        width: 100% !important;
+        max-width: 760px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-box-bottom-left p {
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+@media all and (min-width: 576px) and (max-width: 767px) {
+    .sk__hero-section:has(+ #our-portfolio) .sk__hero-item-theme-style {
+        height: 500px !important;
+        min-height: 500px !important;
+        padding: 75px 24px 25px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 12px !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-h1-box {
+        left: 0 !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-h1 {
+        font-size: 24px;
+        letter-spacing: -1px;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-box-bottom-left {
+        width: 100% !important;
+        max-width: 92% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-box-bottom-left p {
+        font-size: 13px;
+        line-height: 20px;
+        text-align: center !important;
+    }
+}
+
+@media all and (min-width: 360px) and (max-width: 575px) {
+    .sk__hero-section:has(+ #our-portfolio) .sk__hero-item-theme-style {
+        height: 520px !important;
+        min-height: 520px !important;
+        padding: 70px 20px 20px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-h1-box {
+        left: 0 !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-h1 {
+        font-size: 20px;
+        letter-spacing: -0.5px;
+        line-height: 1.3;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-box-bottom-left {
+        width: 100% !important;
+        max-width: 94% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-box-bottom-left p {
+        font-size: 12px;
+        line-height: 19px;
+        text-align: center !important;
+    }
+}
+
+@media all and (max-width: 359px) {
+    .sk__hero-section:has(+ #our-portfolio) .sk__hero-item-theme-style {
+        height: 500px !important;
+        min-height: 500px !important;
+        padding: 65px 16px 15px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-h1-box {
+        left: 0 !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-h1 {
+        font-size: 17px;
+        letter-spacing: -0.5px;
+        line-height: 1.3;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-box-bottom-left {
+        width: 100% !important;
+        max-width: 94% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .sk__hero-section:has(+ #our-portfolio) .hero-box-bottom-left p {
+        font-size: 12px;
+        line-height: 18px;
+        text-align: center !important;
+    }
+}
+
+/* ================================================================
+   4. PORTFOLIO — TWO CARDS PER ROW ON TABLET + MOBILE
+   Scoped to the portfolio sections already present in custom.css.
+   ================================================================ */
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+    #our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-essentials .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item:not(.full-card) {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media all and (min-width: 576px) and (max-width: 767px) {
+    #our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-essentials .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item:not(.full-card) {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media all and (min-width: 360px) and (max-width: 575px) {
+    #our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-essentials .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item:not(.full-card) {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media all and (max-width: 359px) {
+    #our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-essentials .sk__portfolio-wrapper .sk__portfolio-item,
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item:not(.full-card) {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+/* ================================================================
+   5. PORTFOLIO CARD IMAGE HEIGHT
+   Keep two cards visible without oversized vertical images.
+   ================================================================ */
+
+@media all and (max-width: 991px) {
+    #our-portfolio1 .sk__portfolio-thumblink,
+    #our-essentials .sk__portfolio-thumblink,
+    #our-portfolio2 .sk__portfolio-thumblink {
+        padding-top: 145% !important;
+    }
+}
+
+@media all and (max-width: 575px) {
+    #our-portfolio1 .sk__portfolio-thumblink,
+    #our-essentials .sk__portfolio-thumblink,
+    #our-portfolio2 .sk__portfolio-thumblink {
+        padding-top: 145% !important;
+    }
+
+    .custom-portfolio .portfolio-thumb-info h2.text1 {
+        font-size: 15px !important;
+        margin-bottom: 8px !important;
+    }
+}
+
+/* ================================================================
+   6. ABOUT / WHAT DRIVES US — REMOVE EXCESS MOBILE SPACING
+   ================================================================ */
+
+@media all and (max-width: 767px) {
+    #about-us,
+    #about-us1 {
+        padding-top: 45px !important;
+        padding-bottom: 30px !important;
+    }
+
+    #about-us1 .vision-row {
+        margin-top: 20px !important;
+    }
+
+    .sk__feature1 {
+        padding: 25px 18px !important;
+    }
+
+    .about-right-image-wrap {
+        min-height: 240px !important;
+    }
+}
+
+@media all and (max-width: 575px) {
+    #about-us,
+    #about-us1 {
+        padding-top: 40px !important;
+        padding-bottom: 25px !important;
+    }
+
+    #about-us1 .vision-row {
+        margin-top: 15px !important;
+    }
+
+    .sk__feature1 {
+        padding: 22px 16px !important;
+    }
+
+    .about-right-image-wrap {
+        min-height: 210px !important;
+    }
+}
+
+/* ================================================================
+   7. PREVENT RESPONSIVE HERO IMAGE FROM ESCAPING ITS SECTION
+   ================================================================ */
+
+@media all and (max-width: 767px) {
+    .sk__hero-section,
+    .sk__hero-slider-item,
+    .sk__parallax-background-section.sk__hero-item-theme-style {
+        overflow: hidden !important;
+    }
+
+    .sk__hero-slider-item img.sk__parallax-background-element {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        object-fit: cover !important;
+    }
+}
+
+/* --- 768-991px : tablet --- */
+@media all and (min-width: 768px) and (max-width: 991px) {
+    .product-hero:has(img[src*="Contact.webp"]) .product-hero-content {
+        padding-top: 50px !important;
+    }
+}
+
+/* --- 576-767px : large mobile --- */
+@media all and (min-width: 576px) and (max-width: 767px) {
+    .product-hero:has(img[src*="Contact.webp"]) .product-hero-content {
+        padding-top: 45px !important;
+    }
+}
+
+/* --- 360-575px : mobile --- */
+@media all and (min-width: 360px) and (max-width: 575px) {
+    .product-hero:has(img[src*="Contact.webp"]) .product-hero-content {
+        padding-top: 40px !important;
+    }
+}
+
+/* --- <360px : small mobile --- */
+@media all and (max-width: 359px) {
+    .product-hero:has(img[src*="Contact.webp"]) .product-hero-content {
+        padding-top: 35px !important;
+    }
+}
+
+/* ================================================================
+   8. HERO BOTTOM DESCRIPTION — FIX UPSIDE-DOWN TEXT ON MOBILE
+   Keep the description horizontal and readable.
+   Desktop / large screens are untouched.
+   ================================================================ */
+
+/* ================================================================
+   ROSSO CAFFÈ — RESPONSIVE ONLY
+   Mobile + Tablet
+   Desktop remains unchanged
+   ================================================================ */
+
+/* --- 768-991px : TABLET --- */
+@media all and (min-width: 768px) and (max-width: 991px) {
+    /* Hero */
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"])
+        .sk__hero-item-theme-style {
+        height: 560px !important;
+        min-height: 560px !important;
+        padding: 90px 35px 30px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-hero-content {
+        width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-left {
+        width: 100% !important;
+        max-width: 750px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .hero-h1-box {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .hero-h1 {
+        text-align: center !important;
+        margin: 0 auto !important;
+        font-size: 32px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-description {
+        max-width: 700px !important;
+        margin: 20px auto !important;
+        text-align: center !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-buttons {
+        text-align: center !important;
+    }
+}
+
+/* --- 576-767px : LARGE MOBILE / SMALL TABLET --- */
+@media all and (min-width: 576px) and (max-width: 767px) {
+    /* Hero */
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"])
+        .sk__hero-item-theme-style {
+        height: 520px !important;
+        min-height: 520px !important;
+        padding: 80px 25px 25px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-hero-content {
+        width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-left {
+        width: 100% !important;
+        max-width: 92% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .hero-h1-box {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .hero-h1 {
+        text-align: center !important;
+        margin: 0 auto !important;
+        font-size: 27px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-description {
+        max-width: 600px !important;
+        margin: 18px auto !important;
+        text-align: center !important;
+        font-size: 13px !important;
+        line-height: 20px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-buttons {
+        text-align: center !important;
+    }
+}
+
+/* --- 360-575px : MOBILE --- */
+@media all and (min-width: 360px) and (max-width: 575px) {
+    /* Hero */
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"])
+        .sk__hero-item-theme-style {
+        height: 520px !important;
+        min-height: 520px !important;
+        padding: 100px 20px 20px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-hero-content {
+        width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-left {
+        width: 100% !important;
+        max-width: 94% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .hero-h1-box {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .hero-h1 {
+        text-align: center !important;
+        margin: 0 auto !important;
+        font-size: 22px !important;
+        line-height: 1.25 !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-description {
+        max-width: 95% !important;
+        margin: 15px auto !important;
+        text-align: center !important;
+        font-size: 12px !important;
+        line-height: 19px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-buttons {
+        text-align: center !important;
+    }
+}
+
+/* --- <360px : SMALL MOBILE --- */
+@media all and (max-width: 359px) {
+    /* Hero */
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"])
+        .sk__hero-item-theme-style {
+        height: 500px !important;
+        min-height: 500px !important;
+        padding: 85px 16px 15px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-hero-content {
+        width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-left {
+        width: 100% !important;
+        max-width: 94% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .hero-h1-box {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .hero-h1 {
+        text-align: center !important;
+        margin: 0 auto !important;
+        font-size: 18px !important;
+        line-height: 1.3 !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-description {
+        max-width: 95% !important;
+        margin: 12px auto !important;
+        text-align: center !important;
+        font-size: 11px !important;
+        line-height: 18px !important;
+    }
+
+    .product-hero:has(img[src*="Rosso%20Cafe.webp"]) .product-buttons {
+        text-align: center !important;
+    }
+}
+
+/* ================================================================
+   ROSSO CAFFÈ — SIGNATURE MENU
+   Two cards per row on mobile/tablet
+   ================================================================ */
+
+@media all and (max-width: 991px) {
+    #our-rosso-collection .custom-portfolio > .sk__portfolio-item {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+
+    #our-rosso-collection .sk__portfolio-thumblink {
+        padding-top: 145% !important;
+    }
+}
+
+/* --- Mobile card text --- */
+@media all and (max-width: 575px) {
+    #our-rosso-collection .portfolio-thumb-info h2.text1 {
+        font-size: 14px !important;
+        margin-bottom: 6px !important;
+    }
+
+    #our-rosso-collection .portfolio-thumb-info h6 {
+        font-size: 11px !important;
+        line-height: 16px !important;
+    }
+}
+
+/* ================================================================
+   ROSSO CAFFÈ — STORY / FIND US
+   Reduce excessive mobile spacing
+   ================================================================ */
+
+@media all and (max-width: 767px) {
+    #our-story,
+    #find-us {
+        padding-top: 40px !important;
+        padding-bottom: 30px !important;
+    }
+}
+
+@media all and (max-width: 575px) {
+    #our-story,
+    #find-us {
+        padding-top: 35px !important;
+        padding-bottom: 25px !important;
+    }
+}
+
+/* ================================================================
+   ROSSO CAFFÈ EXPERIENCE — 2 CARDS PER ROW
+   Tablet + Mobile only
+   ================================================================ */
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+    .sk__portfolio-section:has(img[src*="Relax.webp"])
+        .custom-portfolio-grid
+        > .sk__portfolio-item {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media all and (min-width: 576px) and (max-width: 767px) {
+    .sk__portfolio-section:has(img[src*="Relax.webp"])
+        .custom-portfolio-grid
+        > .sk__portfolio-item {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media all and (min-width: 360px) and (max-width: 575px) {
+    .sk__portfolio-section:has(img[src*="Relax.webp"])
+        .custom-portfolio-grid
+        > .sk__portfolio-item {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media all and (max-width: 359px) {
+    .sk__portfolio-section:has(img[src*="Relax.webp"])
+        .custom-portfolio-grid
+        > .sk__portfolio-item {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+/* --- 360-575px : mobile --- */
+
+@media all and (min-width: 360px) and (max-width: 575px) {
+    .hero-box-bottom-right p {
+        writing-mode: initial !important;
+        -webkit-writing-mode: initial !important;
+        transform: rotate(0deg) !important;
+        -webkit-transform: rotate(0deg) !important;
+    }
+}
+
+/* --- <360px : small mobile --- */
+
+@media all and (max-width: 359px) {
+    .hero-box-bottom-right p {
+        writing-mode: initial !important;
+        -webkit-writing-mode: initial !important;
+        transform: rotate(0deg) !important;
+        -webkit-transform: rotate(0deg) !important;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+    .hero-box-bottom-right p {
+        writing-mode: initial !important;
+        -webkit-writing-mode: initial !important;
+        transform: rotate(0deg) !important;
+        -webkit-transform: rotate(0deg) !important;
+    }
+}
+
+@media all and (min-width: 576px) and (max-width: 767px) {
+    .hero-box-bottom-right p {
+        writing-mode: initial !important;
+        -webkit-writing-mode: initial !important;
+        transform: rotate(0deg) !important;
+        -webkit-transform: rotate(0deg) !important;
+    }
+}
+
+/* ================================================================
+   WHAT DRIVES US — TABLET + MOBILE ONLY
+   ================================================================ */
+
+/* --- 768-991px : TABLET --- */
+@media all and (min-width: 768px) and (max-width: 991px) {
+    #about-us1 {
+        padding-top: 35px !important;
+        padding-bottom: 25px !important;
+    }
+
+    #about-us1 .about-right-image-wrap {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #about-us1 .about-left {
+        padding: 0 25px !important;
+        margin: 0 !important;
+    }
+
+    #about-us1 .about-left h2 {
+        margin-top: 0 !important;
+        margin-bottom: 20px !important;
+    }
+
+    #about-us1 .vision-row {
+        margin-top: 10px !important;
+        margin-bottom: 0 !important;
+    }
+
+    #about-us1 .vision-row > div {
+        margin-bottom: 20px !important;
+        padding: 0 20px !important;
+    }
+
+    #about-us1 .vision-row h2 {
+        margin: 0 0 7px !important;
+    }
+
+    #about-us1 .vision-row h5 {
+        margin: 0 0 8px !important;
+    }
+
+    #about-us1 .vision-row p {
+        margin: 0 !important;
+    }
+}
+
+/* --- 576-767px : LARGE MOBILE / SMALL TABLET --- */
+@media all and (min-width: 576px) and (max-width: 767px) {
+    #about-us1 {
+        padding-top: 30px !important;
+        padding-bottom: 20px !important;
+    }
+
+    #about-us1 .about-right-image-wrap {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #about-us1 .about-left {
+        padding: 0 20px !important;
+        margin: 0 !important;
+    }
+
+    #about-us1 .about-left h2 {
+        margin-top: 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    #about-us1 .vision-row {
+        margin-top: 5px !important;
+        margin-bottom: 0 !important;
+    }
+
+    #about-us1 .vision-row > div {
+        margin-bottom: 15px !important;
+        padding: 0 15px !important;
+    }
+
+    #about-us1 .vision-row h2 {
+        margin: 0 0 5px !important;
+        font-size: 20px !important;
+    }
+
+    #about-us1 .vision-row h5 {
+        margin: 0 0 6px !important;
+        font-size: 15px !important;
+    }
+
+    #about-us1 .vision-row p {
+        margin: 0 !important;
+        font-size: 12px !important;
+        line-height: 18px !important;
+    }
+}
+
+/* --- 360-575px : MOBILE --- */
+@media all and (min-width: 360px) and (max-width: 575px) {
+    #about-us1 {
+        padding-top: 25px !important;
+        padding-bottom: 20px !important;
+    }
+
+    #about-us1 .about-right-image-wrap {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #about-us1 .about-left {
+        padding: 0 15px !important;
+        margin: 0 !important;
+    }
+
+    #about-us1 .about-left h2 {
+        margin-top: 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    #about-us1 .vision-row {
+        margin-top: 5px !important;
+        margin-bottom: 0 !important;
+    }
+
+    #about-us1 .vision-row > div {
+        margin-bottom: 15px !important;
+        padding: 0 15px !important;
+    }
+
+    #about-us1 .vision-row h2 {
+        margin: 0 0 5px !important;
+        font-size: 20px !important;
+    }
+
+    #about-us1 .vision-row h5 {
+        margin: 0 0 6px !important;
+        font-size: 15px !important;
+    }
+
+    #about-us1 .vision-row p {
+        margin: 0 !important;
+        font-size: 12px !important;
+        line-height: 18px !important;
+    }
+}
+
+/* --- <360px : SMALL MOBILE --- */
+@media all and (max-width: 359px) {
+    #about-us1 {
+        padding-top: 20px !important;
+        padding-bottom: 15px !important;
+    }
+
+    #about-us1 .about-right-image-wrap {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #about-us1 .about-left {
+        padding: 0 12px !important;
+        margin: 0 !important;
+    }
+
+    #about-us1 .about-left h2 {
+        margin-top: 0 !important;
+        margin-bottom: 12px !important;
+    }
+
+    #about-us1 .vision-row {
+        margin-top: 5px !important;
+    }
+
+    #about-us1 .vision-row > div {
+        margin-bottom: 12px !important;
+        padding: 0 10px !important;
+    }
+
+    #about-us1 .vision-row h2 {
+        margin: 0 0 4px !important;
+        font-size: 18px !important;
+    }
+
+    #about-us1 .vision-row h5 {
+        margin: 0 0 5px !important;
+        font-size: 14px !important;
+    }
+
+    #about-us1 .vision-row p {
+        margin: 0 !important;
+        font-size: 11px !important;
+        line-height: 17px !important;
+    }
+}

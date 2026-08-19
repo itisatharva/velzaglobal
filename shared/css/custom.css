@@ -1555,6 +1555,12 @@ a.sk__portfolio-thumblink {
         display: none;
     }
 }
+
+/* Reduce extra space before SEND US A MESSAGE */
+#vg-message {
+    padding-top: 0px !important;
+    padding-bottom: 60px !important;
+}
 #vg-message .sk__heading-spacer-l.spacing {
     padding-bottom: 20px !important;
 }
@@ -1817,6 +1823,33 @@ h1.h2-large {
         margin-bottom: 0.5em;
     }
 }
+#our-portfolio2 {
+    padding-top: 50px !important;
+    padding-bottom: 20px !important;
+}
+
+#our-portfolio2 .sk__heading-spacer-l {
+    padding-bottom: 50px !important;
+}
+
+#our-portfolio {
+    padding-top: 50px !important;
+}
+
+#our-portfolio .sk__heading-spacer-l {
+    padding-bottom: 50px !important;
+}
+
+/* OUR PORTFOLIO — reduce extra top space */
+#our-portfolio1 {
+    padding-top: 50px !important;
+    padding-bottom: 80px !important;
+}
+
+#our-portfolio1 .sk__heading-spacer-l {
+    padding-bottom: 50px !important;
+}
+
 #our-portfolio1,
 #our-essentials {
     padding-left: 0;
@@ -1876,6 +1909,10 @@ h1.h2-large {
    #our-portfolio1 / #our-essentials used elsewhere.
    The full-card (Rosso Caffè) row below is left alone.
    ====================================================== */
+#our-rosso-collection {
+    padding-top: 50px !important;
+    padding-bottom: 80px !important;
+}
 
 #our-portfolio2,
 #our-portfolio2 .sk__portfolio-thumbs {
