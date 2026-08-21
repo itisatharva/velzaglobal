@@ -97,8 +97,8 @@
     -webkit-transform-origin: 50% 70%;
     -ms-transform-origin: 50% 70%;
     transform-origin: 50% 70%;
-    -webkit-animation: slowZoom 3s ease-out 0s forwards;
-    animation: slowZoom 3s ease-out 0s forwards;
+    -webkit-animation: slowZoom 1.6s ease-out 0s forwards;
+    animation: slowZoom 1.6s ease-out 0s forwards;
 }
 [class*="sk__fade-in-"],
 .sk__mobile-main-logo,

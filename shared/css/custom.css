@@ -103,6 +103,7 @@ footer svg {
     top: 36px;
     right: 120px;
     z-index: 9999;
+    opacity: 0;
     transition: right 0.4s ease 0s;
 }
 .sk__country-switcher-trigger {
