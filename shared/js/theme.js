@@ -230,20 +230,18 @@ $(document).ready(function () {
                     : theDirection == "right"
                       ? ((xFrom = 20), (yFrom = 0))
                       : theDirection == "top" && ((xFrom = 0), (yFrom = -120)),
-                    gsap
-                        .timeline()
-                        .fromTo(
-                            element,
-                            { opacity: 0, xPercent: xFrom, yPercent: yFrom },
-                            {
-                                opacity: 1,
-                                xPercent: 0,
-                                yPercent: 0,
-                                duration: theDuration,
-                                stagger: theStagger,
-                                delay: theDelay,
-                            },
-                        ));
+                    gsap.timeline().fromTo(
+                        element,
+                        { opacity: 0, xPercent: xFrom, yPercent: yFrom },
+                        {
+                            opacity: 1,
+                            xPercent: 0,
+                            yPercent: 0,
+                            duration: theDuration,
+                            stagger: theStagger,
+                            delay: theDelay,
+                        },
+                    ));
             }
         });
     }
@@ -425,15 +423,13 @@ $(document).ready(function () {
                             .css("width"),
                     );
                     ((newWidth = newWidth + 30),
-                        element
-                            .find(".sk__animated-headline-words")
-                            .css({
-                                width: newWidth,
-                                marginLeft: "-18px",
-                                paddingLeft: "15px",
-                                marginRight: "-18px",
-                                paddingRight: "15px",
-                            }),
+                        element.find(".sk__animated-headline-words").css({
+                            width: newWidth,
+                            marginLeft: "-18px",
+                            paddingLeft: "15px",
+                            marginRight: "-18px",
+                            paddingRight: "15px",
+                        }),
                         setTimeout(function () {
                             switchVisibility2(nextWord);
                         }, duration));
@@ -495,30 +491,26 @@ $(document).ready(function () {
                 if (heroActiveSlideFirstLoad.length) {
                     let firstLoadSlideDelay = effectsMasterDelay2 - 1.2;
                     (firstLoadSlideDelay < 0 && (firstLoadSlideDelay = 0),
-                        gsap
-                            .timeline()
-                            .fromTo(
-                                heroActiveSlideFirstLoad,
-                                { transform: "matrix(1, 0, 0, 1, 0, 0)" },
-                                {
-                                    transform: "matrix(1.1, 0, 0, 1.1, 0, 0)",
-                                    duration: heroSliderSlidingAnimationTime,
-                                    delay: firstLoadSlideDelay,
-                                },
-                            ));
-                }
-                let heroActiveSlideNotFirstLoad = $(finalSelectorNotFirstLoad);
-                heroActiveSlideNotFirstLoad.length &&
-                    gsap
-                        .timeline()
-                        .fromTo(
-                            heroActiveSlideNotFirstLoad,
+                        gsap.timeline().fromTo(
+                            heroActiveSlideFirstLoad,
                             { transform: "matrix(1, 0, 0, 1, 0, 0)" },
                             {
                                 transform: "matrix(1.1, 0, 0, 1.1, 0, 0)",
                                 duration: heroSliderSlidingAnimationTime,
+                                delay: firstLoadSlideDelay,
                             },
-                        );
+                        ));
+                }
+                let heroActiveSlideNotFirstLoad = $(finalSelectorNotFirstLoad);
+                heroActiveSlideNotFirstLoad.length &&
+                    gsap.timeline().fromTo(
+                        heroActiveSlideNotFirstLoad,
+                        { transform: "matrix(1, 0, 0, 1, 0, 0)" },
+                        {
+                            transform: "matrix(1.1, 0, 0, 1.1, 0, 0)",
+                            duration: heroSliderSlidingAnimationTime,
+                        },
+                    );
             };
             var zoomingHero = zoomingHero2;
             let phaseOneDelay = effectsMasterDelay - 0.5;
@@ -544,83 +536,75 @@ $(document).ready(function () {
                         ".carousel-item.active.first-load .animated-element.phase-1",
                 )),
                     phase1FirstLoad[n].length &&
-                        gsap
-                            .timeline()
-                            .fromTo(
-                                phase1FirstLoad[n],
-                                { opacity: 0, yPercent: 120 },
-                                {
-                                    opacity: 1,
-                                    yPercent: 0,
-                                    duration: 0.4,
-                                    stagger: 0.3,
-                                    delay: phaseOneDelay,
-                                },
-                            ),
+                        gsap.timeline().fromTo(
+                            phase1FirstLoad[n],
+                            { opacity: 0, yPercent: 120 },
+                            {
+                                opacity: 1,
+                                yPercent: 0,
+                                duration: 0.4,
+                                stagger: 0.3,
+                                delay: phaseOneDelay,
+                            },
+                        ),
                     (phase1Regular[n] = $(
                         "#sk__hero-carousel-slider .hero-slide-" +
                             n +
                             ".carousel-item.active:not(.first-load) .animated-element.phase-1",
                     )),
                     phase1Regular[n].length &&
-                        gsap
-                            .timeline()
-                            .fromTo(
-                                phase1Regular[n],
-                                { opacity: 0, yPercent: 120 },
-                                {
-                                    opacity: 1,
-                                    yPercent: 0,
-                                    duration: 0.4,
-                                    stagger: 0.3,
-                                },
-                            ),
+                        gsap.timeline().fromTo(
+                            phase1Regular[n],
+                            { opacity: 0, yPercent: 120 },
+                            {
+                                opacity: 1,
+                                yPercent: 0,
+                                duration: 0.4,
+                                stagger: 0.3,
+                            },
+                        ),
                     (phase2FirstLoad[n] = $(
                         "#sk__hero-carousel-slider .hero-slide-" +
                             n +
                             ".carousel-item.active.first-load .animated-element.phase-2",
                     )),
                     phase2FirstLoad[n].length &&
-                        gsap
-                            .timeline()
-                            .fromTo(
-                                phase2FirstLoad[n],
-                                { opacity: 0, xPercent: 20 },
-                                {
-                                    opacity: 1,
-                                    xPercent: 0,
-                                    duration: 0.4,
-                                    stagger: {
-                                        amount: 0.25,
-                                        from: "end",
-                                        grid: "auto",
-                                    },
-                                    delay: phaseTwoDelay,
+                        gsap.timeline().fromTo(
+                            phase2FirstLoad[n],
+                            { opacity: 0, xPercent: 20 },
+                            {
+                                opacity: 1,
+                                xPercent: 0,
+                                duration: 0.4,
+                                stagger: {
+                                    amount: 0.25,
+                                    from: "end",
+                                    grid: "auto",
                                 },
-                            ),
+                                delay: phaseTwoDelay,
+                            },
+                        ),
                     (phase2Regular[n] = $(
                         "#sk__hero-carousel-slider .hero-slide-" +
                             n +
                             ".carousel-item.active:not(.first-load) .animated-element.phase-2",
                     )),
                     phase2Regular[n].length &&
-                        gsap
-                            .timeline()
-                            .fromTo(
-                                phase2Regular[n],
-                                { opacity: 0, xPercent: 20 },
-                                {
-                                    opacity: 1,
-                                    xPercent: 0,
-                                    duration: 0.4,
-                                    stagger: {
-                                        amount: 0.25,
-                                        from: "end",
-                                        grid: "auto",
-                                    },
-                                    delay: 1.1,
+                        gsap.timeline().fromTo(
+                            phase2Regular[n],
+                            { opacity: 0, xPercent: 20 },
+                            {
+                                opacity: 1,
+                                xPercent: 0,
+                                duration: 0.4,
+                                stagger: {
+                                    amount: 0.25,
+                                    from: "end",
+                                    grid: "auto",
                                 },
-                            ),
+                                delay: 1.1,
+                            },
+                        ),
                     n++);
         }
     }
@@ -665,18 +649,16 @@ $(document).ready(function () {
                     ".hero-slide-" + n + " .animated-element.phase-1",
                 )),
                     phase1[n].length &&
-                        gsap
-                            .timeline()
-                            .to(
-                                phase1[n],
-                                {
-                                    opacity: 0,
-                                    yPercent: 120,
-                                    delay: 0.15,
-                                    duration: 0.5,
-                                },
-                                "<",
-                            ),
+                        gsap.timeline().to(
+                            phase1[n],
+                            {
+                                opacity: 0,
+                                yPercent: 120,
+                                delay: 0.15,
+                                duration: 0.5,
+                            },
+                            "<",
+                        ),
                     (phase2[n] = $(
                         ".hero-slide-" + n + " .animated-element.phase-2",
                     )),
@@ -1387,16 +1369,14 @@ $(document).ready(function () {
     ) {
         let socIconsDelay = effectsMasterDelay - 0.3;
         socIconsDelay < 0 && (socIconsDelay = 0);
-        let heroSocialIcons = gsap
-            .timeline()
-            .to(".hero-socials span", {
-                scale: 1,
-                opacity: 1,
-                duration: 1.3,
-                ease: "power1.out",
-                delay: socIconsDelay,
-                stagger: 0.05,
-            });
+        let heroSocialIcons = gsap.timeline().to(".hero-socials span", {
+            scale: 1,
+            opacity: 1,
+            duration: 1.3,
+            ease: "power1.out",
+            delay: socIconsDelay,
+            stagger: 0.05,
+        });
     }
     if (
         ($(
@@ -2112,6 +2092,14 @@ $(document).ready(function () {
     let mainMenuBar = $(".sk__mobile-menu-bar");
     mainMenuBar.length &&
         gsap.to(mainMenuBar, {
+            opacity: 1,
+            duration: 0.6,
+            ease: "power1.out",
+            delay: 0.3,
+        });
+    let countrySwitcherWrap = $(".sk__country-switcher-wrap");
+    countrySwitcherWrap.length &&
+        gsap.to(countrySwitcherWrap, {
             opacity: 1,
             duration: 0.6,
             ease: "power1.out",

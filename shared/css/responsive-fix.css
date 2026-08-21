@@ -1030,6 +1030,39 @@ body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
    Scoped to the portfolio sections already present in custom.css.
    ================================================================ */
 
+/* #our-portfolio2's heading ("EXPLORE OUR DIVERSE COLLECTION") sits in a
+   plain .row nested directly inside another .row, as a flex-sibling of
+   the .col that holds the card grid. Bootstrap's .col defaults to
+   flex-basis: 0%, so it only gets a share of the leftover space once its
+   sibling's size is settled - and a bare nested .row has no col sizing
+   of its own, so it falls back to its content's natural width. On
+   mobile the heading text can't shrink below the viewport width, so it
+   claims the entire row and leaves the card grid's column zero width
+   (the section collapses to nothing instead of "not loading"). Forcing
+   the column onto its own full-width line fixes it without touching
+   the markup. */
+@media all and (max-width: 991px) {
+    #our-portfolio2 .sk__portfolio-thumbs.col {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* The cards' reveal animation (massFadeIn -> GSAP ScrollTrigger) sets
+   them to opacity:0 / translated off-screen and only plays them in once
+   its trigger fires. On mobile the trigger was created against the
+   collapsed 0-width layout above and never plays the "to" state, so the
+   cards stay invisible forever instead of just failing to load. Force
+   them visible so the section always renders regardless of whether that
+   animation fires. */
+@media all and (max-width: 991px) {
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
 @media all and (min-width: 768px) and (max-width: 991px) {
     #our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item,
     #our-essentials .sk__portfolio-wrapper .sk__portfolio-item,
@@ -1067,6 +1100,23 @@ body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
         width: 50% !important;
         flex: 0 0 50% !important;
         max-width: 50% !important;
+    }
+}
+
+/* #our-portfolio2's 4th card (Rosso Caffè) carries a separate .full-card
+   class that custom.css always keeps at 100% width (both by itself and
+   inside custom.css's own @media max-width:575 bracket) so it reads as a
+   banner row. On mobile we want all 4 cards in one even 2x2 grid instead,
+   so give it matching selector specificity (ID + 3 classes, same as
+   custom.css's rules) at every one of the breakpoints above so it always
+   wins on source order instead of losing to whichever custom.css bracket
+   is also active. */
+@media all and (max-width: 991px) {
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item.full-card {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        padding: 0 !important;
     }
 }
 
@@ -1761,6 +1811,25 @@ body.sk__nav-open:not(:has(.hc-offcanvas-nav.nav-open))
 @media all and (min-width: 992px) {
     #our-portfolio1 .sk__portfolio-wrapper .sk__portfolio-item {
         padding: 0 20px !important;
+    }
+}
+
+/* Portfolio page top row only (Luxury Beverages / Coffee Collection /
+   Lifestyle Essentials) - the 4th card (Rosso Caffè) wraps to its own
+   row and keeps the default full size. .sk__portfolio-thumblink-image
+   already uses object-fit: cover, so shrinking the card's aspect ratio
+   re-crops the image instead of stretching it. */
+@media all and (min-width: 992px) {
+    #our-portfolio2 .custom-portfolio > .sk__portfolio-item:nth-child(-n + 3) {
+        padding: 0 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    #our-portfolio2
+        .custom-portfolio
+        > .sk__portfolio-item:nth-child(-n + 3)
+        a.sk__portfolio-thumblink {
+        padding-top: 150% !important;
     }
 }
 
