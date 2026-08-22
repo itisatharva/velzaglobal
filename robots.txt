@@ -82,12 +82,27 @@ Disallow: /502
 Disallow: /503
 Disallow: /504
 
-# Third-party vendor libraries
-Disallow: /shared/vendor/
-
 # Region source directories are served by internal rewrite only
 # and return 404 if requested directly.
 Disallow: /regions/
+
+# NOT blocked: /shared/vendor/
+# This used to carry a blanket "Disallow: /shared/vendor/". It was
+# costing 196 "blocked internal resource" warnings, because every page
+# renders from that directory - bootstrap, jQuery, GSAP + ScrollTrigger,
+# ScrollSmoother, ScrollToPlugin, slick, parallax, icomoon, the
+# offcanvas nav and the contact form's own CSS/JS. Google has to fetch
+# CSS and JS to render a page; blocking them makes it index the site as
+# it looks with no styling and no script, which is a ranking risk and
+# buys nothing - minified library source is not competitive content.
+# Only the server-side endpoints below stay out, and note that they are
+# enforced by .htaccess (403), not by this file. robots.txt is a crawl
+# hint, never an access control.
+Disallow: /shared/vendor/simple-forms/config.php
+Disallow: /shared/vendor/simple-forms/core/
+Disallow: /shared/vendor/simple-forms/help/
+Disallow: /shared/vendor/simple-forms/email-templates/
+Disallow: /shared/vendor/simple-forms/sendmail.php
 
 
 # ============================================================
