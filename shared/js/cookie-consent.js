@@ -8,7 +8,7 @@ window.VelzaCookieConsent = (function (window2, document2) {
             analyticsId: "",
             enableAnalytics: !0,
             enableGtmConsentMode: !0,
-            privacyPolicyUrl: "/privacypolicy",
+            privacyPolicyUrl: "/privacy-policy",
             cookiePolicyUrl: "",
             showSettingsButton: !0,
         },

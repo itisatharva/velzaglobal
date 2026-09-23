@@ -113,10 +113,10 @@ request  →  root .htaccess
                           ↓
                   internal rewrite → /regions/<code>/…
                           ↓
-                  regions/<code>/.htaccess resolves /aboutus → aboutus.html
+                  regions/<code>/.htaccess resolves /about-us → about-us.html
 ```
 
-The address bar keeps showing `https://www.velzaglobal.com/aboutus` throughout. Region folders return 404 if requested directly, so Google can't index three duplicate copies.
+The address bar keeps showing `https://www.velzaglobal.com/about-us` throughout. Region folders return 404 if requested directly, so Google can't index three duplicate copies.
 
 The `?_r=` override deliberately outranks the IP — without it the header menu could never move a visitor off their geo region at all.
 
@@ -239,9 +239,9 @@ risk, not breakage. Take the full backup, verify it, then empty
 curl -sI https://www.velzaglobal.com/ | head -1                        # 200
 
 # every clean URL resolves (catches an [L]/[END] mistake)
-for p in aboutus portfolio contactus luxurybeverage coffeecollection \
-         pureitalianspirits lifestyleessentials rossocaffe news news1 \
-         news2 privacypolicy termsandconditions; do
+for p in about-us portfolio contact-us luxury-beverage coffee-collection \
+         pure-italian-spirits lifestyle-essentials rosso-caffe news tonino-lamborghini-velza-global-partnership-philippines \
+         velza-global-tonino-lamborghini-partnership-india privacy-policy terms-and-conditions; do
   echo -n "$p -> "; curl -sI "https://www.velzaglobal.com/$p" | head -1
 done                                                                    # all 200
 
@@ -258,7 +258,7 @@ for f in favicon.ico apple-touch-icon.png site.webmanifest robots.txt sitemap.xm
 done                                                                    # all 200
 
 # region folders are NOT public
-curl -sI https://www.velzaglobal.com/regions/in/aboutus | head -1        # 404
+curl -sI https://www.velzaglobal.com/regions/in/about-us | head -1        # 404
 curl -sI https://www.velzaglobal.com/regions/hk/index.html | head -1     # 404
 
 # homepage canonicalisation
@@ -286,8 +286,8 @@ curl -s -H "CF-IPCountry: IN" https://www.velzaglobal.com/ \
 
 # legacy redirects + old event URL
 curl -sI https://www.velzaglobal.com/about-us.html          | head -1    # 301
-curl -sI https://www.velzaglobal.com/aboutus.html           | head -1    # 301
-curl -sI https://velzaglobal.com/aboutus                    | head -1    # 301 → www
+curl -sI https://www.velzaglobal.com/about-us.html           | head -1    # 301
+curl -sI https://velzaglobal.com/about-us                    | head -1    # 301 → www
 curl -sI https://www.velzaglobal.com/Ph/Ph/Events/PR/       | head -1    # 200
 curl -sI https://www.velzaglobal.com/no-such-page           | head -1    # 404
 ```
@@ -369,7 +369,7 @@ Found by running the real `.htaccess` under Apache 2.4 and asserting on every ro
 
 1. ~~`theme-preview-color-styler.css`~~ and ~~`contact-handshake.webp`~~ — **not actually broken.** Both references are inside HTML comments on all 69 pages, so neither is ever requested. The earlier claim of "a 404 on every page view" was wrong.
 
-2. **`apple-touch-icon-*-precomposed.png`** — the four missing icons were in `regions/in/portfolio.html` (not `comingsoon.html`). **Fixed**: that page now uses the same icon block as `hk`/`ph`, all of which exist.
+2. **`apple-touch-icon-*-precomposed.png`** — the four missing icons were in `regions/in/portfolio.html` (not `coming-soon.html`). **Fixed**: that page now uses the same icon block as `hk`/`ph`, all of which exist.
 
 3. **`regions/in/index.html` is still a stale revision**, hard-coding `page-luxury-beverage.html`, `page-lifestyle-essentials.html` and `page-pure-italian-spirits.html`. The `.htaccess` section 5 301s keep them resolving. `regions/in/portfolio.html` also still carries Skilltech demo metadata (`og:site_name` = "SkilltechWebDesign.com", theme boilerplate `og:description`). The real fix is re-syncing both pages from `hk/`.
 

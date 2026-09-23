@@ -25,7 +25,7 @@ RewriteEngine On
 # per-directory rewrite ruleset instead of inheriting it, so the root's
 # section 2 guard never runs for paths inside this folder.
 # THE_REQUEST holds the original request line, so an internal rewrite
-# from /aboutus still reads "GET /aboutus" here and passes through.
+# from /about-us still reads "GET /about-us" here and passes through.
 RewriteCond %{THE_REQUEST} \s/+regions/ [NC]
 RewriteRule ^ - [R=404,L]
 

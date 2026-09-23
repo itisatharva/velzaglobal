@@ -25,7 +25,7 @@ Sitemap: https://www.velzaglobal.com/sitemap.xml
 # most-specific group that names it and ignores every other group,
 # including "User-agent: *". Giving each bot its own "Allow: /" group -
 # as this file used to - therefore exempted every named bot from the
-# Disallow list below: Googlebot was free to crawl /404, /comingsoon
+# Disallow list below: Googlebot was free to crawl /404, /coming-soon
 # and /shared/vendor/.
 #
 # Stacking the user-agent lines in front of ONE rule set is the spec's
@@ -70,7 +70,7 @@ Allow: /
 # so these Disallow paths must be extensionless too.
 
 # Unfinished / placeholder
-Disallow: /comingsoon
+Disallow: /coming-soon
 
 # Error pages
 Disallow: /400

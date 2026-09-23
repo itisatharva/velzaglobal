@@ -16,7 +16,7 @@
 #
 # GUARD RULES USE [L], NEVER [END].
 # [END] halts Apache before it reaches regions/<code>/.htaccess and
-# every clean URL (/aboutus) would 404. Do not "tidy" this.
+# every clean URL (/about-us) would 404. Do not "tidy" this.
 # ======================================================================
 
 Options -Indexes
@@ -82,33 +82,34 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # ----------------------------------------------------------------------
 # 5. LEGACY URL REDIRECTS
-#    The first block is your original list. The second block covers the
+#    The first block sends the old concatenated slugs (pre-SEO-rename)
+#    to their new hyphenated canonical URLs. The second block covers the
 #    four page-*.html links still hard-coded inside the India pages -
 #    without these, Indian visitors hit a 404 on those links.
 # ----------------------------------------------------------------------
-RewriteRule ^about-us(?:\.html?)?$              /aboutus              [R=301,L,NC]
-RewriteRule ^coffee-collection(?:\.html?)?$     /coffeecollection     [R=301,L,NC]
-RewriteRule ^coming-soon(?:\.html?)?$           /comingsoon           [R=301,L,NC]
-RewriteRule ^contact-us(?:\.html?)?$            /contactus            [R=301,L,NC]
-RewriteRule ^lifestyle-essentials(?:\.html?)?$  /lifestyleessentials  [R=301,L,NC]
-RewriteRule ^luxury-beverage(?:\.html?)?$       /luxurybeverage       [R=301,L,NC]
-RewriteRule ^news-1(?:\.html?)?$                /news1                [R=301,L,NC]
-RewriteRule ^news-2(?:\.html?)?$                /news2                [R=301,L,NC]
-RewriteRule ^privacy-policy(?:\.html?)?$        /privacypolicy        [R=301,L,NC]
-RewriteRule ^pure-italian-spirits(?:\.html?)?$  /pureitalianspirits   [R=301,L,NC]
-RewriteRule ^rosso-caffe(?:\.html?)?$           /rossocaffe           [R=301,L,NC]
-RewriteRule ^terms-and-conditions(?:\.html?)?$  /termsandconditions   [R=301,L,NC]
+RewriteRule ^aboutus(?:\.html?)?$              /about-us             [R=301,L,NC]
+RewriteRule ^coffeecollection(?:\.html?)?$     /coffee-collection    [R=301,L,NC]
+RewriteRule ^comingsoon(?:\.html?)?$           /coming-soon          [R=301,L,NC]
+RewriteRule ^contactus(?:\.html?)?$            /contact-us           [R=301,L,NC]
+RewriteRule ^lifestyleessentials(?:\.html?)?$  /lifestyle-essentials [R=301,L,NC]
+RewriteRule ^luxurybeverage(?:\.html?)?$       /luxury-beverage      [R=301,L,NC]
+RewriteRule ^news-?1(?:\.html?)?$              /tonino-lamborghini-velza-global-partnership-philippines [R=301,L,NC]
+RewriteRule ^news-?2(?:\.html?)?$              /velza-global-tonino-lamborghini-partnership-india [R=301,L,NC]
+RewriteRule ^privacypolicy(?:\.html?)?$        /privacy-policy       [R=301,L,NC]
+RewriteRule ^pureitalianspirits(?:\.html?)?$   /pure-italian-spirits [R=301,L,NC]
+RewriteRule ^rossocaffe(?:\.html?)?$           /rosso-caffe          [R=301,L,NC]
+RewriteRule ^termsandconditions(?:\.html?)?$   /terms-and-conditions [R=301,L,NC]
 RewriteRule ^page-new-news(?:\.html?)?$         /news                 [R=301,L,NC]
 
-RewriteRule ^page-luxury-beverage(?:\.html?)?$      /luxurybeverage      [R=301,L,NC]
-RewriteRule ^page-lifestyle-essentials(?:\.html?)?$ /lifestyleessentials [R=301,L,NC]
-RewriteRule ^page-pure-italian-spirits(?:\.html?)?$ /pureitalianspirits  [R=301,L,NC]
-RewriteRule ^page-service-item(?:\.html?)?$         /portfolio           [R=301,L,NC]
+RewriteRule ^page-luxury-beverage(?:\.html?)?$      /luxury-beverage      [R=301,L,NC]
+RewriteRule ^page-lifestyle-essentials(?:\.html?)?$ /lifestyle-essentials [R=301,L,NC]
+RewriteRule ^page-pure-italian-spirits(?:\.html?)?$ /pure-italian-spirits [R=301,L,NC]
+RewriteRule ^page-service-item(?:\.html?)?$         /portfolio            [R=301,L,NC]
 
 # ----------------------------------------------------------------------
 # 6. STRIP .html / .htm FROM PUBLIC URLS
 #    regions/hk is used as the page-existence oracle: all three regions
-#    carry the identical set of 23 page names.
+#    carry the identical set of 28 page names.
 # ----------------------------------------------------------------------
 #    The index rules MUST come first. regions/hk/index.html exists, so
 #    the generic rule below matches /index.html too and would 301 it to
