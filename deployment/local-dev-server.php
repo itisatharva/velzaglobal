@@ -12,7 +12,7 @@
  * It reproduces, on your laptop, what the real server has to do:
  *   1. pick a region (?_r= override  ->  country  ->  hk fallback)
  *   2. internally serve regions/<code>/...  WITHOUT changing the URL
- *   3. resolve extensionless URLs (/aboutus -> aboutus.html)
+ *   3. resolve extensionless URLs (/about-us -> about-us.html)
  *   4. serve /region/*.js from the shared root folder
  *
  * Because you have no real IP geolocation locally, force a region with:

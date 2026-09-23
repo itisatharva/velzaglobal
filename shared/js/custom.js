@@ -37,4 +37,31 @@
             document.addEventListener("keydown", function (e) {
                 e.key === "Escape" && closeMenu();
             }));
+    }),
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".sk__faq-accordion").forEach(function (accordion) {
+            var items = accordion.querySelectorAll(".sk__faq-item");
+            items.forEach(function (item) {
+                var toggle = item.querySelector(".sk__faq-toggle");
+                var answer = item.querySelector(".sk__faq-answer");
+                if (!toggle || !answer) return;
+                if (item.classList.contains("is-open")) {
+                    toggle.setAttribute("aria-expanded", "true");
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+                toggle.addEventListener("click", function () {
+                    var isOpen = item.classList.contains("is-open");
+                    items.forEach(function (other) {
+                        other.classList.remove("is-open");
+                        other.querySelector(".sk__faq-toggle").setAttribute("aria-expanded", "false");
+                        other.querySelector(".sk__faq-answer").style.maxHeight = null;
+                    });
+                    if (!isOpen) {
+                        item.classList.add("is-open");
+                        toggle.setAttribute("aria-expanded", "true");
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+        });
     }));
