@@ -154,6 +154,7 @@
         <link href="/shared/css/custom.css" rel="stylesheet" />
         <link href="/shared/css/responsive-fix.css" rel="stylesheet" />
         <link href="/shared/css/cookie-consent.css" rel="stylesheet" />
+        <link href="/shared/css/darkstar-effects.css?v=8" rel="stylesheet" />
 
         <!-- Theme Preview Only CSS -->
         <!-- <link
@@ -565,6 +566,7 @@
                             src="/shared/images/WHAT DRIVES US.webp"
                             alt="What Drives Us – Velza Global’s passion for excellence, global brand partnerships, premium FMCG, and luxury lifestyle experiences."
                             class="sk__absolute sk__image-back-cover"
+                            data-ds-parallax="0.12"
                         />
                         <!-- Gradient overlay so the right/bottom text areas stay black, matching current look -->
                         <div
@@ -720,6 +722,7 @@
                                     <div
                                         id="sk__parallax-layers-story"
                                         class="sk__rectangles-full-left-parallax-layers"
+                                        data-ds-layers="mouse"
                                     >
                                         <!-- main background deco -->
                                         <div
@@ -817,6 +820,7 @@
                             <div class="row sk__heading-spacer-l">
                                 <div
                                     class="col-12 col-xl-10 offset-xl-1 text-center"
+                                    data-ds-anim="fade-up"
                                 >
                                     <h2 class="h1-small mb-3 pt-4 pb-1">
                                         OUR PHILOSOPHY
@@ -955,6 +959,7 @@
                             <div class="row sk__heading-spacer-l">
                                 <div
                                     class="col-12 col-xl-10 offset-xl-1 text-center"
+                                    data-ds-anim="reveal-up"
                                 >
                                     <h2 class="h1-small mb-3 pt-4 pb-1">
                                         OUR VALUES
@@ -964,6 +969,9 @@
 
                             <div
                                 class="row sk__iconboxes-wrapper text-center sk__flex-center-x"
+                                data-ds-stagger="text-up"
+                                data-ds-items=".sk__iconbox h4, .sk__iconbox > p"
+                                data-ds-each="0.12"
                             >
                                 <div class="col-12 col-sm-6 col-lg-4">
                                     <div class="sk__iconbox">
@@ -1050,6 +1058,7 @@
                             <div class="row sk__heading-spacer-l">
                                 <div
                                     class="col-12 col-xl-10 offset-xl-1 text-center"
+                                    data-ds-anim="reveal-up"
                                 >
                                     <h2 class="h1-small mb-3 pt-4 pb-1">
                                         WHY VELZA?
@@ -1057,11 +1066,11 @@
                                 </div>
                             </div>
 
-                            <div class="row sk__features">
+                            <div class="row sk__features" data-ds-stagger="text-up" data-ds-items=".sk__feature1 > h2, .sk__feature1 > p" data-ds-each="0.12">
                                 <div
                                     class="col-x1-12 col-sm-6 col-md-4 sk__feature-col1"
                                 >
-                                    <div class="sk__feature1 text-center">
+                                    <div class="sk__feature1 text-center" data-ds-hover="lift">
                                         <h2>Luxury Positioning</h2>
                                         <!-- <div class="colorline-deco">
                                             <div
@@ -1080,7 +1089,7 @@
                                 <div
                                     class="col-x1-12 col-sm-6 col-md-4 sk__feature-col1"
                                 >
-                                    <div class="sk__feature1 text-center">
+                                    <div class="sk__feature1 text-center" data-ds-hover="lift">
                                         <h2>Global Partnerships</h2>
 
                                         <p>
@@ -1092,7 +1101,7 @@
                                 <div
                                     class="col-x1-12 col-sm-6 col-md-4 sk__feature-col1"
                                 >
-                                    <div class="sk__feature1 text-center">
+                                    <div class="sk__feature1 text-center" data-ds-hover="lift">
                                         <h2>Manufacturing Excellence</h2>
 
                                         <p>
@@ -1104,7 +1113,7 @@
                                 <div
                                     class="col-xl-4 offset-xl-2 col-lg-6 col-md-6 col-sm-6 sk__feature-col1"
                                 >
-                                    <div class="sk__feature1 text-center">
+                                    <div class="sk__feature1 text-center" data-ds-hover="lift">
                                         <h2>Premium Distribution</h2>
 
                                         <p>
@@ -1117,7 +1126,7 @@
                                 <div
                                     class="col-xl-4 col-lg-6 col-md-6 col-sm-6 sk__feature-col1"
                                 >
-                                    <div class="sk__feature1 text-center">
+                                    <div class="sk__feature1 text-center" data-ds-hover="lift">
                                         <h2>Brand Development</h2>
 
                                         <p>
@@ -1143,6 +1152,7 @@
                             <div class="row sk__heading-spacer-l">
                                 <div
                                     class="col-12 col-xl-10 offset-xl-1 text-center"
+                                    data-ds-anim="fade-up"
                                 >
                                     <h2 class="h1-small mb-3 pt-4 pb-1">
                                         LOOKING AHEAD
@@ -1163,6 +1173,7 @@
                                 </div>
                                 <div
                                     class="col-12 col-lg-12 text-center"
+                                    data-ds-anim="fade-up"
                                     style="margin-top: 40px"
                                 >
                                     <a
@@ -1480,6 +1491,7 @@
         <script src="/shared/js/theme.js"></script>
         <script src="/shared/js/responsive-fix.js"></script>
         <script src="/shared/js/cookie-consent.js"></script>
+        <script src="/shared/js/darkstar-effects.js?v=8"></script>
     
         <!-- Velza Global Regional Architecture -->
         <script src="/routing/region-config.js"></script>

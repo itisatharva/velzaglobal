@@ -276,6 +276,7 @@
         <link href="/shared/css/custom.css" rel="stylesheet" />
         <link href="/shared/css/responsive-fix.css" rel="stylesheet" />
         <link href="/shared/css/cookie-consent.css" rel="stylesheet" />
+        <link href="/shared/css/darkstar-effects.css?v=8" rel="stylesheet" />
 
         <!-- <link
             href="/shared/css/theme-preview-color-styler.css"
@@ -907,6 +908,9 @@
                             <div class="row">
                                 <div
                                     class="col-12 col-lg-6 sk__rectangles-left about-left text-center text-sm-start"
+                                    data-ds-stagger="fade-up"
+                                    data-ds-items=":scope > h2, :scope > p, :scope > .btn"
+                                    data-ds-each="0.12"
                                 >
                                     <!-- parallax area -->
                                     <div
@@ -1010,6 +1014,7 @@
                                 </div>
                                 <div
                                     class="col-12 col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0"
+                                    data-ds-anim="fade-up"
                                 >
                                     <p>
                                         We are not simply distributing products;
@@ -1038,7 +1043,7 @@
                     >
                         <div class="container-fluid">
                             <div class="row text-center">
-                                <div class="col sk__heading-spacer-l">
+                                <div class="col sk__heading-spacer-l" data-ds-anim="fade-up">
                                     <h2
                                         class="h1-small trigger-portfolio-thumbs-entrance"
                                     >
@@ -1632,6 +1637,7 @@
 
         <script src="/shared/js/custom.js"></script>
         <script src="/shared/js/cookie-consent.js"></script>
+        <script src="/shared/js/darkstar-effects.js?v=8"></script>
 
         <!-- Velza Global Regional Architecture -->
         <script src="/routing/region-config.js"></script>
