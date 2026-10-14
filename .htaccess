@@ -106,6 +106,22 @@ RewriteRule ^page-lifestyle-essentials(?:\.html?)?$ /lifestyle-essentials [R=301
 RewriteRule ^page-pure-italian-spirits(?:\.html?)?$ /pure-italian-spirits [R=301,L,NC]
 RewriteRule ^page-service-item(?:\.html?)?$         /portfolio            [R=301,L,NC]
 
+# Regional-folder URLs that never existed. Old hreflang tags pointed
+# crawlers at /india/, /philippines/ and /hong-kong/ copies of each page,
+# but the region is chosen per visitor (section 9), not by URL. Each goes
+# in ONE hop to the clean URL - straight to the hyphenated slug, never
+# via the concatenated-slug rules above. Query strings (incl. ?_r=) pass
+# through unchanged.
+RewriteRule ^(?:india|philippines|hong-kong)/index(?:\.html?)?$                                   /                     [R=301,L,NC]
+RewriteRule ^(?:india|philippines|hong-kong)/(?:about-us|aboutus)(?:\.html?)?$                     /about-us             [R=301,L,NC]
+RewriteRule ^(?:india|philippines|hong-kong)/(?:contact-us|contactus)(?:\.html?)?$                 /contact-us           [R=301,L,NC]
+RewriteRule ^(?:india|philippines|hong-kong)/portfolio(?:\.html?)?$                               /portfolio            [R=301,L,NC]
+RewriteRule ^(?:india|philippines|hong-kong)/(?:coffee-collection|coffeecollection)(?:\.html?)?$   /coffee-collection    [R=301,L,NC]
+RewriteRule ^(?:india|philippines|hong-kong)/(?:luxury-beverage|luxurybeverage)(?:\.html?)?$       /luxury-beverage      [R=301,L,NC]
+RewriteRule ^(?:india|philippines|hong-kong)/(?:lifestyle-essentials|lifestyleessentials)(?:\.html?)?$ /lifestyle-essentials [R=301,L,NC]
+RewriteRule ^(?:india|philippines|hong-kong)/(?:rosso-caffe|rossocaffe)(?:\.html?)?$               /rosso-caffe          [R=301,L,NC]
+RewriteRule ^(?:india|philippines|hong-kong)/(?:pure-italian-spirits|pureitalianspirits)(?:\.html?)?$ /pure-italian-spirits [R=301,L,NC]
+
 # ----------------------------------------------------------------------
 # 6. STRIP .html / .htm FROM PUBLIC URLS
 #    regions/hk is used as the page-existence oracle: all three regions
