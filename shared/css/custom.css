@@ -1161,7 +1161,11 @@ a.sk__portfolio-thumblink {
     font-size: 11px;
     margin: 0 6px;
 }
-.article-nav h5 {
+/* The prev/next title is a link label, not a section of the article, so
+   it is a span rather than a heading. It no longer inherits the base h5
+   type, which is restated in the rule below this one. */
+.article-nav h5,
+.article-nav .article-nav-title {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -1176,9 +1180,189 @@ a.sk__portfolio-thumblink {
     color: #fff;
     transition: 0.35s;
 }
+.article-nav .article-nav-title {
+    font-family: "Poppins", sans-serif;
+    letter-spacing: -0.2px;
+}
+
+/* ----------------------------------------------------------------------
+   HEADING LOOK-ALIKES  (blog + news pages)
+   The tag carries the outline level search engines read: h1 > h2 > h3,
+   with no skipped levels. The class keeps the visual size of the tag it
+   replaced, so the page looks exactly as it did when these were h4/h5/h6.
+   Values mirror the base h4 / h5 / h6 rules in theme.css - keep in sync.
+---------------------------------------------------------------------- */
+h2.vg-look-h5,
+h3.vg-look-h5 {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 33.6px;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+@media all and (max-width: 1399px) {
+    h2.vg-look-h5,
+    h3.vg-look-h5 {
+        font-size: 17px;
+        line-height: 25px;
+    }
+}
+h3.vg-look-h6 {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 3.2px;
+    color: #ffffff;
+}
+h3.vg-look-h4 {
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+    margin-bottom: 1.1875rem;
+}
+h3.vg-look-h4.narrow {
+    letter-spacing: -1.3px;
+}
+@media all and (min-width: 576px) and (max-width: 767px) {
+    h3.vg-look-h4 {
+        font-size: 24px;
+    }
+}
+@media all and (max-width: 575px) {
+    h3.vg-look-h4 {
+        font-size: 22px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+}
+
+/* ----------------------------------------------------------------------
+   ARTICLE READING LAYOUT  (blog + news posts - .sk__single-article only)
+   The post used to span the full container: ~170 characters per line and
+   images taller than a laptop viewport. Text is held to a readable
+   measure and images are capped to a share of the screen height.
+---------------------------------------------------------------------- */
+.sk__single-article .post-content,
+.vg-related-inner,
+.article-navigation .article-nav-wrap {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sk__single-article .post-content h2,
+.sk__single-article .post-content h3 {
+    margin-top: 2.25rem;
+}
+.sk__single-article .post-content > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: min(560px, 65vh);
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 2.25rem auto;
+}
+@media all and (max-width: 767px) {
+    .sk__single-article .post-content > img {
+        max-height: none;
+        border-radius: 8px;
+        margin: 1.5rem auto;
+    }
+    .sk__single-article .post-content h2,
+    .sk__single-article .post-content h3 {
+        margin-top: 1.75rem;
+    }
+}
+@media all and (max-width: 575px) {
+    /* theme.css drops post text to 14px/21px here - too small to read
+       comfortably on a phone. 16px is the mobile body-text baseline. */
+    .sk__single-article .post-content p {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+}
+
+/* FAQ question headings. The h3 only carries the outline level; the
+   button inside keeps rendering exactly as it did without the wrapper. */
+.sk__faq-heading {
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+}
+
+/* ----------------------------------------------------------------------
+   RELATED ARTICLES  (end of every blog + news post)
+---------------------------------------------------------------------- */
+.vg-related {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 48px 0 56px;
+}
+.vg-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 1.25rem;
+}
+.vg-related-card {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.35s ease;
+}
+.vg-related-card:hover {
+    color: #fff;
+    transform: translateY(-4px);
+}
+.vg-related-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 14px;
+}
+.vg-related-meta {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 6px;
+}
+h3.vg-related-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.1px;
+    color: #fff;
+    margin: 0;
+}
+@media all and (max-width: 991px) {
+    .vg-related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media all and (max-width: 575px) {
+    .vg-related-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+/* Side gutters scale with the viewport: 16px on phones, growing to
+   60px on wide screens, so the content fills most of the screen. */
 .article-nav-container {
-    padding-left: 120px;
-    padding-right: 120px;
+    padding-left: clamp(16px, 4vw, 60px);
+    padding-right: clamp(16px, 4vw, 60px);
 }
 .article-nav-wrap {
     display: flex;
@@ -1197,12 +1381,6 @@ a.sk__portfolio-thumblink {
 }
 .article-nav .article-label i {
     color: #ffffff;
-}
-@media (max-width: 768px) {
-    .article-nav-container {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
 }
 @media (max-width: 768px) {
     .article-nav-wrap {
