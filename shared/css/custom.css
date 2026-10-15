@@ -1259,12 +1259,12 @@ h3.vg-look-h4.narrow {
 .sk__single-article .post-content h3 {
     margin-top: 2.25rem;
 }
+/* Full image at its natural aspect ratio - no height cap or cover-crop,
+   which cut the text off banner images like the India partnership one. */
 .sk__single-article .post-content > img {
     display: block;
     width: 100%;
     height: auto;
-    max-height: min(560px, 65vh);
-    object-fit: cover;
     border-radius: 12px;
     margin: 2.25rem auto;
 }

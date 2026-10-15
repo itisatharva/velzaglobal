@@ -93,8 +93,8 @@ RewriteRule ^comingsoon(?:\.html?)?$           /coming-soon          [R=301,L,NC
 RewriteRule ^contactus(?:\.html?)?$            /contact-us           [R=301,L,NC]
 RewriteRule ^lifestyleessentials(?:\.html?)?$  /lifestyle-essentials [R=301,L,NC]
 RewriteRule ^luxurybeverage(?:\.html?)?$       /luxury-beverage      [R=301,L,NC]
-RewriteRule ^news-?1(?:\.html?)?$              /tonino-lamborghini-velza-global-partnership-philippines [R=301,L,NC]
-RewriteRule ^news-?2(?:\.html?)?$              /velza-global-tonino-lamborghini-partnership-india [R=301,L,NC]
+RewriteRule ^news-?1(?:\.html?)?$              /news/tonino-lamborghini-velza-global-partnership-philippines [R=301,L,NC]
+RewriteRule ^news-?2(?:\.html?)?$              /news/velza-global-tonino-lamborghini-partnership-india [R=301,L,NC]
 RewriteRule ^privacypolicy(?:\.html?)?$        /privacy-policy       [R=301,L,NC]
 RewriteRule ^pureitalianspirits(?:\.html?)?$   /pure-italian-spirits [R=301,L,NC]
 RewriteRule ^rossocaffe(?:\.html?)?$           /rosso-caffe          [R=301,L,NC]
@@ -105,6 +105,13 @@ RewriteRule ^page-luxury-beverage(?:\.html?)?$      /luxury-beverage      [R=301
 RewriteRule ^page-lifestyle-essentials(?:\.html?)?$ /lifestyle-essentials [R=301,L,NC]
 RewriteRule ^page-pure-italian-spirits(?:\.html?)?$ /pure-italian-spirits [R=301,L,NC]
 RewriteRule ^page-service-item(?:\.html?)?$         /portfolio            [R=301,L,NC]
+
+# Blog and news posts moved from the site root into /blogs/ and /news/.
+# The old root URLs are indexed and linked externally, so each goes in
+# ONE hop to its new home. The files live in regions/<code>/blogs/ and
+# regions/<code>/news/.
+RewriteRule ^(global-brand-partnership|from-market-opportunity-to-global-expansion|premium-fmcg-product-experience|international-beverage-brands-growing-appeal)(?:\.html?)?$ /blogs/$1 [R=301,L,NC]
+RewriteRule ^(tonino-lamborghini-velza-global-partnership-philippines|velza-global-tonino-lamborghini-partnership-india)(?:\.html?)?$ /news/$1 [R=301,L,NC]
 
 # Regional-folder URLs that never existed. Old hreflang tags pointed
 # crawlers at /india/, /philippines/ and /hong-kong/ copies of each page,
