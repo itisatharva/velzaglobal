@@ -474,6 +474,8 @@
 								================================================== -->
                                                 <div
                                                     class="d-flex sk__articles-wrapper"
+                                                    data-cms="blog-list"
+                                                    data-cms-region="ph"
                                                 >
                                                     <!-- Article -->
                                                     <div
@@ -1018,5 +1020,9 @@
         <!-- Velza Global Regional Architecture -->
         <script src="/routing/region-config.js"></script>
         <script src="/routing/region-switcher.js"></script>
+
+        <!-- Velza CMS: replaces the static cards with published CMS entries when configured
+             (shared/js/velza-cms/cms-config.js). Disabled by default; static cards remain. -->
+        <script type="module" src="/shared/js/velza-cms/content-listing.js"></script>
     </body>
 </html>
