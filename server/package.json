@@ -1,0 +1,11 @@
+{
+  "name": "velza-cms-article-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Staging tooling for server/cloudflare-worker.js. server/ is excluded from the cPanel deploy (.cpanel.yml).",
+  "type": "module",
+  "scripts": {
+    "check": "wrangler deploy --dry-run --outdir .wrangler/dry-run",
+    "dev:local": "wrangler dev --ip 127.0.0.1 --port 8787 --local-upstream 127.0.0.1:8098 --upstream-protocol http --var CMS_BASE_URL:http://127.0.0.1:1399 --var SITE_ORIGIN:http://127.0.0.1:8787"
+  }
+}

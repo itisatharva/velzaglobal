@@ -15,7 +15,13 @@ export const cmsConfig = {
   // true: if the CMS is unreachable or returns no items, keep the page's static cards (no visible change).
   // false: show the empty / error messages instead.
   fallbackToStatic: true,
+  // 'merge': CMS cards are added before the static cards (a CMS entry replaces the static card with the same URL).
+  // 'replace': CMS cards only.
+  listingMode: 'merge',
+  // true only once server-rendered CMS article pages are deployed (server/cms). Until then, CMS cards link only
+  // to detail pages that already exist as static files.
+  detailPages: false,
   // PLACEHOLDER: CMS region slugs for each site region (pending business decision F6a).
   // A null entry keeps that region's static content.
-  regionSlugs: { hk: null, ph: null, in: null },
+  regionSlugs: { hk: 'hk', ph: 'ph', in: 'in' },
 };

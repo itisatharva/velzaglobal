@@ -27,3 +27,8 @@ Thumbs.db
 .agents/
 .claude/skills/
 .claude/settings.local.json
+
+# Worker tooling (server/package.json): dependencies, Wrangler state and local-only variables.
+server/node_modules/
+server/.wrangler/
+server/.dev.vars

@@ -1,0 +1,39 @@
+// Cloudflare Worker for CMS article pages - STAGING ONLY. Not deployed.
+// Design, assumptions and the staging test procedure: server/cms/README.md.
+//
+// Every PLACEHOLDER below must be replaced with a confirmed value before `wrangler deploy`. The placeholders
+// are deliberately not valid hostnames or zones, so a deploy with them fails instead of attaching anywhere.
+// Never add a route for the production host (www.velzaglobal.com) here; production gets its own reviewed config.
+// No secrets belong in this file: the Worker uses none (no CMS token). Local-only values go in .dev.vars
+// (git-ignored) or on the `wrangler dev` command line.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "velza-cms-articles-staging",
+  // Bundled by Wrangler (esbuild): it follows the imports into server/cms/ and shared/js/velza-cms/.
+  "main": "cloudflare-worker.js",
+  // Set to the date the Worker is first tested in the Workers runtime, and no later than the pinned
+  // Wrangler/workerd release supports. The Worker uses only standard fetch/URL/Headers/Response/Intl APIs.
+  "compatibility_date": "2026-10-01",
+
+  // Reachable only through the routes below: no *.workers.dev URL and no preview URLs.
+  "workers_dev": false,
+  "preview_urls": false,
+
+  // Only the two article route families on the STAGING host. Everything else on that host never reaches
+  // the Worker and is served by the origin (.htaccess) directly.
+  "routes": [
+    { "pattern": "PLACEHOLDER-STAGING-HOST/blogs/*", "zone_name": "PLACEHOLDER-ZONE" },
+    { "pattern": "PLACEHOLDER-STAGING-HOST/news/*", "zone_name": "PLACEHOLDER-ZONE" }
+  ],
+
+  // Plain (non-secret) variables. CMS_BASE_URL empty = CMS rendering off: the Worker then passes every request
+  // through to the origin unchanged. Set them to the confirmed staging values (or per run with --var).
+  "vars": {
+    // PLACEHOLDER: https origin of the STAGING CMS (public Content API, read-only, no token).
+    "CMS_BASE_URL": "",
+    // PLACEHOLDER: https origin of the staging website, used for canonical and Open Graph URLs.
+    "SITE_ORIGIN": "",
+    // Optional: media origin when /uploads is not served by CMS_BASE_URL.
+    "CMS_MEDIA_BASE_URL": ""
+  }
+}

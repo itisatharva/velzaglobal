@@ -35,7 +35,7 @@ velzaglobal/
 ├── events/                    RSVP microsite, ONE copy (was 3×)
 │
 ├── server/
-│   ├── cloudflare-worker.js   alternative router, edge-based
+│   ├── cloudflare-worker.js   CMS article pages on /blogs/* and /news/* only (not deployed; see server/cms/README.md)
 │   └── redirects-nginx.conf   reference, if you ever leave Apache
 │
 ├── deployment/

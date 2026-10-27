@@ -7,10 +7,12 @@
  * same markup classes. Otherwise the static cards stay (see cmsConfig.fallbackToStatic).
  * No token is used: browsers rely on the CMS Public role.
  *
- * Detail links: only CMS entries whose /blogs/<slug> or /news/<slug> URL is already linked by the page's own
- * static cards (i.e. a static detail page is known to exist) are rendered as links. Other CMS entries render
- * without a link, so visitors are never sent to a missing page. A CMS-backed detail route is pending the
- * URL/canonical decisions (Phase 6 F4b/F4c).
+ * Listing mode (cmsConfig.listingMode): 'merge' (default) shows CMS cards first and keeps the static cards that
+ * no CMS entry supersedes (same URL); 'replace' shows CMS cards only.
+ *
+ * Detail links: when cmsConfig.detailPages is true (server-side CMS article pages are deployed), every CMS card
+ * links to /blogs/<slug> or /news/<slug>. Otherwise only CMS entries whose URL is already linked by the page's
+ * own static cards are rendered as links, so visitors are never sent to a missing page.
  * News expiry and future-date embargo are NOT applied (pending Phase 6 F2/F3).
  */
 import { createVelzaCmsClient } from './velza-cms-client.js';
@@ -125,6 +127,7 @@ export const enhanceListings = async (doc = document, config = cmsConfig, create
 
     // Read the static cards' links before anything is replaced.
     const knownDetails = collectKnownDetailHrefs(container, listing.path);
+    const staticCards = Array.from(container.children);
     container.setAttribute('aria-busy', 'true');
     container.classList.add('vg-cms-loading');
     let models = [];
@@ -135,13 +138,25 @@ export const enhanceListings = async (doc = document, config = cmsConfig, create
       models = items
         .map((item) => toCardModel(item, client.mediaUrl, config, listing.path))
         .filter(Boolean)
-        .map((m) => ({ ...m, linked: knownDetails.has(normalizeDetailHref(m.href)) }));
+        // With CMS detail pages enabled every CMS entry has a page; otherwise only known static pages are linked.
+        .map((m) => ({ ...m, linked: config.detailPages === true || knownDetails.has(normalizeDetailHref(m.href)) }));
     } catch (e) {
       error = e;
     }
 
     const view = decideView({ models, error, fallbackToStatic: config.fallbackToStatic !== false });
-    if (view === 'cards') container.replaceChildren(...models.map((m) => buildCard(doc, m)));
+    if (view === 'cards') {
+      const cmsCards = models.map((m) => buildCard(doc, m));
+      if (config.listingMode === 'replace') {
+        container.replaceChildren(...cmsCards);
+      } else {
+        // 'merge' (default): CMS cards first, then the static cards not superseded by a CMS entry with the same URL.
+        const cmsHrefs = new Set(models.map((m) => normalizeDetailHref(m.href)));
+        const kept = staticCards.filter((card) => !Array.from(card.querySelectorAll ? card.querySelectorAll('a[href]') : [])
+          .some((a) => cmsHrefs.has(normalizeDetailHref(a.getAttribute('href')))));
+        container.replaceChildren(...cmsCards, ...kept);
+      }
+    }
     else if (view === 'empty') showMessage(doc, container, listing.empty);
     else if (view === 'error') showMessage(doc, container, listing.error);
     container.removeAttribute('aria-busy');
