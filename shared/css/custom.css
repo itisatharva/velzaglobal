@@ -2290,3 +2290,42 @@ h1.h2-large {
         line-height: 20px;
     }
 }
+
+/* Two-up photo row inside an article body */
+.sk__single-article .vg-article-gallery {
+    margin: 2.25rem 0;
+}
+.sk__single-article .vg-article-gallery img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* "Download here the Press Release" block at the end of a news post */
+.vg-press-download {
+    margin-top: 3rem;
+}
+.sk__single-article .post-content .vg-press-download-title {
+    margin-top: 0;
+    font-size: 1rem;
+}
+.vg-press-download a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* News main image: a wide crop that trims empty space above and below.
+   Every current news image keeps its logos/text/faces inside this frame. */
+.sk__single-article .post-content > img.vg-news-hero {
+    aspect-ratio: 2.2 / 1;
+    object-fit: cover;
+    object-position: center;
+}
+@media all and (max-width: 767px) {
+    .sk__single-article .post-content > img.vg-news-hero {
+        aspect-ratio: 16 / 9;
+    }
+}
