@@ -95,7 +95,9 @@ const clampPageSize = (size) => {
 };
 
 /** Builds the query object for a collection request. Exported for testing. */
-export const buildQuery = (type, { region, slug, page = 1, pageSize, sort, extraFilters } = {}) => {
+// `fields` (top-level attributes) and `populate` override the defaults so a caller that needs only a few
+// values (e.g. listing cards) does not download every article body. Omitted = full default populate.
+export const buildQuery = (type, { region, slug, page = 1, pageSize, sort, extraFilters, fields, populate } = {}) => {
   const filters = { ...(extraFilters || {}) };
   if (slug) filters.slug = { $eq: slug };
   if (region) {
@@ -107,7 +109,9 @@ export const buildQuery = (type, { region, slug, page = 1, pageSize, sort, extra
     pagination: { page: Number.isInteger(page) && page > 0 ? page : 1, pageSize: clampPageSize(pageSize) },
   };
   if (Object.keys(filters).length) query.filters = filters;
-  if (POPULATE[type]) query.populate = POPULATE[type];
+  if (Array.isArray(fields) && fields.length) query.fields = fields;
+  const tree = populate === undefined ? POPULATE[type] : populate;
+  if (tree) query.populate = tree;
   return query;
 };
 
@@ -155,26 +159,42 @@ export const createVelzaCmsClient = ({ baseUrl, mediaBaseUrl, token, fetch: fetc
     const qs = query ? encodeQuery(query) : '';
     const url = `${origin}/api/${path}${qs ? `?${qs}` : ''}`;
     const controller = typeof AbortController === 'function' ? new AbortController() : null;
-    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+    // The timeout covers the whole exchange: headers AND body. A response whose body stalls after the
+    // headers arrive must not leave a listing busy (or a Worker request hanging) indefinitely.
+    let timedOut = false;
+    let timer = null;
+    const deadline = new Promise((_, reject) => {
+      timer = setTimeout(() => {
+        timedOut = true;
+        if (controller) controller.abort();
+        reject(new CmsError(`Request timed out after ${timeoutMs} ms`, { kind: 'timeout' }));
+      }, timeoutMs);
+    });
+    deadline.catch(() => {}); // handled by the races below; avoids an unhandled rejection after success
     let res;
-    try {
-      res = await doFetch(url, {
-        method: 'GET',
-        headers: { Accept: 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-        signal: controller ? controller.signal : undefined,
-      });
-    } catch (err) {
-      if (err && err.name === 'AbortError') throw new CmsError(`Request timed out after ${timeoutMs} ms`, { kind: 'timeout' });
-      throw new CmsError('Network error while contacting the CMS', { kind: 'network', details: err && err.message });
-    } finally {
-      if (timer) clearTimeout(timer);
-    }
-
     let body = null;
     try {
-      body = await res.json();
-    } catch {
-      if (res.ok) throw new CmsError('CMS returned a non-JSON response', { kind: 'parse', status: res.status });
+      try {
+        res = await Promise.race([
+          doFetch(url, {
+            method: 'GET',
+            headers: { Accept: 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+            signal: controller ? controller.signal : undefined,
+          }),
+          deadline,
+        ]);
+      } catch (err) {
+        if (timedOut || (err && err.name === 'AbortError')) throw new CmsError(`Request timed out after ${timeoutMs} ms`, { kind: 'timeout' });
+        throw new CmsError('Network error while contacting the CMS', { kind: 'network', details: err && err.message });
+      }
+      try {
+        body = await Promise.race([res.json(), deadline]);
+      } catch (err) {
+        if (timedOut) throw new CmsError(`Request timed out after ${timeoutMs} ms`, { kind: 'timeout' });
+        if (res.ok) throw new CmsError('CMS returned a non-JSON response', { kind: 'parse', status: res.status });
+      }
+    } finally {
+      clearTimeout(timer);
     }
     if (!res.ok) {
       const message = (body && body.error && body.error.message) || `CMS request failed with HTTP ${res.status}`;

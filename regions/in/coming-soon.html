@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="en-US" data-velza-region="in">
     <head>
         <!-- Velza Consent Mode v2 defaults — MUST stay above the GTM snippet -->
         <script>
@@ -136,6 +136,7 @@
             rel="stylesheet"
             href="/shared/vendor/simple-forms/css/simple-forms-skilltech-mod.css"
         />
+        <link href="/shared/css/frontend-fixes.css?v=20261117" rel="stylesheet" />
     </head>
 
     <body class="sk__coming-soon-page dark-shade-1-bg static-simple-footer">
@@ -151,7 +152,7 @@
         <!-- End Google Tag Manager (noscript) -->
         <main id="primary" class="site-main">
             <div class="sk__logo-no-menu sk__fade-in-3">
-                <img
+                <img width="1080" height="1080"
                     id="sk__main-logo"
                     alt="Velza Global India, Velza Global Philippines, Velza Global Hong Kong"
                     src="/shared/images/logo-normal.png"
@@ -179,7 +180,7 @@
                                         class="sk__parallax-background-section sk__hero-item-center-center"
                                     >
                                         <!-- Parallax background -->
-                                        <img
+                                        <img width="2544" height="1440"
                                             src="/shared/images/parallax-background-section-03.webp"
                                             alt="Velza Global coming soon with premium consumer brands and luxury lifestyle experiences across India, Philippines, and Hong Kong"
                                             class="sk__parallax-background-element sk__absolute sk__image-back-cover"
@@ -249,13 +250,11 @@
                                                                     <input
                                                                         type="email"
                                                                         name="the_email"
+                                                                        aria-label="Email address"
                                                                         placeholder="Enter email address*"
-                                                                        tabindex="1"
                                                                     />
                                                                 </div>
-                                                                <button
-                                                                    type="submit"
-                                                                    tabindex="2"
+                                                                <button type="submit" aria-label="Subscribe"
                                                                 >
                                                                     SUB
                                                                 </button>
@@ -310,6 +309,7 @@
                                                             >
                                                                 <a
                                                                     class="social-icons"
+                                                                    aria-label="Velza Global on Facebook (opens in a new tab)"
                                                                     href="https://www.facebook.com/VelzaGlobalIn"
                                                                     target="_blank" rel="noopener noreferrer"><span
                                                                         ><span
@@ -318,6 +318,7 @@
                                                                 ></a>
                                                                 <a
                                                                     class="social-icons"
+                                                                    aria-label="Velza Global on Instagram (opens in a new tab)"
                                                                     href="https://www.instagram.com/velzaglobalin/"
                                                                     target="_blank" rel="noopener noreferrer"><span
                                                                         ><span
@@ -326,6 +327,7 @@
                                                                 ></a>
                                                                 <a
                                                                     class="social-icons"
+                                                                    aria-label="Velza Global on LinkedIn (opens in a new tab)"
                                                                     href="https://www.linkedin.com/company/velzaglobalin/"
                                                                     target="_blank" rel="noopener noreferrer"><span
                                                                         ><span
@@ -334,6 +336,7 @@
                                                                 ></a>
                                                                 <a
                                                                     class="social-icons"
+                                                                    aria-label="Velza Global on X (opens in a new tab)"
                                                                     href="https://x.com/VelzaGlobalind"
                                                                     target="_blank" rel="noopener noreferrer"><span
                                                                         ><span
@@ -478,6 +481,7 @@
                                                     <div class="footer-socials">
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on Facebook (opens in a new tab)"
                                                             href="https://www.facebook.com/VelzaGlobalIn"
                                                             target="_blank" rel="noopener noreferrer"><span
                                                                 ><span
@@ -486,6 +490,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on Instagram (opens in a new tab)"
                                                             href="https://www.instagram.com/velzaglobalin/"
                                                             target="_blank" rel="noopener noreferrer"><span
                                                                 ><span
@@ -494,6 +499,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on LinkedIn (opens in a new tab)"
                                                             href="https://www.linkedin.com/company/velzaglobalin/"
                                                             target="_blank" rel="noopener noreferrer"><span
                                                                 ><span
@@ -502,6 +508,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on X (opens in a new tab)"
                                                             href="https://x.com/VelzaGlobalind"
                                                             target="_blank" rel="noopener noreferrer"><span
                                                                 ><span
@@ -526,13 +533,11 @@
                                                             <input
                                                                 type="email"
                                                                 name="the_email"
+                                                                aria-label="Email address"
                                                                 placeholder="Enter email address*"
-                                                                tabindex="1"
                                                             />
                                                         </div>
-                                                        <button
-                                                            type="submit"
-                                                            tabindex="2"
+                                                        <button type="submit" aria-label="Subscribe"
                                                         >
                                                             SUB
                                                         </button>
@@ -668,6 +673,7 @@
     
         <!-- Velza Global Regional Architecture -->
         <script src="/routing/region-config.js"></script>
-        <script src="/routing/region-switcher.js"></script>
+        <script src="/routing/region-switcher.js?v=20261117"></script>
+        <script src="/shared/js/newsletter-form.js?v=20261117"></script>
     </body>
 </html>
