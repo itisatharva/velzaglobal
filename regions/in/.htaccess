@@ -15,6 +15,7 @@
 Options -Indexes
 Options -MultiViews
 DirectoryIndex index.html
+DirectorySlash Off
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -29,8 +30,11 @@ RewriteEngine On
 RewriteCond %{THE_REQUEST} \s/+regions/ [NC]
 RewriteRule ^ - [R=404,L]
 
+# No !-d condition: blogs.html and news.html sit beside the blogs/ and
+# news/ post folders, so /blogs must resolve to blogs.html even though a
+# directory of the same name exists. DirectorySlash Off (above) stops
+# Apache answering /blogs with a 301 to /regions/<code>/blogs/ instead.
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.+)$ $1.html [L]
 </IfModule>

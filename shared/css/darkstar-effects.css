@@ -1,0 +1,131 @@
+/* ---------- Pre-reveal states (JS is up and motion is allowed) ---------- */
+
+html.ds-ready [data-ds-anim]:not(.ds-revealed),
+html.ds-ready [data-ds-stagger]:not(.ds-revealed) .ds-item {
+    opacity: 0;
+}
+
+/* Clip reveals keep their box (no layout shift); only the paint is hidden */
+html.ds-ready [data-ds-anim="reveal-up"]:not(.ds-revealed),
+html.ds-ready [data-ds-anim="image-reveal"]:not(.ds-revealed) {
+    opacity: 1;
+    -webkit-clip-path: inset(100% 0 0 0);
+    clip-path: inset(100% 0 0 0);
+}
+
+/* ---------- Background / image parallax ---------- */
+
+/* The container clips the overscanned image so no edge ever shows */
+.ds-parallax-host {
+    overflow: hidden;
+}
+
+html.ds-ready [data-ds-parallax] {
+    will-change: transform;
+}
+
+/* ---------- Subtle hover: lift ---------- */
+
+/* Uses the individual `translate` property so it composes with, rather
+   than replaces, any `transform` the theme or GSAP already sets. */
+[data-ds-hover="lift"] {
+    -webkit-transition: translate 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+    transition: translate 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    [data-ds-hover="lift"]:hover {
+        translate: 0 -6px;
+    }
+}
+
+/* ---------- Subtle hover: image zoom (for images inside a clipping box) ---------- */
+
+[data-ds-hover="zoom"] {
+    overflow: hidden;
+}
+
+[data-ds-hover="zoom"] img {
+    -webkit-transition: scale 1.2s cubic-bezier(0.16, 0.84, 0.44, 1);
+    transition: scale 1.2s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    [data-ds-hover="zoom"]:hover img {
+        scale: 1.04;
+    }
+}
+
+/* Touch screens: the same hover looks, shown while the card is in view
+   (the JS adds .ds-hover; theme :hover rules are mirrored at runtime) */
+html.ds-touch [data-ds-hover="lift"].ds-hover {
+    translate: 0 -6px;
+}
+
+html.ds-touch [data-ds-hover="zoom"].ds-hover img {
+    scale: 1.04;
+}
+
+/* ---------- Feature card dividers in four-column rows ----------
+   custom.css hides the divider after every third .sk__feature-col1, which
+   suits three-per-row layouts. In a four-per-row (col-lg-3) row that drops
+   the line between the 3rd and 4th cards, e.g. after "Warm Hospitality"
+   on Rosso Caffè. Rows of three are unaffected (their 3rd card is last). */
+
+@media all and (min-width: 992px) {
+    .sk__feature-col1.col-lg-3:nth-child(3):not(:last-child)::after {
+        display: block;
+    }
+}
+
+/* ---------- Mobile (below 768px): lighter touch ---------- */
+
+@media all and (max-width: 767px) {
+    /* No parallax on phones: less motion, no scroll-linked repaints */
+    html.ds-ready [data-ds-parallax] {
+        will-change: auto;
+    }
+}
+
+/* ---------- Reduced motion: fades only, nothing moves ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    /* Masked reveals become plain fades: hidden by opacity, not by clip */
+    html.ds-ready [data-ds-anim="reveal-up"]:not(.ds-revealed),
+    html.ds-ready [data-ds-anim="image-reveal"]:not(.ds-revealed) {
+        opacity: 0;
+    }
+
+    /* Opacity is left to the fade; position, clip and zoom are pinned */
+    [data-ds-anim],
+    [data-ds-stagger] .ds-item,
+    [data-ds-parallax] {
+        -webkit-clip-path: none !important;
+        clip-path: none !important;
+        -webkit-transform: none !important;
+        transform: none !important;
+        will-change: auto !important;
+    }
+
+    [data-ds-hover="lift"],
+    [data-ds-hover="lift"]:hover,
+    [data-ds-hover="zoom"] img,
+    [data-ds-hover="zoom"]:hover img {
+        -webkit-transition: none !important;
+        transition: none !important;
+        translate: none !important;
+        scale: none !important;
+    }
+}
+
+/* Script-side fallback flag: set when the layer switches itself off after
+   an error, so everything is shown as-is */
+html.ds-reduced-motion [data-ds-anim],
+html.ds-reduced-motion [data-ds-stagger] .ds-item,
+html.ds-reduced-motion [data-ds-parallax] {
+    opacity: 1 !important;
+    -webkit-clip-path: none !important;
+    clip-path: none !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+}

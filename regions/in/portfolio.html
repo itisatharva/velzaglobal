@@ -15,7 +15,7 @@
                 functionality_storage: "denied",
                 personalization_storage: "denied",
                 security_storage: "granted",
-                wait_for_update: 500
+                wait_for_update: 500,
             });
             gtag("set", "ads_data_redaction", true);
             gtag("set", "url_passthrough", true);
@@ -55,25 +55,19 @@
             content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
         <!-- SEO / Social Metadata -->
-        <meta name="description" content="Explore Velza Global&#x27;s portfolio of luxury beverages, Italian spirits, coffee, lifestyle essentials and Rosso Caffè experiences." />
+        <meta
+            name="description"
+            content="Explore Velza Global&#x27;s portfolio of luxury beverages, Italian spirits, coffee, lifestyle essentials and Rosso Caffè experiences."
+        />
         <meta name="keywords" content="Premium Consumer Brand" />
         <meta name="author" content="Velza Global Group" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
 
         <title>Premium Brand Portfolio | Velza Global Group</title>
         <link rel="canonical" href="https://www.velzaglobal.com/portfolio" />
-
-        <link rel="alternate" hreflang="en-in"
-              href="https://www.velzaglobal.com/india/portfolio.html">
-
-        <link rel="alternate" hreflang="en-ph"
-              href="https://www.velzaglobal.com/philippines/portfolio.html">
-
-        <link rel="alternate" hreflang="en-hk"
-              href="https://www.velzaglobal.com/hong-kong/portfolio.html">
-
-        <link rel="alternate" hreflang="x-default"
-              href="https://www.velzaglobal.com/">
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Velza Global Group" />
@@ -287,7 +281,10 @@
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#000000" />
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="msapplication-TileImage" content="/shared/images/mstile-150x150.png" />
+        <meta
+            name="msapplication-TileImage"
+            content="/shared/images/mstile-150x150.png"
+        />
 
         <!-- Bootstrap CSS -->
         <link
@@ -317,6 +314,7 @@
         <link href="/shared/css/custom.css" rel="stylesheet" />
         <link href="/shared/css/responsive-fix.css" rel="stylesheet" />
         <link href="/shared/css/cookie-consent.css" rel="stylesheet" />
+        <link href="/shared/css/darkstar-effects.css?v=8" rel="stylesheet" />
 
         <!-- Theme Preview Only CSS -->
         <!-- <link
@@ -606,6 +604,7 @@
                                     <div
                                         id="sk__parallax-layers-story"
                                         class="sk__rectangles-full-left-parallax-layers"
+                                        data-ds-layers="mouse"
                                     >
                                         <!-- main background deco -->
                                         <div
@@ -690,7 +689,7 @@
                                             beverages, Italian spirits,
                                             specialty coffee, hospitality
                                             concepts, and luxury lifestyle
-                                            essentials—each carefully selected
+                                            essentials, each carefully selected
                                             to meet the evolving aspirations of
                                             modern consumers.
                                         </p>
@@ -716,6 +715,7 @@
                                 <div class="row sk__heading-spacer-l">
                                     <div
                                         class="col-12 col-xl-10 offset-xl-1 text-center"
+                                        data-ds-anim="fade-up"
                                     >
                                         <h1 class="h1-small mb-3 pt-4 pb-1">
                                             EXPLORE OUR DIVERSE COLLECTION
@@ -754,10 +754,10 @@
                                                         Luxury Beverages
                                                     </h2>
                                                     <h6 class="h6-small">
-                                                        Premium energy beverages
-                                                        designed for consumers
-                                                        who demand style,
-                                                        innovation, and
+                                                        Premium caffeinated
+                                                        beverages designed for
+                                                        consumers who demand
+                                                        style, innovation, and
                                                         uncompromising quality.
                                                     </h6>
                                                     <p>Explore</p>
@@ -803,7 +803,7 @@
                                         </div> -->
                                         <div class="sk__portfolio-item">
                                             <a
-                                                href="#"
+                                                href="/portfolio#our-portfolio2"
                                                 class="sk__portfolio-thumblink"
                                             >
                                                 <div class="sk__pt-link-icon">
@@ -872,7 +872,7 @@
                                             class="sk__portfolio-item full-card"
                                         >
                                             <a
-                                                href="#"
+                                                href="/portfolio#our-portfolio2"
                                                 class="sk__portfolio-thumblink"
                                             >
                                                 <div class="sk__pt-link-icon">
@@ -924,6 +924,7 @@
                             <div class="row sk__heading-spacer-l">
                                 <div
                                     class="col-12 col-xl-10 offset-xl-1 text-center"
+                                    data-ds-anim="reveal-up"
                                 >
                                     <h1 class="h1-small mb-2 pt-2 pb-1">
                                         OUR BRAND ECOSYSTEM
@@ -937,12 +938,15 @@
 
                             <div
                                 class="row sk__iconboxes-wrapper text-center sk__flex-center-x"
+                                data-ds-stagger="text-up"
+                                data-ds-items=".sk__iconbox h4, .sk__iconbox > p"
+                                data-ds-each="0.12"
                             >
                                 <div class="col-12 col-sm-6 col-lg-4">
                                     <div class="sk__iconbox">
                                         <a
                                             class="sk__iconbox-text-link gradient-links-bright"
-                                            href="page-service-item.html"
+                                            href="/portfolio#skills"
                                         >
                                             <h4>Premium Quality</h4>
                                         </a>
@@ -956,7 +960,7 @@
                                     <div class="sk__iconbox">
                                         <a
                                             class="sk__iconbox-text-link gradient-links-bright"
-                                            href="page-service-item.html"
+                                            href="/portfolio#skills"
                                         >
                                             <h4>Authentic Heritage</h4>
                                         </a>
@@ -970,7 +974,7 @@
                                     <div class="sk__iconbox">
                                         <a
                                             class="sk__iconbox-text-link gradient-links-bright"
-                                            href="page-service-item.html"
+                                            href="/portfolio#skills"
                                         >
                                             <h4>Meaningful Experiences</h4>
                                         </a>
@@ -981,7 +985,7 @@
                                     <div class="sk__iconbox">
                                         <a
                                             class="sk__iconbox-text-link gradient-links-bright"
-                                            href="page-service-item.html"
+                                            href="/portfolio#skills"
                                         >
                                             <h4>Global Standards</h4>
                                         </a>
@@ -995,7 +999,7 @@
                                     <div class="sk__iconbox">
                                         <a
                                             class="sk__iconbox-text-link gradient-links-bright"
-                                            href="page-service-item.html"
+                                            href="/portfolio#skills"
                                         >
                                             <h4>Sustainable Future</h4>
                                         </a>
@@ -1022,6 +1026,7 @@
                             <div class="row sk__heading-spacer-l">
                                 <div
                                     class="col-12 col-xl-10 offset-xl-1 text-center"
+                                    data-ds-anim="fade-up"
                                 >
                                     <h1 class="h1-small mb-3 pt-4 pb-1">
                                         Let's Build the Next Great Brand
@@ -1038,6 +1043,7 @@
                                 </div>
                                 <div
                                     class="col-12 col-lg-12 text-center"
+                                    data-ds-anim="fade-up"
                                     style="margin-top: 40px"
                                 >
                                     <a
@@ -1366,6 +1372,7 @@
         <script src="/shared/js/theme.js"></script>
         <script src="/shared/js/responsive-fix.js"></script>
         <script src="/shared/js/cookie-consent.js"></script>
+        <script src="/shared/js/darkstar-effects.js?v=8"></script>
 
         <!-- Velza Global Regional Architecture -->
         <script src="/routing/region-config.js"></script>
