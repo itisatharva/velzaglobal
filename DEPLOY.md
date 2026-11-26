@@ -242,7 +242,7 @@ curl -sI https://www.velzaglobal.com/ | head -1                        # 200
 for p in about-us portfolio contact-us luxury-beverage coffee-collection \
          pure-italian-spirits lifestyle-essentials rosso-caffe news news/velza-global-tonino-lamborghini-rosso-caffe-philippines \
          news/tonino-lamborghini-velza-global-partnership-philippines \
-         news/velza-global-tonino-lamborghini-partnership-india blogs blogs/global-brand-partnership \
+         news/velza-global-tonino-lamborghini-partnership-india blogs blogs/global-brand-partnership blogs/rosso-caffe-india-launch \
          privacy-policy terms-and-conditions; do
   echo -n "$p -> "; curl -sI "https://www.velzaglobal.com/$p" | head -1
 done                                                                    # all 200
