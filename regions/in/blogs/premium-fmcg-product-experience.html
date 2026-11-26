@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="en-US" data-velza-region="in">
     <head>
         <!-- Velza Consent Mode v2 defaults — MUST stay above the GTM snippet -->
         <script>
@@ -355,6 +355,7 @@
 
         <!-- Simple Forms -->
         <!-- <link rel="stylesheet" href="/shared/vendor/simple-forms/css/simple-forms-skilltech-mod.css"> -->
+        <link href="/shared/css/frontend-fixes.css?v=20261117" rel="stylesheet" />
     </head>
 
     <body class="sk__portfolio-item-page dark-shade-1-bg">
@@ -371,7 +372,7 @@
         <main id="primary" class="site-main">
             <!-- Back to top button -->
             <div class="sk__back-to-top-wrap">
-                <a class="sk__back-to-top" href="#smooth-content"
+                <a class="sk__back-to-top" href="#smooth-content" aria-label="Back to top"
                     ><span class="sk__back-to-top"></span
                 ></a>
             </div>
@@ -382,7 +383,7 @@
 
             <!-- Dynamically controlled with JS! -->
             <a class="sk__mobile-main-logo" href="/"
-                ><img
+                ><img width="1080" height="1080"
                     alt="Velza Global India, Velza Global Philippines, Velza Global Hong Kong"
                     src="/shared/images/logo-normal.png"
             /></a>
@@ -394,7 +395,7 @@
             >
                 <!-- Desktop Menu Logo -->
                 <a class="navbar-brand" href="/"
-                    ><img
+                    ><img width="1080" height="1080"
                         id="sk__main-logo"
                         alt="Velza Global India, Velza Global Philippines, Velza Global Hong Kong"
                         src="/shared/images/logo-normal.png"
@@ -408,7 +409,7 @@
                         class="custom-content sk__mobile-menu-logo"
                     >
                         <a class="sk__mobile-navbar-brand" href="/"
-                            ><img
+                            ><img width="240" height="132"
                                 alt="Velza Global India, Velza Global Philippines, Velza Global Hong Kong"
                                 src="/shared/images/logo-mobile.png"
                         /></a>
@@ -476,6 +477,7 @@
                                 <div class="footer-socials">
                                     <a
                                         class="social-icons"
+                                        aria-label="Velza Global on Facebook (opens in a new tab)"
                                         href="https://www.facebook.com/VelzaGlobalIn"
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -486,6 +488,7 @@
                                     ></a>
                                     <a
                                         class="social-icons"
+                                        aria-label="Velza Global on Instagram (opens in a new tab)"
                                         href="https://www.instagram.com/velzaglobalin/"
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -496,6 +499,7 @@
                                     ></a>
                                     <a
                                         class="social-icons"
+                                        aria-label="Velza Global on LinkedIn (opens in a new tab)"
                                         href="https://www.linkedin.com/company/velzaglobalin/"
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -506,6 +510,7 @@
                                     ></a>
                                     <a
                                         class="social-icons"
+                                        aria-label="Velza Global on X (opens in a new tab)"
                                         href="https://x.com/VelzaGlobalind"
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -578,7 +583,7 @@
                                             market.
                                         </p>
 
-                                        <img
+                                        <img width="1600" height="840"
                                             class="mt-6 mb-6"
                                             data-ds-anim="image-reveal"
                                             src="/shared/images/Premium FMCG Product Experience main.webp"
@@ -1343,6 +1348,7 @@
                                                     <div class="footer-socials">
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on Facebook (opens in a new tab)"
                                                             href="https://www.facebook.com/VelzaGlobalIn"
                                                             target="_blank"
                                                             rel="noopener noreferrer"
@@ -1353,6 +1359,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on Instagram (opens in a new tab)"
                                                             href="https://www.instagram.com/velzaglobalin/"
                                                             target="_blank"
                                                             rel="noopener noreferrer"
@@ -1363,6 +1370,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on LinkedIn (opens in a new tab)"
                                                             href="https://www.linkedin.com/company/velzaglobalin/"
                                                             target="_blank"
                                                             rel="noopener noreferrer"
@@ -1373,6 +1381,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on X (opens in a new tab)"
                                                             href="https://x.com/VelzaGlobalind"
                                                             target="_blank"
                                                             rel="noopener noreferrer"
@@ -1399,13 +1408,11 @@
                                                             <input
                                                                 type="email"
                                                                 name="the_email"
+                                                                aria-label="Email address"
                                                                 placeholder="Enter email address*"
-                                                                tabindex="1"
                                                             />
                                                         </div>
-                                                        <button
-                                                            type="submit"
-                                                            tabindex="2"
+                                                        <button type="submit" aria-label="Subscribe"
                                                         >
                                                             SUB
                                                         </button>
@@ -1530,6 +1537,7 @@
 
         <!-- Velza Global Regional Architecture -->
         <script src="/routing/region-config.js"></script>
-        <script src="/routing/region-switcher.js"></script>
+        <script src="/routing/region-switcher.js?v=20261117"></script>
+        <script src="/shared/js/newsletter-form.js?v=20261117"></script>
     </body>
 </html>

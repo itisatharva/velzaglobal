@@ -7,19 +7,40 @@
  * same markup classes. Otherwise the static cards stay (see cmsConfig.fallbackToStatic).
  * No token is used: browsers rely on the CMS Public role.
  *
- * Detail links: only CMS entries whose /blogs/<slug> or /news/<slug> URL is already linked by the page's own
- * static cards (i.e. a static detail page is known to exist) are rendered as links. Other CMS entries render
- * without a link, so visitors are never sent to a missing page. A CMS-backed detail route is pending the
- * URL/canonical decisions (Phase 6 F4b/F4c).
+ * Listing mode (cmsConfig.listingMode): 'merge' (default) shows CMS cards first and keeps the static cards that
+ * no CMS entry supersedes (same URL); 'replace' shows CMS cards only.
+ *
+ * Detail links: when cmsConfig.detailPages is true (server-side CMS article pages are deployed), every CMS card
+ * links to /blogs/<slug> or /news/<slug>. Otherwise only CMS entries whose URL is already linked by the page's
+ * own static cards are rendered as links, so visitors are never sent to a missing page.
  * News expiry and future-date embargo are NOT applied (pending Phase 6 F2/F3).
  */
-import { createVelzaCmsClient } from './velza-cms-client.js';
-import { cmsConfig } from './cms-config.js';
+// Cache-busting: /shared/ JavaScript is served with a one-year cache (.htaccess §14), so the version query here
+// and on the <script src=".../content-listing.js?v=…"> tags in regions/*/{blogs,news}.html MUST be bumped together
+// whenever this file, cms-config.js or velza-cms-client.js changes (e.g. when baseUrl is set for go-live).
+// Otherwise returning visitors keep the previous config/code until their cache expires.
+import { createVelzaCmsClient } from './velza-cms-client.js?v=20261117';
+import { cmsConfig } from './cms-config.js?v=20261117';
 
 /** Listing kinds supported on the site. */
 export const LISTINGS = {
   'blog-list': { method: 'listBlogs', path: '/blogs/', empty: 'No articles have been published yet.', error: 'Articles could not be loaded right now. Please try again later.' },
   'news-list': { method: 'listNewsArticles', path: '/news/', empty: 'No news has been published yet.', error: 'News could not be loaded right now. Please try again later.' },
+};
+
+/**
+ * What a listing card needs from the API: only these attributes and the featured image (not the article body,
+ * gallery, FAQs or SEO), so a listing does not download every full article.
+ */
+export const LISTING_QUERY = { fields: ['title', 'slug', 'publicationDate'], populate: { featuredImage: true } };
+
+/** Intrinsic size of the media variant that mediaUrl() picks (same fallback order), or null. */
+const mediaSize = (media, format) => {
+  if (!media || typeof media !== 'object') return null;
+  const variant = (format && media.formats && media.formats[format]) || media;
+  const w = Number(variant.width);
+  const h = Number(variant.height);
+  return Number.isInteger(w) && Number.isInteger(h) && w > 0 && h > 0 ? { width: w, height: h } : null;
 };
 
 /** Maps a Strapi 5 entry to the values a card needs. Pure; exported for tests. */
@@ -28,11 +49,15 @@ export const toCardModel = (item, resolveMedia, { placeholderImage, imageFormat 
   const slug = typeof item?.slug === 'string' ? item.slug : '';
   if (!title || !slug) return null; // skip malformed entries rather than render a broken card
   const image = resolveMedia(item.featuredImage, { format: imageFormat });
+  const size = image ? mediaSize(item.featuredImage, imageFormat) : null;
   return {
     href: `${basePath}${encodeURIComponent(slug)}`,
     title: title.toUpperCase(), // the static cards use upper-case titles
     imageSrc: image || placeholderImage || null,
     imageAlt: (item.featuredImage && item.featuredImage.alternativeText) || title,
+    // Intrinsic dimensions let the browser reserve the image's space (avoids layout shift); CSS still sizes it.
+    imageWidth: size ? size.width : null,
+    imageHeight: size ? size.height : null,
     usedPlaceholder: !image,
   };
 };
@@ -76,9 +101,14 @@ export const buildCard = (doc, model) => {
 
   const imageBox = el(doc, 'div', 'post-image');
   const imageInner = el(doc, 'div', 'post-image-inner');
-  const image = model.imageSrc
-    ? el(doc, 'img', 'sk__in-content-post-image', { src: model.imageSrc, alt: model.imageAlt, loading: 'lazy' })
-    : null;
+  const imageAttrs = { src: model.imageSrc, alt: model.imageAlt, loading: 'lazy', decoding: 'async' };
+  if (model.imageWidth && model.imageHeight) {
+    imageAttrs.width = String(model.imageWidth);
+    imageAttrs.height = String(model.imageHeight);
+  }
+  const image = model.imageSrc ? el(doc, 'img', 'sk__in-content-post-image', imageAttrs) : null;
+  // The theme sets only width:100%; height:auto keeps the aspect ratio when height is given (CSSOM, CSP-safe).
+  if (image && imageAttrs.height && image.style) image.style.height = 'auto';
   if (model.linked) {
     const imageLink = el(doc, 'a', null, { href: model.href });
     if (image) imageLink.appendChild(image);
@@ -125,23 +155,36 @@ export const enhanceListings = async (doc = document, config = cmsConfig, create
 
     // Read the static cards' links before anything is replaced.
     const knownDetails = collectKnownDetailHrefs(container, listing.path);
+    const staticCards = Array.from(container.children);
     container.setAttribute('aria-busy', 'true');
     container.classList.add('vg-cms-loading');
     let models = [];
     let error = null;
     try {
       const client = createClient({ baseUrl: config.baseUrl, mediaBaseUrl: config.mediaBaseUrl, timeoutMs: config.timeoutMs });
-      const { items } = await client[listing.method]({ region: regionSlug, pageSize: config.pageSize });
+      const { items } = await client[listing.method]({ region: regionSlug, pageSize: config.pageSize, ...LISTING_QUERY });
       models = items
         .map((item) => toCardModel(item, client.mediaUrl, config, listing.path))
         .filter(Boolean)
-        .map((m) => ({ ...m, linked: knownDetails.has(normalizeDetailHref(m.href)) }));
+        // With CMS detail pages enabled every CMS entry has a page; otherwise only known static pages are linked.
+        .map((m) => ({ ...m, linked: config.detailPages === true || knownDetails.has(normalizeDetailHref(m.href)) }));
     } catch (e) {
       error = e;
     }
 
     const view = decideView({ models, error, fallbackToStatic: config.fallbackToStatic !== false });
-    if (view === 'cards') container.replaceChildren(...models.map((m) => buildCard(doc, m)));
+    if (view === 'cards') {
+      const cmsCards = models.map((m) => buildCard(doc, m));
+      if (config.listingMode === 'replace') {
+        container.replaceChildren(...cmsCards);
+      } else {
+        // 'merge' (default): CMS cards first, then the static cards not superseded by a CMS entry with the same URL.
+        const cmsHrefs = new Set(models.map((m) => normalizeDetailHref(m.href)));
+        const kept = staticCards.filter((card) => !Array.from(card.querySelectorAll ? card.querySelectorAll('a[href]') : [])
+          .some((a) => cmsHrefs.has(normalizeDetailHref(a.getAttribute('href')))));
+        container.replaceChildren(...cmsCards, ...kept);
+      }
+    }
     else if (view === 'empty') showMessage(doc, container, listing.empty);
     else if (view === 'error') showMessage(doc, container, listing.error);
     container.removeAttribute('aria-busy');

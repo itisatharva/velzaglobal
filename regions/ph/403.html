@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="en-US" data-velza-region="ph">
     <head>
         <!-- Velza Consent Mode v2 defaults — MUST stay above the GTM snippet -->
         <script>
@@ -130,6 +130,7 @@
             href="/shared/vendor/slick/1.8.1/slick-theme-skilltech.css"
             rel="stylesheet"
         />
+        <link href="/shared/css/frontend-fixes.css?v=20261117" rel="stylesheet" />
     </head>
 
     <body class="sk__404-page sk__error-403-page dark-shade-1-bg static-simple-footer">
@@ -145,7 +146,7 @@
         <!-- End Google Tag Manager (noscript) -->
         <main id="primary" class="site-main">
             <div class="sk__logo-no-menu sk__fade-in-3">
-                <img
+                <img width="1080" height="1080"
                     id="sk__main-logo"
                     alt="Velza Global India, Velza Global Philippines, Velza Global Hong Kong"
                     src="/shared/images/logo-normal.png"
@@ -172,7 +173,7 @@
                                     <section
                                         class="sk__parallax-background-section sk__hero-item-center-center"
                                     >
-                                        <img
+                                        <img width="2544" height="1440"
                                             src="/shared/images/parallax-background-section-03.webp"
                                             alt=""
                                             class="sk__parallax-background-element sk__absolute sk__image-back-cover"
@@ -299,6 +300,7 @@
                                                             >
                                                                 <a
                                                                     class="social-icons"
+                                                                    aria-label="Velza Global on Facebook (opens in a new tab)"
                                                                     href="https://www.facebook.com/velzaglobalph"
                                                                     target="_blank" rel="noopener noreferrer"><span
                                                                         ><span
@@ -307,6 +309,7 @@
                                                                 ></a>
                                                                 <a
                                                                     class="social-icons"
+                                                                    aria-label="Velza Global on Instagram (opens in a new tab)"
                                                                     href="https://www.instagram.com/velzaglobalph/"
                                                                     target="_blank" rel="noopener noreferrer"><span
                                                                         ><span
@@ -315,6 +318,7 @@
                                                                 ></a>
                                                                 <a
                                                                     class="social-icons"
+                                                                    aria-label="Velza Global on LinkedIn (opens in a new tab)"
                                                                     href="https://www.linkedin.com/company/velzaglobalph/"
                                                                     target="_blank" rel="noopener noreferrer"><span
                                                                         ><span
@@ -323,6 +327,7 @@
                                                                 ></a>
                                                                 <a
                                                                     class="social-icons"
+                                                                    aria-label="Velza Global on X (opens in a new tab)"
                                                                     href="https://x.com/VelzaGlobalPH"
                                                                     target="_blank" rel="noopener noreferrer"><span
                                                                         ><span
@@ -467,6 +472,7 @@
                                                     <div class="footer-socials">
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on Facebook (opens in a new tab)"
                                                             href="https://www.facebook.com/velzaglobalph"
                                                             target="_blank" rel="noopener noreferrer"><span
                                                                 ><span
@@ -475,6 +481,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on Instagram (opens in a new tab)"
                                                             href="https://www.instagram.com/velzaglobalph/"
                                                             target="_blank" rel="noopener noreferrer"><span
                                                                 ><span
@@ -483,6 +490,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on LinkedIn (opens in a new tab)"
                                                             href="https://www.linkedin.com/company/velzaglobalph/"
                                                             target="_blank" rel="noopener noreferrer"><span
                                                                 ><span
@@ -491,6 +499,7 @@
                                                         ></a>
                                                         <a
                                                             class="social-icons"
+                                                            aria-label="Velza Global on X (opens in a new tab)"
                                                             href="https://x.com/VelzaGlobalPH"
                                                             target="_blank" rel="noopener noreferrer"><span
                                                                 ><span
@@ -515,13 +524,11 @@
                                                             <input
                                                                 type="email"
                                                                 name="the_email"
+                                                                aria-label="Email address"
                                                                 placeholder="Enter email address*"
-                                                                tabindex="1"
                                                             />
                                                         </div>
-                                                        <button
-                                                            type="submit"
-                                                            tabindex="2"
+                                                        <button type="submit" aria-label="Subscribe"
                                                         >
                                                             SUB
                                                         </button>
@@ -652,6 +659,7 @@
     
         <!-- Velza Global Regional Architecture -->
         <script src="/routing/region-config.js"></script>
-        <script src="/routing/region-switcher.js"></script>
+        <script src="/routing/region-switcher.js?v=20261117"></script>
+        <script src="/shared/js/newsletter-form.js?v=20261117"></script>
     </body>
 </html>

@@ -1,0 +1,57 @@
+/*
+ * Frontend fixes (2026-11). Loaded after the theme stylesheets on every regional page.
+ * Kept separate from custom.css to avoid merge conflicts with ongoing content work on main.
+ * Cache-busting: bump the ?v= on every <link href="/shared/css/frontend-fixes.css?v=…"> when this file changes.
+ */
+
+/*
+ * Layout shift (CLS) fix.
+ * GSAP ScrollSmoother (shared/js/theme.js: ScrollSmoother.create) pins #smooth-wrapper with exactly these styles
+ * once the scripts at the end of <body> have run. On a first (uncached) visit the page paints before that, so the
+ * whole page jumped when the wrapper was pinned (measured CLS 0.592 on /blogs, /news and articles; 1.0 on an
+ * article at 375px). Applying the same styles up front removes the jump; ScrollSmoother then sets identical
+ * values. No-JS rendering is not affected in practice: the theme already hides content until its JS runs.
+ */
+#smooth-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/*
+ * Intrinsic image sizes. width/height attributes were added only to images whose rendered box was measured to be
+ * identical with this rule at 1366px and 390px. Zero specificity (:where), so every theme rule still wins; it
+ * only replaces the height presentational hint, so CSS-sized images keep their aspect ratio while the browser
+ * can reserve space before the file loads.
+ */
+:where(img[width][height]) {
+    height: auto;
+}
+
+/* Region switcher: visible keyboard focus (the theme defines hover styles only). */
+.sk__country-switcher-trigger:focus-visible,
+.sk__country-switcher-menu a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+/* Footer newsletter status message (shared/js/newsletter-form.js). */
+.vg-subscribe-status {
+    margin: 0.75rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+/* CMS listing states (shared/js/velza-cms/content-listing.js); shown only when fallbackToStatic is false. */
+.vg-cms-message {
+    width: 100%;
+    margin: 2rem 0;
+    text-align: center;
+    opacity: 0.85;
+}
