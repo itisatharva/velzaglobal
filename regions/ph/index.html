@@ -246,10 +246,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@100;300;400;700;900&family=Poppins:wght@200;300;400;600;700;800&family=Syncopate:wght@400;700&display=swap"
-            rel="stylesheet"
-        />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@100;300;400;700;900&family=Poppins:wght@200;300;400;600;700;800&family=Syncopate:wght@400;700&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@100;300;400;700;900&family=Poppins:wght@200;300;400;600;700;800&family=Syncopate:wght@400;700&display=swap" /></noscript>
         <!-- Icon Fonts -->
         <link href="/shared/vendor/icomoon/icomoon.min.css" rel="stylesheet" />
 
@@ -282,10 +279,7 @@
         />
 
 
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css"
-        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css" /></noscript>
         <!-- Simple Forms -->
         <!-- <link rel="stylesheet" href="/shared/vendor/simple-forms/css/simple-forms-skilltech-mod.css"> -->
     </head>
@@ -308,6 +302,8 @@
                 <div class="mcurtain mcurtain-center"></div>
                 <div class="mcurtain mcurtain-right"></div>
             </section>
+            <script>/* Velza: start the intro curtain as soon as it is parsed (theme.js used to start it only after every script had loaded). */
+(function(){var c=document.querySelector(".sk__master-curtain");if(!c)return;window.velzaCurtainStart=performance.now();var p=c.querySelectorAll(".mcurtain");for(var i=0;i<p.length;i++){p[i].classList.add("mcurtain-visible");p[i].style.transition="opacity .8s ease-in 0s, transform .8s ease-in "+(1.7+.24*i)+"s"}requestAnimationFrame(function(){requestAnimationFrame(function(){for(var i=0;i<p.length;i++)p[i].style.transform="translateY(-100%)"})});setTimeout(function(){c.parentNode&&c.parentNode.removeChild(c)},3980)})();</script>
 
             <!-- Back to top button -->
             <div class="sk__back-to-top-wrap">
@@ -880,7 +876,7 @@
                         id="about-us"
                         class="sk__about-us-section sk__py-xl"
                     >
-                        <img
+                        <img loading="lazy" decoding="async"
                             src="/shared/images/about-us.webp"
                             alt="About Velza Global – Premium FMCG company with global brand partnerships connecting premium consumer brands across Southeast Asia."
                             class="sk__featured-project-background sk__parallax-background-element sk__absolute sk__image-back-cover"
@@ -1052,7 +1048,7 @@
                                                         class="sk__pt-link-icon-ovr-2"
                                                     ></div>
                                                 </div>
-                                                <img
+                                                <img loading="lazy" decoding="async"
                                                     src="/shared/images/portfolio-thumbs-01.webp"
                                                     alt="Tonino Lamborghini Caffeinated Beverages – Premium beverage collection presented by Velza Global across India, the Philippines, and Hong Kong."
                                                     class="sk__portfolio-thumblink-image sk__image-back-cover"
@@ -1081,7 +1077,7 @@
                                                         class="sk__pt-link-icon-ovr-2"
                                                     ></div>
                                                 </div>
-                                                <img
+                                                <img loading="lazy" decoding="async"
                                                     src="/shared/images/portfolio-thumbs-02.webp"
                                                     alt="Premium Italian spirit by Velza Global – bringing iconic global brands and luxury lifestyle experiences to the Philippines and Hong Kong."
                                                     class="sk__portfolio-thumblink-image sk__image-back-cover"
@@ -1110,7 +1106,7 @@
                                                         class="sk__pt-link-icon-ovr-2"
                                                     ></div>
                                                 </div>
-                                                <img
+                                                <img loading="lazy" decoding="async"
                                                     src="/shared/images/portfolio-thumbs-03.webp"
                                                     alt="Premium coffee selection by Velza Global – authentic Italian coffee and premium coffee experiences across India, the Philippines, and Hong Kong."
                                                     class="sk__portfolio-thumblink-image sk__image-back-cover"
@@ -1139,7 +1135,7 @@
                                                         class="sk__pt-link-icon-ovr-2"
                                                     ></div>
                                                 </div>
-                                                <img
+                                                <img loading="lazy" decoding="async"
                                                     src="/shared/images/portfolio-thumbs-04.webp"
                                                     alt="Lifestyle essentials by Velza Global – premium lifestyle products and iconic global brands across India, the Philippines, and Hong Kong."
                                                     class="sk__portfolio-thumblink-image sk__image-back-cover"
@@ -1168,7 +1164,7 @@
                                                         class="sk__pt-link-icon-ovr-2"
                                                     ></div>
                                                 </div>
-                                                <img
+                                                <img loading="lazy" decoding="async"
                                                     src="/shared/images/portfolio-thumbs-05.webp"
                                                     alt="Rosso Caffè by Tonino Lamborghini – Premium Italian coffee presented by Velza Global across India, the Philippines, and Hong Kong."
                                                     class="sk__portfolio-thumblink-image sk__image-back-cover"
@@ -1197,7 +1193,7 @@
                         class="sk__featured-project-section sk__parallax-background-section dark-shade-2-bg sk__flex"
                         id="rosso-cafe"
                     >
-                        <img
+                        <img loading="lazy" decoding="async"
                             src="/shared/images/featured-project-background.webp"
                             alt="Rosso Caffè by Tonino Lamborghini – Premium Italian coffee presented by Velza Global across Southeast Asia"
                             class="sk__featured-project-background sk__parallax-background-element sk__absolute sk__image-back-cover"
@@ -1606,7 +1602,7 @@
 	<script src="/shared/js/form.js"></script> -->
 
         <!-- Main Theme JS File -->
-        <script src="/shared/js/theme.min.js?v=7cf74d40"></script>
+        <script src="/shared/js/theme.min.js?v=351560e3"></script>
         <script src="/shared/js/counter-format.min.js?v=fef3a18c"></script>
         <script src="/shared/js/responsive-fix.min.js?v=27f49a45"></script>
 

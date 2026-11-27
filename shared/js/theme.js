@@ -34,7 +34,14 @@ $(document).ready(function () {
         smoother.effects(".sk__parallax-container > video", { speed: "auto" }));
     let masterCurtain = $(".sk__master-curtain"),
         effectsMasterDelay = parseFloat(0);
-    if (masterCurtain.length) {
+    if (masterCurtain.length && window.velzaCurtainStart !== undefined) {
+        // Curtain already started by the inline script on the page (see index.html):
+        // only work out how much of its 3.28s run is left, for the hero entrance effects.
+        effectsMasterDelay = Math.max(
+            0,
+            3.28 - (performance.now() - window.velzaCurtainStart) / 1e3,
+        );
+    } else if (masterCurtain.length) {
         $(".sk__master-curtain .mcurtain").addClass("mcurtain-visible");
         let masterCurtainDelay = 2.4,
             masterCurtainDuration = 0.4,
