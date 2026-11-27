@@ -2275,6 +2275,14 @@ $(document).ready(function () {
                 });
             }
         }));
+    // Back to top: scroll with ScrollSmoother right away. The generic same-page
+    // anchor handler is only attached on window.onload (after every image), so
+    // clicks before that - or on slow pages - used to do nothing.
+    $(document).on("click", "a.sk__back-to-top", function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        smoother.scrollTo(0, !0);
+    });
     let backToTopSection = $(".sk__back-to-top-wrap");
     if (
         (backToTopSection.length &&
