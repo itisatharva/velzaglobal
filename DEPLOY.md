@@ -165,6 +165,27 @@ Click every page. Check the `X-Velza-Region` response header in DevTools → Net
 
 For a test that also exercises the real `.htaccess`, install Laragon or XAMPP, point the document root here, and enable `mod_rewrite` + `mod_headers`. Do this before going live.
 
+### Editing shared CSS/JS: rebuild the minified files
+
+Pages load minified copies with a content hash, e.g. `/shared/css/theme.min.css?v=c1b15f8b`.
+Static assets are cached for a year (browser + Cloudflare), so the hash is what makes visitors get a new version.
+
+After editing any of these sources:
+
+`shared/css/` theme, theme-colors, custom, responsive-fix, cookie-consent, darkstar-effects (`.css`)
+`shared/js/` theme, custom, responsive-fix, cookie-consent, darkstar-effects, counter-format (`.js`)
+
+run, from the repo root (Node 18+, uses `npx esbuild@0.24.2`):
+
+```bash
+node tools/build-assets.mjs
+```
+
+It regenerates the `.min` files and rewrites every reference under `regions/` to the new hash.
+Commit the edited source, the regenerated `.min` file and the updated HTML together.
+Editing a source **without** running it changes nothing on the live site.
+`tools/` is excluded from the cPanel deploy.
+
 ---
 
 ## STEP 3 — Deploy from GitHub (cPanel Git Version Control)

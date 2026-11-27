@@ -8,7 +8,7 @@
     --vgc-border-strong: rgba(255, 255, 255, 0.4);
     --vgc-ink: #ffffff;
     --vgc-ink-muted: rgba(255, 255, 255, 0.65);
-    --vgc-ink-dim: rgba(255, 255, 255, 0.45);
+    --vgc-ink-dim: rgba(255, 255, 255, 0.5); /* 0.45 gave 4.47:1 on the panel; 0.5 meets WCAG AA (4.5:1) */
     --vgc-radius: 10px;
     --vgc-radius-sm: 8px;
     --vgc-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65);

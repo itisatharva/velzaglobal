@@ -52,6 +52,7 @@ deployment:
       --exclude '.cpanel.yml'
       --exclude 'deployment/'
       --exclude 'server/'
+      --exclude 'tools/'
       --exclude '*.md'
       --exclude '.DS_Store'
       --exclude 'skills-lock.json'
