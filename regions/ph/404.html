@@ -331,6 +331,8 @@
                                                             </div>
                                                         </div>
                                                     </section>
+<script>/* Velza: reveal first-screen fade-in content (and logo) as soon as it is parsed, instead of after all scripts load (LCP). Below-the-fold elements keep their scroll fade. */
+(function(){var h=innerHeight,r=matchMedia("(prefers-reduced-motion: reduce)").matches;document.querySelectorAll('[class*="sk__fade-in-"],.sk__body-section,.sk__mobile-main-logo').forEach(function(e){var b=e.getBoundingClientRect();if(b.height>0&&b.top<h&&b.bottom>0){if(!r)e.style.transition="opacity .6s ease";e.style.opacity="1";if(!r)setTimeout(function(){e.style.transition=""},700)}})})();</script>
                                                 </div>
                                             </div>
                                         </div>
